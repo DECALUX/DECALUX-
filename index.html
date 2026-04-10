@@ -147,6 +147,49 @@ html,body{
   margin-top:clamp(1rem,3vh,2.5rem);
   opacity:0;
 }
+
+/* ── RGB NAV ── */
+#rgb-nav{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 clamp(3rem,8vw,7rem);
+  opacity:0;
+  pointer-events:none;
+  z-index:20;
+  transition:opacity 1.2s ease;
+}
+#rgb-nav.visible{
+  opacity:1;
+  pointer-events:auto;
+}
+.rgb-letter{
+  font-family:'Georgia',serif;
+  font-weight:400;
+  font-size:clamp(4rem,12vw,9rem);
+  cursor:default;
+  transition:color 0.35s ease;
+  user-select:none;
+  overflow:hidden;
+  display:flex;
+  align-items:baseline;
+}
+.short{ display:inline; transition:opacity 0.2s ease; }
+.long { display:none; font-size:clamp(0.9rem,3vw,2.4rem); letter-spacing:0.18em; text-transform:uppercase; }
+
+.rgb-letter:hover .short{ display:none; }
+.rgb-letter:hover .long { display:inline; }
+
+#letter-r{ color:rgba(176,40,28,0.2); }
+#letter-r:hover{ color:rgba(220,50,35,0.95); }
+
+#letter-g{ color:rgba(30,100,60,0.2); }
+#letter-g:hover{ color:rgba(26,160,75,0.95); }
+
+#letter-b{ color:rgba(25,60,130,0.2); }
+#letter-b:hover{ color:rgba(40,90,210,0.95); }
 </style>
 </head>
 <body>
@@ -168,7 +211,7 @@ html,body{
 
   <!-- DALI ELEPHANT + LOGOTYPE -->
   <div id="dali">
-    <a id="dali-link" href="mailto:moonstarplanet@icloud.com" aria-label="Contact DECALUX">
+    <a id="dali-link" href="/cdn-cgi/l/email-protection#630e0c0c0d10170211130f020d0617230a000f0c16074d000c0e" aria-label="Contact DECALUX">
     <!-- Dalí-style elephant: tiny body, impossibly long spindly legs -->
     <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Body -->
@@ -211,9 +254,25 @@ html,body{
     </a>
   </div>
 
+  <!-- RGB NAV -->
+  <div id="rgb-nav">
+    <div class="rgb-letter" id="letter-r">
+      <span class="short">R</span>
+      <span class="long">The Red Marlin</span>
+    </div>
+    <div class="rgb-letter" id="letter-g">
+      <span class="short">G</span>
+      <span class="long">Green Birds</span>
+    </div>
+    <div class="rgb-letter" id="letter-b">
+      <span class="short">B</span>
+      <span class="long">The Elephant</span>
+    </div>
+  </div>
+
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const kb     = document.getElementById('keyboard');
 const keys   = [...document.querySelectorAll('.key')];
 const dali   = document.getElementById('dali');
@@ -294,6 +353,10 @@ async function run(){
   daliTxt.style.opacity='0.5';
   await wait(40);
   daliTxt.style.opacity='1';
+
+  // ── D) 3 second pause then RGB nav rises ──
+  await wait(3000);
+  document.getElementById('rgb-nav').classList.add('visible');
 }
 
 run();
