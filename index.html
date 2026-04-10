@@ -119,6 +119,18 @@ html,body{
   z-index:10;
 }
 
+#dali-link{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-decoration:none;
+  cursor:pointer;
+  pointer-events:auto;
+  opacity:0.99;
+}
+#dali-link:hover svg{opacity:0.7 !important;}
+#dali-link:hover #dali-title{opacity:0.6 !important;}
+
 #dali svg{
   width:clamp(260px,45vw,600px);
   height:auto;
@@ -156,6 +168,7 @@ html,body{
 
   <!-- DALI ELEPHANT + LOGOTYPE -->
   <div id="dali">
+    <a id="dali-link" href="mailto:moonstarplanet@icloud.com" aria-label="Contact DECALUX">
     <!-- Dalí-style elephant: tiny body, impossibly long spindly legs -->
     <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- Body -->
@@ -195,6 +208,7 @@ html,body{
       <ellipse cx="319" cy="364" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
     </svg>
     <div id="dali-title">DECALUX</div>
+    </a>
   </div>
 
 </div>
