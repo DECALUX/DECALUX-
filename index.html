@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DECALUX</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+body{
+  width:100%;
+  background:#000;
+  font-family:'Georgia',serif;
+  color:rgba(240,236,226,0.85);
+  overflow-x:hidden;
+}
+
+/* ── INTRO STAGE ── */
+#stage{
+  width:100vw;height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+
+/* ── KEYBOARD ── */
+#keyboard{
+  display:flex;
+  gap:clamp(6px,1.2vw,14px);
+  align-items:flex-end;
+  opacity:0;
+  transition:opacity 1.2s ease;
+  position:relative;
+  z-index:2;
+}
+.key{
+  border-radius:3px 3px 5px 5px;
+  position:relative;
+  transition:background 0.4s ease,box-shadow 0.4s ease,transform 0.15s ease;
+  cursor:default;
+}
+.key:nth-child(1)  {width:clamp(28px,3.5vw,50px);height:clamp(70px,9vw,120px);}
+.key:nth-child(2)  {width:clamp(28px,3.5vw,50px);height:clamp(82px,10.5vw,140px);}
+.key:nth-child(3)  {width:clamp(28px,3.5vw,50px);height:clamp(90px,11.5vw,155px);}
+.key:nth-child(4)  {width:clamp(28px,3.5vw,50px);height:clamp(78px,10vw,135px);}
+.key:nth-child(5)  {width:clamp(28px,3.5vw,50px);height:clamp(95px,12vw,165px);}
+.key:nth-child(6)  {width:clamp(28px,3.5vw,50px);height:clamp(88px,11vw,150px);}
+.key:nth-child(7)  {width:clamp(28px,3.5vw,50px);height:clamp(72px,9.2vw,125px);}
+.key:nth-child(8)  {width:clamp(28px,3.5vw,50px);height:clamp(85px,10.8vw,145px);}
+.key:nth-child(9)  {width:clamp(28px,3.5vw,50px);height:clamp(92px,11.8vw,158px);}
+.key:nth-child(10) {width:clamp(28px,3.5vw,50px);height:clamp(75px,9.5vw,130px);}
+
+.key.dim{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);box-shadow:0 0 8px rgba(255,255,255,0.02);}
+.key[data-c="red"].dim    {background:rgba(176,40,28,0.12); border-color:rgba(176,40,28,0.2);}
+.key[data-c="orange"].dim {background:rgba(190,90,20,0.12); border-color:rgba(190,90,20,0.2);}
+.key[data-c="yellow"].dim {background:rgba(180,160,20,0.12);border-color:rgba(180,160,20,0.2);}
+.key[data-c="green"].dim  {background:rgba(30,100,60,0.12); border-color:rgba(30,100,60,0.2);}
+.key[data-c="teal"].dim   {background:rgba(20,120,110,0.12);border-color:rgba(20,120,110,0.2);}
+.key[data-c="blue"].dim   {background:rgba(25,60,130,0.12); border-color:rgba(25,60,130,0.2);}
+.key[data-c="violet"].dim {background:rgba(80,30,140,0.12); border-color:rgba(80,30,140,0.2);}
+.key[data-c="ochre"].dim  {background:rgba(160,110,20,0.12);border-color:rgba(160,110,20,0.2);}
+.key[data-c="black"].dim  {background:rgba(40,40,40,0.18);  border-color:rgba(80,80,80,0.2);}
+.key[data-c="white"].dim  {background:rgba(220,220,210,0.08);border-color:rgba(220,220,210,0.15);}
+
+.key[data-c="red"].lit    {background:#b0281c;box-shadow:0 0 30px rgba(176,40,28,0.8),0 0 60px rgba(176,40,28,0.35);border-color:#c0392b;}
+.key[data-c="orange"].lit {background:#be5a14;box-shadow:0 0 30px rgba(190,90,20,0.8),0 0 60px rgba(190,90,20,0.35);border-color:#d4691a;}
+.key[data-c="yellow"].lit {background:#b4a014;box-shadow:0 0 30px rgba(180,160,20,0.8),0 0 60px rgba(180,160,20,0.35);border-color:#c8b020;}
+.key[data-c="green"].lit  {background:#1e643c;box-shadow:0 0 30px rgba(30,100,60,0.8),0 0 60px rgba(30,100,60,0.35);border-color:#2d8a52;}
+.key[data-c="teal"].lit   {background:#14786e;box-shadow:0 0 30px rgba(20,120,110,0.8),0 0 60px rgba(20,120,110,0.35);border-color:#1a9080;}
+.key[data-c="blue"].lit   {background:#193c82;box-shadow:0 0 30px rgba(25,60,130,0.9),0 0 70px rgba(25,60,130,0.4);border-color:#2a54b0;}
+.key[data-c="violet"].lit {background:#501e8c;box-shadow:0 0 30px rgba(80,30,140,0.8),0 0 60px rgba(80,30,140,0.35);border-color:#6a28c0;}
+.key[data-c="ochre"].lit  {background:#a06e14;box-shadow:0 0 30px rgba(160,110,20,0.8),0 0 60px rgba(160,110,20,0.35);border-color:#c08418;}
+.key[data-c="black"].lit  {background:#282828;box-shadow:0 0 30px rgba(80,80,80,0.5),0 0 60px rgba(80,80,80,0.2);border-color:#505050;}
+.key[data-c="white"].lit  {background:#dcdcd2;box-shadow:0 0 30px rgba(220,220,210,0.7),0 0 60px rgba(220,220,210,0.3);border-color:#eeeeee;}
+
+.key[data-c="red"].pressed  {background:#e8281a;box-shadow:0 0 50px rgba(232,40,26,1),0 0 100px rgba(232,40,26,0.6);transform:translateY(3px);}
+.key[data-c="green"].pressed{background:#1a9050;box-shadow:0 0 50px rgba(26,144,80,1),0 0 100px rgba(26,144,80,0.6);transform:translateY(3px);}
+.key[data-c="blue"].pressed {background:#1e4aaa;box-shadow:0 0 50px rgba(30,74,170,1),0 0 110px rgba(30,74,170,0.65);transform:translateY(3px);}
+
+.key-dot{
+  position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;
+  background:rgba(255,255,255,0.12);transition:background 0.4s ease;
+}
+.key.lit .key-dot,.key.pressed .key-dot{background:rgba(255,255,255,0.5);}
+
+/* ── DALI ELEPHANT ── */
+#dali{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;z-index:10;
+}
+#dali-link{
+  display:flex;flex-direction:column;align-items:center;
+  text-decoration:none;cursor:pointer;pointer-events:auto;
+}
+#dali-link:hover svg{opacity:0.7!important;}
+#dali-link:hover #dali-title{opacity:0.6!important;}
+#dali svg{width:clamp(260px,45vw,600px);height:auto;opacity:0;}
+#dali-title{
+  font-family:'Georgia',serif;font-size:clamp(0.6rem,1.5vw,1rem);
+  font-weight:400;letter-spacing:clamp(0.4em,2vw,0.9em);
+  text-transform:uppercase;color:rgba(240,236,226,0.9);
+  margin-top:clamp(1rem,3vh,2.5rem);opacity:0;
+}
+
+/* ── SCROLL INDICATOR ── */
+#scroll-hint{
+  position:absolute;bottom:clamp(1.5rem,4vh,3rem);left:50%;transform:translateX(-50%);
+  opacity:0;transition:opacity 1s ease;
+  display:flex;flex-direction:column;align-items:center;gap:0.5rem;
+  cursor:pointer;
+  z-index:20;
+}
+#scroll-hint span{
+  font-size:0.5rem;letter-spacing:0.5em;text-transform:uppercase;
+  color:rgba(240,236,226,0.25);
+}
+#scroll-hint .arrow{
+  width:1px;height:clamp(24px,4vh,40px);
+  background:rgba(240,236,226,0.15);
+  position:relative;overflow:hidden;
+}
+#scroll-hint .arrow::after{
+  content:'';position:absolute;top:-100%;left:0;
+  width:1px;height:100%;
+  background:rgba(240,236,226,0.5);
+  animation:drip 2s ease-in-out infinite;
+}
+@keyframes drip{0%{top:-100%;}100%{top:200%;}}
+
+/* ── CONTENT SCROLL ── */
+#content{
+  opacity:0;transition:opacity 1.2s ease;
+  background:#000;
+}
+#content.visible{opacity:1;}
+
+/* ── SECTION BASE ── */
+.section{
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);
+  border-top:1px solid rgba(240,236,226,0.06);
+  position:relative;
+}
+
+.section-label{
+  font-size:0.5rem;letter-spacing:0.6em;text-transform:uppercase;
+  color:rgba(240,236,226,0.25);margin-bottom:clamp(2rem,5vh,4rem);
+}
+
+/* ── MANIFESTO ── */
+#manifesto .headline{
+  font-size:clamp(2rem,6vw,5rem);font-weight:400;line-height:1.1;
+  color:rgba(240,236,226,0.9);
+  max-width:18ch;margin-bottom:clamp(2rem,5vh,4rem);
+}
+#manifesto .tagline{
+  font-size:clamp(0.75rem,1.6vw,1.1rem);letter-spacing:0.15em;
+  color:rgba(240,236,226,0.35);text-transform:uppercase;
+  line-height:2;max-width:60ch;
+}
+#manifesto .tagline em{
+  color:rgba(240,236,226,0.7);font-style:normal;
+}
+
+/* ── WHAT IT IS ── */
+#what .two-col{
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,8vw,8rem);
+  align-items:start;
+}
+@media(max-width:700px){#what .two-col{grid-template-columns:1fr;}}
+#what .lede{
+  font-size:clamp(1.1rem,2.5vw,1.8rem);font-weight:400;line-height:1.5;
+  color:rgba(240,236,226,0.85);
+}
+#what .body-text{
+  font-size:clamp(0.8rem,1.2vw,0.95rem);line-height:1.9;
+  color:rgba(240,236,226,0.4);
+}
+#what .muses{
+  margin-top:clamp(3rem,6vh,5rem);
+  display:flex;flex-wrap:wrap;gap:clamp(1rem,2vw,2rem);
+}
+#what .muse{
+  font-size:0.6rem;letter-spacing:0.5em;text-transform:uppercase;
+  color:rgba(240,236,226,0.25);
+  padding-bottom:0.5rem;
+  border-bottom:1px solid rgba(240,236,226,0.08);
+  flex:0 0 auto;
+}
+
+/* ── THREE TIERS ── */
+#tiers .tiers-grid{
+  display:grid;grid-template-columns:1fr;gap:0;
+  margin-top:clamp(2rem,4vh,3rem);
+}
+.tier{
+  display:grid;grid-template-columns:clamp(60px,10vw,100px) 1fr;
+  gap:clamp(1.5rem,4vw,4rem);align-items:start;
+  padding:clamp(2rem,4vh,3rem) 0;
+  border-bottom:1px solid rgba(240,236,226,0.06);
+}
+.tier-num{
+  font-size:clamp(0.5rem,0.8vw,0.65rem);
+  letter-spacing:0.5em;text-transform:uppercase;
+  color:rgba(240,236,226,0.2);
+  padding-top:0.25rem;
+}
+.tier-title{
+  font-size:clamp(1.2rem,2.5vw,1.8rem);
+  color:rgba(240,236,226,0.85);margin-bottom:0.3rem;
+}
+.tier-sub{
+  font-size:0.55rem;letter-spacing:0.6em;text-transform:uppercase;
+  color:rgba(240,236,226,0.2);margin-bottom:0.8rem;
+}
+.tier-desc{
+  font-size:clamp(0.8rem,1.2vw,0.95rem);line-height:1.9;
+  color:rgba(240,236,226,0.4);max-width:55ch;
+}
+.tier-example{
+  font-style:italic;color:rgba(240,236,226,0.55);
+  font-size:clamp(0.85rem,1.3vw,1rem);
+  margin-bottom:0.75rem;
+}
+
+/* ── ARCHITECTURE GRID ── */
+#architecture .arch-wrap{
+  overflow-x:auto;margin-top:clamp(2rem,4vh,3rem);
+  -webkit-overflow-scrolling:touch;
+}
+.arch-table{
+  width:100%;border-collapse:collapse;
+  font-size:clamp(0.5rem,0.8vw,0.65rem);
+  letter-spacing:0.25em;text-transform:uppercase;
+  min-width:700px;
+}
+.arch-table th{
+  color:rgba(240,236,226,0.2);font-weight:400;
+  padding:0 clamp(0.5rem,1.5vw,1.2rem) 1.2rem;
+  text-align:center;border-bottom:1px solid rgba(240,236,226,0.08);
+}
+.arch-table th:first-child{text-align:left;padding-left:0;}
+.arch-table td{
+  padding:clamp(0.6rem,1.5vh,1rem) clamp(0.5rem,1.5vw,1.2rem);
+  border-bottom:1px solid rgba(240,236,226,0.04);
+  color:rgba(240,236,226,0.25);font-weight:400;
+  text-align:center;
+}
+.arch-table td:first-child{text-align:left;padding-left:0;color:rgba(240,236,226,0.5);}
+.arch-table td.dot::before{
+  content:'·';color:rgba(240,236,226,0.2);font-size:1rem;
+}
+.arch-table tr.highlighted td{
+  background:rgba(30,100,60,0.07);
+  color:rgba(120,220,160,0.5);
+}
+.arch-table tr.highlighted td:first-child{color:rgba(120,220,160,0.7);}
+.arch-table td.buddy{
+  background:rgba(30,100,60,0.18);
+  color:rgba(120,220,160,0.8);
+  border-radius:2px;font-size:0.5rem;letter-spacing:0.4em;
+}
+.arch-table td.star{color:rgba(240,236,226,0.15);}
+
+/* ── THE GRAPH ── */
+#graph{
+  background:rgba(240,236,226,0.02);
+}
+#graph .pull-quote{
+  font-size:clamp(1.1rem,2.8vw,2rem);font-weight:400;line-height:1.5;
+  color:rgba(240,236,226,0.65);max-width:28ch;
+  border-left:1px solid rgba(240,236,226,0.15);
+  padding-left:clamp(1.5rem,4vw,3rem);
+  margin-bottom:clamp(3rem,6vh,5rem);
+}
+#graph .buyers-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1px;
+  background:rgba(240,236,226,0.06);
+  margin-top:clamp(2rem,4vh,3rem);
+}
+.buyer{
+  background:#000;
+  padding:clamp(1.5rem,3vw,2.5rem);
+}
+.buyer-name{
+  font-size:0.55rem;letter-spacing:0.6em;text-transform:uppercase;
+  color:rgba(240,236,226,0.3);margin-bottom:0.8rem;
+}
+.buyer-desc{
+  font-size:clamp(0.75rem,1.1vw,0.9rem);line-height:1.8;
+  color:rgba(240,236,226,0.4);
+}
+
+/* ── ECOSYSTEM ── */
+#ecosystem .eco-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:clamp(2rem,5vw,5rem);margin-top:clamp(2rem,4vh,3rem);
+}
+.eco-item .eco-name{
+  font-size:clamp(1.2rem,2.5vw,1.8rem);color:rgba(240,236,226,0.85);
+  margin-bottom:0.4rem;
+}
+.eco-item .eco-sub{
+  font-size:0.5rem;letter-spacing:0.55em;text-transform:uppercase;
+  color:rgba(240,236,226,0.2);margin-bottom:1.2rem;
+}
+.eco-item .eco-desc{
+  font-size:clamp(0.75rem,1.1vw,0.9rem);line-height:1.9;
+  color:rgba(240,236,226,0.38);
+}
+.eco-item .eco-line{
+  width:clamp(20px,3vw,32px);height:1px;
+  background:rgba(240,236,226,0.15);margin-bottom:1.2rem;
+}
+
+/* ── UPLOAD ── */
+#upload{
+  text-align:center;
+  padding-top:clamp(6rem,14vh,12rem);
+  padding-bottom:clamp(6rem,14vh,12rem);
+}
+#upload .big{
+  font-size:clamp(1.3rem,4vw,2.8rem);font-weight:400;
+  color:rgba(240,236,226,0.8);line-height:1.5;
+  max-width:22ch;margin:0 auto clamp(2rem,4vh,3rem);
+}
+#upload .sub{
+  font-size:clamp(0.75rem,1.2vw,0.95rem);line-height:2;
+  color:rgba(240,236,226,0.3);max-width:48ch;margin:0 auto;
+}
+
+/* ── PATRON ── */
+#patron{
+  background:rgba(240,236,226,0.015);
+}
+#patron .patron-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;
+  background:rgba(240,236,226,0.06);
+  margin-top:clamp(2rem,4vh,3rem);
+}
+@media(max-width:750px){#patron .patron-grid{grid-template-columns:1fr;}}
+.patron-tier{
+  background:#000;
+  padding:clamp(2rem,4vw,3.5rem);
+}
+.patron-tier-num{
+  font-size:0.5rem;letter-spacing:0.6em;text-transform:uppercase;
+  color:rgba(240,236,226,0.18);margin-bottom:1.5rem;display:block;
+}
+.patron-tier-name{
+  font-size:clamp(1rem,2vw,1.4rem);color:rgba(240,236,226,0.75);
+  margin-bottom:1rem;
+}
+.patron-tier-text{
+  font-size:clamp(0.75rem,1.1vw,0.88rem);line-height:1.9;
+  color:rgba(240,236,226,0.35);
+}
+
+/* ── CLOSING ── */
+#closing{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:clamp(4rem,10vh,8rem) clamp(2rem,8vw,8rem);
+  position:relative;
+}
+#closing .close-line{
+  font-size:clamp(0.55rem,0.9vw,0.7rem);letter-spacing:0.55em;text-transform:uppercase;
+  color:rgba(240,236,226,0.18);margin-bottom:clamp(2rem,5vh,4rem);
+}
+#closing .close-statement{
+  font-size:clamp(1.2rem,3.5vw,2.5rem);font-weight:400;line-height:1.4;
+  color:rgba(240,236,226,0.7);max-width:26ch;
+  margin-bottom:clamp(3rem,7vh,5rem);
+}
+#closing .close-sub{
+  font-size:clamp(0.7rem,1vw,0.85rem);letter-spacing:0.15em;
+  color:rgba(240,236,226,0.2);
+  margin-bottom:clamp(3rem,6vh,5rem);
+}
+#closing a.cta{
+  font-size:0.55rem;letter-spacing:0.7em;text-transform:uppercase;
+  color:rgba(240,236,226,0.4);text-decoration:none;
+  border-bottom:1px solid rgba(240,236,226,0.1);
+  padding-bottom:0.3rem;
+  transition:color 0.3s ease,border-color 0.3s ease;
+}
+#closing a.cta:hover{
+  color:rgba(240,236,226,0.8);border-color:rgba(240,236,226,0.4);
+}
+.sun-line{
+  font-size:clamp(0.6rem,1vw,0.8rem);letter-spacing:0.3em;
+  color:rgba(240,236,226,0.12);font-style:italic;
+  position:absolute;bottom:clamp(2rem,4vh,3.5rem);
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal{
+  opacity:0;transform:translateY(20px);
+  transition:opacity 0.9s ease,transform 0.9s ease;
+}
+.reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════ INTRO STAGE ════════ -->
+<div id="stage">
+  <div id="keyboard">
+    <div class="key" data-c="red">    <div class="key-dot"></div></div>
+    <div class="key" data-c="orange"> <div class="key-dot"></div></div>
+    <div class="key" data-c="yellow"> <div class="key-dot"></div></div>
+    <div class="key" data-c="green">  <div class="key-dot"></div></div>
+    <div class="key" data-c="teal">   <div class="key-dot"></div></div>
+    <div class="key" data-c="blue">   <div class="key-dot"></div></div>
+    <div class="key" data-c="violet"> <div class="key-dot"></div></div>
+    <div class="key" data-c="ochre">  <div class="key-dot"></div></div>
+    <div class="key" data-c="black">  <div class="key-dot"></div></div>
+    <div class="key" data-c="white">  <div class="key-dot"></div></div>
+  </div>
+
+  <div id="dali">
+    <a id="dali-link" href="mailto:moonstarplanet@icloud.com" aria-label="Contact DECALUX">
+      <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(240,236,226,0.85)" stroke-width="1.2"/>
+        <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(240,236,226,0.85)" stroke-width="1.2"/>
+        <circle cx="326" cy="75" r="3.5" stroke="rgba(240,236,226,0.85)" stroke-width="1"/>
+        <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(240,236,226,0.85)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(240,236,226,0.75)" stroke-width="1" fill="none"/>
+        <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(240,236,226,0.6)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <ellipse cx="197" cy="360" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
+        <ellipse cx="233" cy="364" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
+        <ellipse cx="279" cy="367" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
+        <ellipse cx="319" cy="364" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
+      </svg>
+      <div id="dali-title">DECALUX</div>
+    </a>
+  </div>
+
+  <div id="scroll-hint" onclick="document.getElementById('content').scrollIntoView({behavior:'smooth'})">
+    <span>scroll</span>
+    <div class="arrow"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════ CONTENT ════════════ -->
+<div id="content">
+
+  <!-- MANIFESTO -->
+  <section class="section" id="manifesto">
+    <div class="section-label reveal">The Manifesto</div>
+    <div class="headline reveal">We monetize<br>curiosity.</div>
+    <div class="tagline reveal">
+      <em>Palantir</em> that feels like <em>Duolingo.</em><br>
+      Our Big Mac is culture. Our real estate is data.<br>
+      One dollar. Once. For life.
+    </div>
+  </section>
+
+  <!-- WHAT IT IS -->
+  <section class="section" id="what">
+    <div class="section-label reveal">What It Is</div>
+    <div class="two-col">
+      <div class="lede reveal">
+        The first platform built to map and certify human curiosity at civilizational scale.
+      </div>
+      <div class="body-text reveal">
+        Ten doors into what it means to be alive and curious on this planet. The product is beloved. The asset is the curiosity graph — what a billion people aspired to understand, in what sequence, over time. Not what they clicked. What they wanted to become.<br><br>
+        Every curiosity journey is a certified record of a mind in motion — the first credential that belongs entirely to the person who earned it, regardless of institution, language, or class.
+      </div>
+    </div>
+    <div class="muses reveal">
+      <span class="muse">Literature</span>
+      <span class="muse">Cinema</span>
+      <span class="muse">Photography</span>
+      <span class="muse">Sound</span>
+      <span class="muse">Theater</span>
+      <span class="muse">Architecture</span>
+      <span class="muse">Management</span>
+      <span class="muse">The World</span>
+      <span class="muse">Art</span>
+      <span class="muse">Education</span>
+    </div>
+  </section>
+
+  <!-- THREE TIERS -->
+  <section class="section" id="tiers">
+    <div class="section-label reveal">Three Tiers of the Mind</div>
+    <div class="tiers-grid">
+      <div class="tier reveal">
+        <div class="tier-num">I</div>
+        <div>
+          <div class="tier-title">Lightning</div>
+          <div class="tier-sub">Reptilian</div>
+          <div class="tier-example">"I'd like to know about the French Revolution."</div>
+          <div class="tier-desc">A 3-minute primer. Immediate ignition. The essential story, nothing more.</div>
+        </div>
+      </div>
+      <div class="tier reveal">
+        <div class="tier-num">II</div>
+        <div>
+          <div class="tier-title">Storm</div>
+          <div class="tier-sub">Amphibian</div>
+          <div class="tier-example">The outline deepens.</div>
+          <div class="tier-desc">From bullet to minutiae — in the vein of Durant's History of Civilization. The full arc, layered, at your own depth.</div>
+        </div>
+      </div>
+      <div class="tier reveal">
+        <div class="tier-num">III</div>
+        <div>
+          <div class="tier-title">Climate</div>
+          <div class="tier-sub">Cerebral Cortex</div>
+          <div class="tier-example">Full immersion.</div>
+          <div class="tier-desc">An in-depth exploration. Primary sources. Cross-muse connections. Resulting in a Decalux certification.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section class="section" id="architecture">
+    <div class="section-label reveal">The Architecture — Ten Muses · Ten Domains</div>
+    <div class="arch-wrap reveal">
+      <table class="arch-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Space</th><th>Place</th><th>Web</th><th>Basics</th>
+            <th>Museum</th><th>Foundation</th><th>R&amp;D</th>
+            <th>Legal</th><th>Festival</th><th>Certified</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Literature</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
+          <tr><td>Cinema</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
+          <tr><td>Photography</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
+          <tr><td>Sound</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
+          <tr><td>Theater</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
+          <tr><td>Architecture</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
+          <tr><td>Management</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
+          <tr class="highlighted"><td>The World</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="buddy">Buddy</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="star">*</td></tr>
+          <tr><td>Art</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
+          <tr><td>Education</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- THE GRAPH -->
+  <section class="section" id="graph">
+    <div class="section-label reveal">The Asset</div>
+    <div class="pull-quote reveal">
+      The curiosity graph is to data what land is to real estate: it appreciates forever, and everything built on it inherits its value.
+    </div>
+    <div class="buyers-grid reveal">
+      <div class="buyer">
+        <div class="buyer-name">Pharmaceutical</div>
+        <div class="buyer-desc">Curiosity decline is a pre-clinical cognitive signal that predicts neurological onset 6–18 months before clinical presentation.</div>
+      </div>
+      <div class="buyer">
+        <div class="buyer-name">Sovereign Funds</div>
+        <div class="buyer-desc">Population curiosity precedes economic and political shifts by years. A government that knows what its citizens aspire to understand holds an intelligence advantage no other dataset provides.</div>
+      </div>
+      <div class="buyer">
+        <div class="buyer-name">Insurance</div>
+        <div class="buyer-desc">Sustained intellectual curiosity correlates with longevity more strongly than most lifestyle factors. This is actuarially actionable.</div>
+      </div>
+      <div class="buyer">
+        <div class="buyer-name">Universities</div>
+        <div class="buyer-desc">The first pipeline in history that identifies intellectual potential before formal credentials exist.</div>
+      </div>
+      <div class="buyer">
+        <div class="buyer-name">Publishers &amp; Studios</div>
+        <div class="buyer-desc">Pre-market demand signals. Decalux knows what humans will want before they know themselves. Aspiration data — the most valuable signal in content creation.</div>
+      </div>
+      <div class="buyer">
+        <div class="buyer-name">Governments</div>
+        <div class="buyer-desc">A real-time map of what a population wants to understand. The deepest available signal about a civilization's direction.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM -->
+  <section class="section" id="ecosystem">
+    <div class="section-label reveal">The Ecosystem — One Architecture · Three Expressions</div>
+    <div class="eco-grid">
+      <div class="eco-item reveal">
+        <div class="eco-line"></div>
+        <div class="eco-name">Decalux</div>
+        <div class="eco-sub">The curiosity graph</div>
+        <div class="eco-desc">The first longitudinal map of human intellectual desire at civilizational scale. The asset appreciates while the product is consumed. This asymmetry is the entire business.</div>
+      </div>
+      <div class="eco-item reveal">
+        <div class="eco-line"></div>
+        <div class="eco-name">Buddy</div>
+        <div class="eco-sub">Companion biology</div>
+        <div class="eco-desc">A smart collar. The first longitudinal companion health graph. Individual data points are noise. The sequence is everything. Detection 6–18 months before clinical symptoms.</div>
+      </div>
+      <div class="eco-item reveal">
+        <div class="eco-line"></div>
+        <div class="eco-name">Wolf Water</div>
+        <div class="eco-sub">Ancestral hydration</div>
+        <div class="eco-desc">A saliva swab tells us what your dog needs. We deliver it. The dog was the proof of concept. The human was always the market.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPLOAD -->
+  <section class="section" id="upload">
+    <div class="big reveal">Your grandfather wrote poems.<br>Now there is a place for them.</div>
+    <div class="sub reveal">Upload your writing, your music, your photographs, your films. Decalux is the first archive built for the kind of knowledge that does not come with a degree. No institution standing between you and posterity. Publish what you know. Certify what you have mastered. Let the world find it after you are gone.</div>
+  </section>
+
+  <!-- PATRON -->
+  <section class="section" id="patron">
+    <div class="section-label reveal">The Patron Pitch</div>
+    <div class="patron-grid reveal">
+      <div class="patron-tier">
+        <span class="patron-tier-num">I · Reptilian</span>
+        <div class="patron-tier-name">Civilization has been building toward this.</div>
+        <div class="patron-tier-text">Every generation produces one or two projects that — in retrospect — were obviously inevitable. The printing press. The library. The internet. You do not evaluate these. You recognize them. Or you miss them.</div>
+      </div>
+      <div class="patron-tier">
+        <span class="patron-tier-num">II · Limbic</span>
+        <div class="patron-tier-name">There was a subject you went deep into alone.</div>
+        <div class="patron-tier-text">No class. No credential. Just you and the thing itself, because you couldn't help it. That was not a hobby. That was you, being fully human. Decalux is built for every person who has ever done that.</div>
+      </div>
+      <div class="patron-tier">
+        <span class="patron-tier-num">III · Cortex</span>
+        <div class="patron-tier-name">It is not in the education business.</div>
+        <div class="patron-tier-text">McDonald's was a restaurant. Ray Kroc knew it was real estate. Facebook was a social network. Zuckerberg knew it was a behavioral graph. Decalux will be identified as an education platform. It is the data business.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="section" id="closing">
+    <div class="close-line reveal">DECALUX · MMXXV</div>
+    <div class="close-statement reveal">
+      This is not an opportunity to evaluate.<br>It is an opportunity to recognize.
+    </div>
+    <div class="close-sub reveal">decalux.art · one dollar · every language · forever</div>
+    <a class="cta reveal" href="mailto:moonstarplanet@icloud.com">Enter</a>
+    <div class="sun-line">The sun gives light to all without asking who deserves it.</div>
+  </section>
+
+</div><!-- /content -->
+
+<script>
+const kb      = document.getElementById('keyboard');
+const keys    = [...document.querySelectorAll('.key')];
+const dali    = document.getElementById('dali');
+const daliSvg = dali.querySelector('svg');
+const daliTxt = document.getElementById('dali-title');
+const hint    = document.getElementById('scroll-hint');
+const content = document.getElementById('content');
+
+const rgbKeys = {
+  red:   keys.find(k=>k.dataset.c==='red'),
+  green: keys.find(k=>k.dataset.c==='green'),
+  blue:  keys.find(k=>k.dataset.c==='blue'),
+};
+
+function wait(ms){return new Promise(r=>setTimeout(r,ms));}
+
+async function intro(){
+  await wait(400);
+  kb.style.opacity='1';
+  await wait(100);
+  keys.forEach((k,i)=>setTimeout(()=>k.classList.add('dim'),i*90));
+  await wait(1800);
+
+  for(let c of ['red','green','blue']){
+    const k=rgbKeys[c];
+    k.classList.remove('dim');k.classList.add('lit');
+    await wait(180);
+    k.classList.remove('lit');k.classList.add('pressed');
+    await wait(320);
+  }
+  await wait(300);
+  Object.values(rgbKeys).forEach(k=>{k.classList.remove('pressed');k.classList.add('lit');});
+  await wait(600);
+
+  kb.style.transition='opacity 0.7s ease';
+  kb.style.opacity='0';
+  await wait(800);
+
+  dali.style.opacity='1';
+  daliSvg.style.transition='opacity 0.15s ease';
+  daliSvg.style.opacity='1';
+  await wait(80); daliSvg.style.opacity='0.1';
+  await wait(60); daliSvg.style.opacity='1';
+  await wait(50); daliSvg.style.opacity='0.3';
+  await wait(40); daliSvg.style.opacity='1';
+
+  await wait(200);
+  daliTxt.style.transition='opacity 0.08s ease';
+  daliTxt.style.opacity='1';
+  await wait(60); daliTxt.style.opacity='0.2';
+  await wait(50); daliTxt.style.opacity='1';
+  await wait(40); daliTxt.style.opacity='0.5';
+  await wait(40); daliTxt.style.opacity='1';
+
+  await wait(2200);
+  hint.style.opacity='1';
+  content.classList.add('visible');
+}
+
+intro();
+
+// scroll reveal
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});
+},{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
