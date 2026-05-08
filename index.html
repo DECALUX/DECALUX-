@@ -6,357 +6,77 @@
 <title>DECALUX</title>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Georgia',serif;}
+#stage{width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(1.5rem,4vh,3rem);}
 
-html,body{
-  width:100%;height:100%;
-  background:#000;
-  overflow:hidden;
-  font-family:'Georgia',serif;
-}
+#elephant{opacity:0;transition:opacity 0.1s ease;}
+#elephant svg{width:clamp(200px,35vw,420px);height:auto;display:block;}
 
-/* ── STAGE ── */
-#stage{
-  width:100vw;height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-}
-
-/* ── KEYBOARD ── */
-#keyboard{
-  display:flex;
-  gap:clamp(6px,1.2vw,14px);
-  align-items:flex-end;
-  opacity:0;
-  transition:opacity 1.2s ease;
-  position:relative;
-  z-index:2;
-}
-
-.key{
-  border-radius:3px 3px 5px 5px;
-  position:relative;
-  transition:
-    background 0.4s ease,
-    box-shadow 0.4s ease,
-    transform 0.15s ease;
-  cursor:default;
-}
-
-/* Ten keys — varying heights like a real keyboard cluster */
-.key:nth-child(1)  { width:clamp(28px,3.5vw,50px); height:clamp(70px,9vw,120px); }
-.key:nth-child(2)  { width:clamp(28px,3.5vw,50px); height:clamp(82px,10.5vw,140px); }
-.key:nth-child(3)  { width:clamp(28px,3.5vw,50px); height:clamp(90px,11.5vw,155px); }
-.key:nth-child(4)  { width:clamp(28px,3.5vw,50px); height:clamp(78px,10vw,135px); }
-.key:nth-child(5)  { width:clamp(28px,3.5vw,50px); height:clamp(95px,12vw,165px); }
-.key:nth-child(6)  { width:clamp(28px,3.5vw,50px); height:clamp(88px,11vw,150px); }
-.key:nth-child(7)  { width:clamp(28px,3.5vw,50px); height:clamp(72px,9.2vw,125px); }
-.key:nth-child(8)  { width:clamp(28px,3.5vw,50px); height:clamp(85px,10.8vw,145px); }
-.key:nth-child(9)  { width:clamp(28px,3.5vw,50px); height:clamp(92px,11.8vw,158px); }
-.key:nth-child(10) { width:clamp(28px,3.5vw,50px); height:clamp(75px,9.5vw,130px); }
-
-/* dim state */
-.key.dim{
-  background: rgba(255,255,255,0.03);
-  border:1px solid rgba(255,255,255,0.06);
-  box-shadow: 0 0 8px rgba(255,255,255,0.02);
-}
-
-/* each key's color — dim */
-.key[data-c="red"].dim     { background:rgba(176,40,28,0.12);  border-color:rgba(176,40,28,0.2); }
-.key[data-c="orange"].dim  { background:rgba(190,90,20,0.12);  border-color:rgba(190,90,20,0.2); }
-.key[data-c="yellow"].dim  { background:rgba(180,160,20,0.12); border-color:rgba(180,160,20,0.2); }
-.key[data-c="green"].dim   { background:rgba(30,100,60,0.12);  border-color:rgba(30,100,60,0.2); }
-.key[data-c="teal"].dim    { background:rgba(20,120,110,0.12); border-color:rgba(20,120,110,0.2); }
-.key[data-c="blue"].dim    { background:rgba(25,60,130,0.12);  border-color:rgba(25,60,130,0.2); }
-.key[data-c="violet"].dim  { background:rgba(80,30,140,0.12);  border-color:rgba(80,30,140,0.2); }
-.key[data-c="ochre"].dim   { background:rgba(160,110,20,0.12); border-color:rgba(160,110,20,0.2); }
-.key[data-c="black"].dim   { background:rgba(40,40,40,0.18);   border-color:rgba(80,80,80,0.2); }
-.key[data-c="white"].dim   { background:rgba(220,220,210,0.08);border-color:rgba(220,220,210,0.15); }
-
-/* LIT state */
-.key[data-c="red"].lit     { background:#b0281c; box-shadow:0 0 30px rgba(176,40,28,0.8),  0 0 60px rgba(176,40,28,0.35); border-color:#c0392b; }
-.key[data-c="orange"].lit  { background:#be5a14; box-shadow:0 0 30px rgba(190,90,20,0.8),  0 0 60px rgba(190,90,20,0.35); border-color:#d4691a; }
-.key[data-c="yellow"].lit  { background:#b4a014; box-shadow:0 0 30px rgba(180,160,20,0.8), 0 0 60px rgba(180,160,20,0.35); border-color:#c8b020; }
-.key[data-c="green"].lit   { background:#1e643c; box-shadow:0 0 30px rgba(30,100,60,0.8),  0 0 60px rgba(30,100,60,0.35); border-color:#2d8a52; }
-.key[data-c="teal"].lit    { background:#14786e; box-shadow:0 0 30px rgba(20,120,110,0.8), 0 0 60px rgba(20,120,110,0.35); border-color:#1a9080; }
-.key[data-c="blue"].lit    { background:#193c82; box-shadow:0 0 30px rgba(25,60,130,0.9),  0 0 70px rgba(25,60,130,0.4); border-color:#2a54b0; }
-.key[data-c="violet"].lit  { background:#501e8c; box-shadow:0 0 30px rgba(80,30,140,0.8),  0 0 60px rgba(80,30,140,0.35); border-color:#6a28c0; }
-.key[data-c="ochre"].lit   { background:#a06e14; box-shadow:0 0 30px rgba(160,110,20,0.8), 0 0 60px rgba(160,110,20,0.35); border-color:#c08418; }
-.key[data-c="black"].lit   { background:#282828; box-shadow:0 0 30px rgba(80,80,80,0.5),   0 0 60px rgba(80,80,80,0.2); border-color:#505050; }
-.key[data-c="white"].lit   { background:#dcdcd2; box-shadow:0 0 30px rgba(220,220,210,0.7),0 0 60px rgba(220,220,210,0.3); border-color:#eeeeee; }
-
-/* RGB pressed — brighter */
-.key[data-c="red"].pressed   { background:#e8281a; box-shadow:0 0 50px rgba(232,40,26,1),   0 0 100px rgba(232,40,26,0.6); transform:translateY(3px); }
-.key[data-c="green"].pressed { background:#1a9050; box-shadow:0 0 50px rgba(26,144,80,1),   0 0 100px rgba(26,144,80,0.6); transform:translateY(3px); }
-.key[data-c="blue"].pressed  { background:#1e4aaa; box-shadow:0 0 50px rgba(30,74,170,1),   0 0 110px rgba(30,74,170,0.65); transform:translateY(3px); }
-
-/* key label dot */
-.key-dot{
-  position:absolute;
-  bottom:8px;
-  left:50%;
-  transform:translateX(-50%);
-  width:4px;height:4px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.12);
-  transition:background 0.4s ease;
-}
-.key.lit .key-dot,.key.pressed .key-dot{background:rgba(255,255,255,0.5);}
-
-/* ── DALI ELEPHANT ── */
-#dali{
-  position:absolute;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  pointer-events:none;
-  z-index:10;
-}
-
-#dali-link{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-decoration:none;
-  cursor:pointer;
-  pointer-events:auto;
-  opacity:0.99;
-}
-#dali-link:hover svg{opacity:0.7 !important;}
-#dali-link:hover #dali-title{opacity:0.6 !important;}
-
-#dali svg{
-  width:clamp(260px,45vw,600px);
-  height:auto;
-  opacity:0;
-}
-
-#dali-title{
-  font-family:'Georgia',serif;
-  font-size:clamp(0.6rem,1.5vw,1rem);
-  font-weight:400;
-  letter-spacing:clamp(0.4em,2vw,0.9em);
+#title{
+  font-size:clamp(0.6rem,1.4vw,1rem);
+  letter-spacing:clamp(0.5em,2.5vw,1.2em);
   text-transform:uppercase;
-  color:rgba(240,236,226,0.9);
-  margin-top:clamp(1rem,3vh,2.5rem);
-  opacity:0;
-}
-
-/* ── RGB NAV ── */
-#rgb-nav{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 clamp(3rem,8vw,7rem);
-  opacity:0;
-  pointer-events:none;
-  z-index:20;
-  transition:opacity 1.2s ease;
-}
-#rgb-nav.visible{
-  opacity:1;
-  pointer-events:auto;
-}
-.rgb-letter{
-  font-family:'Georgia',serif;
-  font-weight:400;
-  font-size:clamp(4rem,12vw,9rem);
-  cursor:default;
-  transition:color 0.35s ease;
-  user-select:none;
+  color:rgba(240,236,226,0);
+  transition:none;
+  white-space:nowrap;
   overflow:hidden;
-  display:flex;
-  align-items:baseline;
+  max-width:0;
 }
-.short{ display:inline; transition:opacity 0.2s ease; }
-.long { display:none; font-size:clamp(0.9rem,3vw,2.4rem); letter-spacing:0.18em; text-transform:uppercase; }
 
-.rgb-letter:hover .short{ display:none; }
-.rgb-letter:hover .long { display:inline; }
-
-#letter-r{ color:rgba(176,40,28,0.2); }
-#letter-r:hover{ color:rgba(220,50,35,0.95); }
-
-#letter-g{ color:rgba(30,100,60,0.2); }
-#letter-g:hover{ color:rgba(26,160,75,0.95); }
-
-#letter-b{ color:rgba(25,60,130,0.2); }
-#letter-b:hover{ color:rgba(40,90,210,0.95); }
+#qr-wrap{opacity:0;transition:opacity 1.5s ease;display:flex;flex-direction:column;align-items:center;gap:0.75rem;}
+#qr-wrap img{width:clamp(120px,20vw,220px);height:auto;display:block;}
+#scan{font-size:clamp(0.35rem,0.7vw,0.55rem);letter-spacing:0.45em;text-transform:uppercase;color:rgba(240,236,226,0.3);}
 </style>
 </head>
 <body>
 <div id="stage">
-
-  <!-- KEYBOARD -->
-  <div id="keyboard">
-    <div class="key" data-c="red">    <div class="key-dot"></div></div>
-    <div class="key" data-c="orange"> <div class="key-dot"></div></div>
-    <div class="key" data-c="yellow"> <div class="key-dot"></div></div>
-    <div class="key" data-c="green">  <div class="key-dot"></div></div>
-    <div class="key" data-c="teal">   <div class="key-dot"></div></div>
-    <div class="key" data-c="blue">   <div class="key-dot"></div></div>
-    <div class="key" data-c="violet"> <div class="key-dot"></div></div>
-    <div class="key" data-c="ochre">  <div class="key-dot"></div></div>
-    <div class="key" data-c="black">  <div class="key-dot"></div></div>
-    <div class="key" data-c="white">  <div class="key-dot"></div></div>
-  </div>
-
-  <!-- DALI ELEPHANT + LOGOTYPE -->
-  <div id="dali">
-    <a id="dali-link" href="/cdn-cgi/l/email-protection#630e0c0c0d10170211130f020d0617230a000f0c16074d000c0e" aria-label="Contact DECALUX">
-    <!-- Dalí-style elephant: tiny body, impossibly long spindly legs -->
+  <a href="mailto:moonwinellc@gmail.com" id="elephant">
     <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Body -->
       <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(240,236,226,0.85)" stroke-width="1.2"/>
-      <!-- Head -->
       <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(240,236,226,0.85)" stroke-width="1.2"/>
-      <!-- Eye -->
       <circle cx="326" cy="75" r="3.5" stroke="rgba(240,236,226,0.85)" stroke-width="1"/>
-      <!-- Trunk — long draping curve -->
-      <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218"
-            stroke="rgba(240,236,226,0.85)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-      <!-- Ear -->
-      <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z"
-            stroke="rgba(240,236,226,0.75)" stroke-width="1" fill="none"/>
-      <!-- Tail -->
-      <path d="M178 118 C160 124 148 136 152 148"
-            stroke="rgba(240,236,226,0.6)" stroke-width="1" fill="none" stroke-linecap="round"/>
-
-      <!-- LEGS — Dalí impossibly long and spindly -->
-      <!-- Front left -->
-      <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358"
-            stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
-      <!-- Front right -->
-      <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362"
-            stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
-      <!-- Back left -->
-      <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365"
-            stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
-      <!-- Back right -->
-      <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362"
-            stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
-
-      <!-- Tiny hooves -->
+      <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(240,236,226,0.85)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(240,236,226,0.75)" stroke-width="1" fill="none"/>
+      <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(240,236,226,0.6)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
       <ellipse cx="197" cy="360" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
       <ellipse cx="233" cy="364" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
       <ellipse cx="279" cy="367" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
       <ellipse cx="319" cy="364" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
     </svg>
-    <div id="dali-title">DECALUX</div>
-    </a>
-  </div>
+  </a>DECALUX</div>
 
-  <!-- RGB NAV -->
-  <div id="rgb-nav">
-    <div class="rgb-letter" id="letter-r">
-      <span class="short">R</span>
-      <span class="long">The Red Marlin</span>
-    </div>
-    <div class="rgb-letter" id="letter-g">
-      <span class="short">G</span>
-      <span class="long">Green Birds</span>
-    </div>
-    <div class="rgb-letter" id="letter-b">
-      <span class="short">B</span>
-      <span class="long">The Elephant</span>
-    </div>
-  </div>
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const kb     = document.getElementById('keyboard');
-const keys   = [...document.querySelectorAll('.key')];
-const dali   = document.getElementById('dali');
-const daliSvg= dali.querySelector('svg');
-const daliTxt= document.getElementById('dali-title');
-
-const rgbKeys = {
-  red:   keys.find(k=>k.dataset.c==='red'),
-  green: keys.find(k=>k.dataset.c==='green'),
-  blue:  keys.find(k=>k.dataset.c==='blue'),
-};
-
-function wait(ms){ return new Promise(r=>setTimeout(r,ms)); }
+<script>
+function wait(ms){return new Promise(r=>setTimeout(r,ms));}
 
 async function run(){
-  // ── A) all ten keys fade in dim ──
-  await wait(400);
-  kb.style.opacity = '1';
-  await wait(100);
-  keys.forEach((k,i)=>{
-    setTimeout(()=>k.classList.add('dim'), i*90);
-  });
+  const el=document.getElementById('elephant');
+  const title=document.getElementById('title');
+  const qr=document.getElementById('qr-wrap');
 
-  await wait(1800);
-
-  // ── B) RGB pressed one by one ──
-  const order = ['red','green','blue'];
-  for(let c of order){
-    const k = rgbKeys[c];
-    k.classList.remove('dim');
-    k.classList.add('lit');
-    await wait(180);
-    k.classList.remove('lit');
-    k.classList.add('pressed');
-    await wait(320);
-  }
-
-  await wait(300);
-
-  // all three glow together briefly
-  Object.values(rgbKeys).forEach(k=>{
-    k.classList.remove('pressed');
-    k.classList.add('lit');
-  });
-
+  // 1 — elephant flickers in like a CRT
   await wait(600);
+  el.style.opacity='1';
+  await wait(80); el.style.opacity='0.1';
+  await wait(60); el.style.opacity='1';
+  await wait(50); el.style.opacity='0.3';
+  await wait(40); el.style.opacity='1';
 
-  // ── everything disappears ──
-  kb.style.transition='opacity 0.7s ease';
-  kb.style.opacity='0';
+  // 2 — DECALUX sweeps in like headlights turning a corner
+  await wait(1200);
+  title.style.transition='max-width 1.4s cubic-bezier(0.22,1,0.36,1), color 1.2s ease';
+  title.style.color='rgba(240,236,226,0.85)';
+  title.style.maxWidth='600px';
 
-  await wait(800);
-
-  // ── C) Dalí elephant flashes in ──
-  dali.style.opacity='1';
-
-  // SVG draws in
-  daliSvg.style.transition='opacity 0.15s ease';
-  daliSvg.style.opacity='1';
-  await wait(80);
-  daliSvg.style.opacity='0.1';
-  await wait(60);
-  daliSvg.style.opacity='1';
-  await wait(50);
-  daliSvg.style.opacity='0.3';
-  await wait(40);
-  daliSvg.style.opacity='1';
-
-  // title flickers in after SVG
-  await wait(200);
-  daliTxt.style.transition='opacity 0.08s ease';
-  daliTxt.style.opacity='1';
-  await wait(60);
-  daliTxt.style.opacity='0.2';
-  await wait(50);
-  daliTxt.style.opacity='1';
-  await wait(40);
-  daliTxt.style.opacity='0.5';
-  await wait(40);
-  daliTxt.style.opacity='1';
-
-  // ── D) 3 second pause then RGB nav rises ──
-  await wait(3000);
-  document.getElementById('rgb-nav').classList.add('visible');
+  // 3 — QR fades in and settles
+  await wait(2000);
+  qr.style.opacity='1';
 }
 
 run();
