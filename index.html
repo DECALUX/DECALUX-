@@ -4,10 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DECALUX</title>
+<meta name="description" content="DECALUX. We monetize curiosity. The first platform built to map and certify human curiosity at civilizational scale. One dollar. Once. For life.">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,226,0.85);overflow-x:hidden;}
+body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,234,0.92);overflow-x:hidden;}
+::selection{background:rgba(245,242,234,0.18);color:#fff;}
+
+/* ─────────── INTRO STAGE ─────────── */
 #stage{width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 #keyboard{display:flex;gap:clamp(6px,1.2vw,14px);align-items:flex-end;opacity:0;transition:opacity 1.2s ease;position:relative;z-index:2;}
 .key{border-radius:3px 3px 5px 5px;position:relative;transition:background 0.4s ease,box-shadow 0.4s ease,transform 0.15s ease;cursor:default;}
@@ -47,98 +51,244 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,2
 .key[data-c="blue"].pressed{background:#1e4aaa;box-shadow:0 0 50px rgba(30,74,170,1),0 0 110px rgba(30,74,170,0.65);transform:translateY(3px);}
 .key-dot{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.12);transition:background 0.4s ease;}
 .key.lit .key-dot,.key.pressed .key-dot{background:rgba(255,255,255,0.5);}
+
 #dali{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:10;transition:opacity 1s ease;}
 #dali-link{display:flex;flex-direction:column;align-items:center;text-decoration:none;cursor:default;pointer-events:none;}
 #dali svg{width:clamp(260px,45vw,600px);height:auto;opacity:0;}
-#dali-title{font-family:'Georgia',serif;font-size:clamp(0.6rem,1.5vw,1rem);font-weight:400;letter-spacing:clamp(0.4em,2vw,0.9em);text-transform:uppercase;color:rgba(240,236,226,0.9);margin-top:clamp(1rem,3vh,2.5rem);opacity:0;}
+#dali-title{font-family:'Georgia',serif;font-size:clamp(0.7rem,1.6vw,1.1rem);font-weight:400;letter-spacing:clamp(0.4em,2vw,0.9em);text-transform:uppercase;color:rgba(248,245,238,0.95);margin-top:clamp(1rem,3vh,2.5rem);opacity:0;}
+
 #schopenhauer{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(2rem,8vw,8rem);opacity:0;pointer-events:none;z-index:15;text-align:center;}
-#schopenhauer p{font-size:clamp(1.1rem,3vw,2.2rem);font-weight:400;line-height:1.65;color:rgba(240,236,226,0.55);max-width:28ch;}
-#schopenhauer p em{color:rgba(240,236,226,0.85);font-style:normal;}
+#schopenhauer p{font-size:clamp(1.25rem,3.2vw,2.4rem);font-weight:400;line-height:1.6;color:rgba(245,242,234,0.7);max-width:28ch;}
+#schopenhauer p em{color:rgba(255,253,247,1);font-style:normal;}
+
 #scroll-hint{position:absolute;bottom:clamp(1.5rem,4vh,3rem);left:50%;transform:translateX(-50%);opacity:0;transition:opacity 1s ease;display:flex;flex-direction:column;align-items:center;gap:0.5rem;cursor:pointer;z-index:20;}
-#scroll-hint span{font-size:0.5rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(240,236,226,0.25);}
-#scroll-hint .arrow{width:1px;height:clamp(24px,4vh,40px);background:rgba(240,236,226,0.15);position:relative;overflow:hidden;}
-#scroll-hint .arrow::after{content:'';position:absolute;top:-100%;left:0;width:1px;height:100%;background:rgba(240,236,226,0.5);animation:drip 2s ease-in-out infinite;}
+#scroll-hint span{font-size:0.55rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.4);}
+#scroll-hint .arrow{width:1px;height:clamp(24px,4vh,40px);background:rgba(245,242,234,0.2);position:relative;overflow:hidden;}
+#scroll-hint .arrow::after{content:'';position:absolute;top:-100%;left:0;width:1px;height:100%;background:rgba(245,242,234,0.6);animation:drip 2s ease-in-out infinite;}
 @keyframes drip{0%{top:-100%;}100%{top:200%;}}
-#weapon-banner{position:fixed;top:0;left:0;right:0;z-index:9999;background:#000;padding:clamp(0.8rem,2.5vh,1.6rem) clamp(2rem,8vw,8rem);text-align:center;opacity:0;pointer-events:none;border-bottom:1px solid rgba(240,236,226,0.08);}
-#weapon-banner p{font-size:clamp(0.6rem,1.5vw,0.95rem);font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,226,0.9);line-height:1.5;}
-#weapon-banner.slam{animation:bannerSlam 3.4s ease forwards;}
+
+/* ─────────── BANNER ─────────── */
+#weapon-banner{position:fixed;top:0;left:0;right:0;z-index:9999;background:#000;padding:clamp(0.9rem,2.6vh,1.7rem) clamp(2rem,8vw,8rem);text-align:center;opacity:0;pointer-events:none;border-bottom:1px solid rgba(245,242,234,0.1);}
+#weapon-banner p{font-size:clamp(0.7rem,1.6vw,1.05rem);font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,253,247,1);line-height:1.5;}
+#weapon-banner.slam{animation:bannerSlam 3.6s ease forwards;}
 @keyframes bannerSlam{0%{opacity:0;transform:translateY(-10px);}7%{opacity:1;transform:translateY(0);}78%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-4px);}}
-.inline-banner{width:100%;padding:clamp(2rem,5vh,4rem) clamp(2rem,10vw,12rem);text-align:center;border-top:1px solid rgba(240,236,226,0.06);border-bottom:1px solid rgba(240,236,226,0.06);background:#000;}
-.inline-banner p{font-size:clamp(0.6rem,1.5vw,0.95rem);letter-spacing:0.14em;text-transform:uppercase;color:rgba(240,236,226,0.28);line-height:1.5;}
+
+.inline-banner{width:100%;padding:clamp(2rem,5vh,4rem) clamp(2rem,10vw,12rem);text-align:center;border-top:1px solid rgba(245,242,234,0.08);border-bottom:1px solid rgba(245,242,234,0.08);background:#000;}
+.inline-banner p{font-size:clamp(0.7rem,1.6vw,1.05rem);letter-spacing:0.16em;text-transform:uppercase;color:rgba(245,242,234,0.55);line-height:1.5;}
+
+/* ─────────── CONTENT ─────────── */
 #content{opacity:0;transition:opacity 1.2s ease;background:#000;}
 #content.visible{opacity:1;}
-#first-text{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(4rem,10vh,8rem) clamp(2rem,12vw,14rem);border-top:1px solid rgba(240,236,226,0.06);}
-#first-text .ft-main{font-size:clamp(1.1rem,3vw,2.2rem);font-weight:400;line-height:1.5;color:rgba(240,236,226,0.85);max-width:28ch;}
-#first-text .ft-main em{font-style:normal;color:rgba(240,236,226,0.4);}
-.section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(240,236,226,0.06);position:relative;}
-.section-label{font-size:0.5rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(240,236,226,0.25);margin-bottom:clamp(2rem,5vh,4rem);}
-#manifesto .headline{font-size:clamp(2rem,6vw,5rem);font-weight:400;line-height:1.1;color:rgba(240,236,226,0.9);max-width:18ch;margin-bottom:clamp(2rem,5vh,4rem);}
-#manifesto .tagline{font-size:clamp(0.75rem,1.6vw,1.1rem);letter-spacing:0.15em;color:rgba(240,236,226,0.35);text-transform:uppercase;line-height:2;max-width:60ch;}
-#manifesto .tagline em{color:rgba(240,236,226,0.7);font-style:normal;}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(240,236,226,0.06);margin-top:clamp(3rem,6vh,5rem);}
-.stat{background:#000;padding:clamp(1.5rem,3vw,2.5rem);}
-.stat-num{font-size:clamp(1.8rem,5vw,3.5rem);font-weight:400;color:rgba(240,236,226,0.85);margin-bottom:0.3rem;}
-.stat-label{font-size:0.5rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(240,236,226,0.25);}
+
+/* HISTORY — opening volley */
+#history{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(4rem,10vh,8rem) clamp(2rem,12vw,14rem);border-top:1px solid rgba(245,242,234,0.08);position:relative;}
+#history .history-statement{font-size:clamp(1.2rem,3vw,2.1rem);font-weight:400;line-height:1.5;color:rgba(245,242,234,0.78);max-width:32ch;margin-bottom:clamp(2.5rem,6vh,5rem);}
+#history .history-statement em{color:rgba(255,253,247,1);font-style:normal;}
+#history .history-question{font-size:clamp(1.8rem,5vw,3.6rem);font-weight:400;line-height:1.2;color:rgba(255,253,247,1);margin-bottom:clamp(1rem,2.5vh,2rem);max-width:18ch;}
+#history .history-answer{font-size:clamp(0.85rem,1.6vw,1.15rem);letter-spacing:0.3em;text-transform:uppercase;color:rgba(245,242,234,0.7);}
+
+/* THESIS — TALENT */
+#thesis{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(4rem,10vh,8rem) clamp(2rem,12vw,14rem);border-top:1px solid rgba(245,242,234,0.08);}
+#thesis .thesis-line-1{font-size:clamp(2.2rem,6vw,5rem);font-weight:400;line-height:1.15;color:rgba(255,253,247,1);margin-bottom:clamp(2rem,5vh,3.5rem);}
+#thesis .thesis-talent{font-size:clamp(1.1rem,2.4vw,1.7rem);line-height:1.55;color:rgba(245,242,234,0.78);max-width:42ch;margin-bottom:clamp(1.5rem,3.5vh,2.5rem);}
+#thesis .thesis-talent em{color:rgba(255,253,247,1);font-style:normal;letter-spacing:0.08em;}
+#thesis .thesis-place{font-size:clamp(1rem,2vw,1.4rem);line-height:1.55;color:rgba(255,253,247,0.92);max-width:38ch;font-style:italic;}
+
+/* ONE DOLLAR — ritual */
+#dollar{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(4rem,10vh,8rem) clamp(2rem,8vw,8rem);border-top:1px solid rgba(245,242,234,0.08);background:radial-gradient(ellipse at center,rgba(20,30,60,0.18) 0%,#000 70%);}
+#dollar .dollar-line{font-size:clamp(1.7rem,4.8vw,3.8rem);font-weight:400;line-height:1.5;color:rgba(255,253,247,1);letter-spacing:0.05em;}
+#dollar .dollar-line span{display:inline-block;color:rgba(245,242,234,0.45);margin:0 clamp(0.5rem,1.5vw,1.2rem);}
+#dollar .dollar-sub{font-size:0.65rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(245,242,234,0.55);margin-top:clamp(2rem,5vh,3.5rem);}
+
+/* SECTION BASE */
+.section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);position:relative;}
+.section-label{font-size:0.6rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(245,242,234,0.5);margin-bottom:clamp(2rem,5vh,4rem);}
+
+/* WHAT IT IS */
 #what .two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,8vw,8rem);align-items:start;}
 @media(max-width:700px){#what .two-col{grid-template-columns:1fr;}}
-#what .lede{font-size:clamp(1.1rem,2.5vw,1.8rem);font-weight:400;line-height:1.5;color:rgba(240,236,226,0.85);}
-#what .body-text{font-size:clamp(0.8rem,1.2vw,0.95rem);line-height:1.9;color:rgba(240,236,226,0.4);}
-#what .space-line{font-size:clamp(0.85rem,1.3vw,1rem);font-style:italic;color:rgba(240,236,226,0.55);margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(240,236,226,0.07);}
+#what .lede{font-size:clamp(1.35rem,3vw,2.2rem);font-weight:400;line-height:1.4;color:rgba(255,253,247,1);}
+#what .lede em{font-style:normal;color:rgba(255,253,247,1);}
+#what .body-text{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.85;color:rgba(245,242,234,0.72);}
+#what .body-text em{color:rgba(255,253,247,1);font-style:normal;}
+#what .pull{font-size:clamp(1.05rem,1.65vw,1.3rem);font-style:italic;color:rgba(255,253,247,0.95);margin-top:1.8rem;padding-top:1.8rem;border-top:1px solid rgba(245,242,234,0.12);line-height:1.55;}
 #what .muses{margin-top:clamp(3rem,6vh,5rem);display:flex;flex-wrap:wrap;gap:clamp(1rem,2vw,2rem);}
-#what .muse{font-size:0.6rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(240,236,226,0.25);padding-bottom:0.5rem;border-bottom:1px solid rgba(240,236,226,0.08);flex:0 0 auto;}
-#moat .moat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(240,236,226,0.06);margin-top:clamp(2rem,4vh,3rem);}
-.moat-item{background:#000;padding:clamp(1.5rem,3vw,2.5rem);}
-.moat-name{font-size:0.55rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(240,236,226,0.3);margin-bottom:0.8rem;}
-.moat-desc{font-size:clamp(0.75rem,1.1vw,0.9rem);line-height:1.8;color:rgba(240,236,226,0.4);}
+#what .muse{font-size:0.7rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.5);padding-bottom:0.5rem;border-bottom:1px solid rgba(245,242,234,0.15);flex:0 0 auto;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;background:rgba(245,242,234,0.1);margin-top:clamp(3rem,6vh,5rem);}
+.stat{background:#000;padding:clamp(1.5rem,3vw,2.5rem);}
+.stat-num{font-size:clamp(2rem,5.5vw,3.8rem);font-weight:400;color:rgba(255,253,247,1);margin-bottom:0.3rem;}
+.stat-label{font-size:0.6rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.55);}
+
+/* TIERS */
 #tiers .tiers-grid{margin-top:clamp(2rem,4vh,3rem);}
-.tier{display:grid;grid-template-columns:clamp(60px,10vw,100px) 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:start;padding:clamp(2rem,4vh,3rem) 0;border-bottom:1px solid rgba(240,236,226,0.06);}
-.tier-num{font-size:clamp(0.5rem,0.8vw,0.65rem);letter-spacing:0.5em;text-transform:uppercase;color:rgba(240,236,226,0.2);padding-top:0.25rem;}
-.tier-title{font-size:clamp(1.2rem,2.5vw,1.8rem);color:rgba(240,236,226,0.85);margin-bottom:0.3rem;}
-.tier-sub{font-size:0.55rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(240,236,226,0.2);margin-bottom:0.8rem;}
-.tier-example{font-style:italic;color:rgba(240,236,226,0.55);font-size:clamp(0.85rem,1.3vw,1rem);margin-bottom:0.75rem;}
-.tier-desc{font-size:clamp(0.8rem,1.2vw,0.95rem);line-height:1.9;color:rgba(240,236,226,0.4);max-width:55ch;}
+.tier{display:grid;grid-template-columns:clamp(60px,10vw,100px) 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:start;padding:clamp(2rem,4vh,3rem) 0;border-bottom:1px solid rgba(245,242,234,0.08);}
+.tier-num{font-size:clamp(0.6rem,0.9vw,0.75rem);letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.4);padding-top:0.25rem;}
+.tier-title{font-size:clamp(1.5rem,2.8vw,2.1rem);color:rgba(255,253,247,1);margin-bottom:0.3rem;}
+.tier-sub{font-size:0.65rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(245,242,234,0.5);margin-bottom:0.8rem;}
+.tier-example{font-style:italic;color:rgba(255,253,247,0.88);font-size:clamp(0.95rem,1.4vw,1.15rem);margin-bottom:0.8rem;}
+.tier-desc{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.8;color:rgba(245,242,234,0.7);max-width:55ch;}
+
+/* ARCHITECTURE TABLE */
 #architecture .arch-wrap{overflow-x:auto;margin-top:clamp(2rem,4vh,3rem);-webkit-overflow-scrolling:touch;}
-.arch-table{width:100%;border-collapse:collapse;font-size:clamp(0.5rem,0.8vw,0.65rem);letter-spacing:0.25em;text-transform:uppercase;min-width:700px;}
-.arch-table th{color:rgba(240,236,226,0.2);font-weight:400;padding:0 clamp(0.5rem,1.5vw,1.2rem) 1.2rem;text-align:center;border-bottom:1px solid rgba(240,236,226,0.08);}
+.arch-table{width:100%;border-collapse:collapse;font-size:clamp(0.6rem,0.9vw,0.75rem);letter-spacing:0.25em;text-transform:uppercase;min-width:700px;}
+.arch-table th{color:rgba(245,242,234,0.5);font-weight:400;padding:0 clamp(0.5rem,1.5vw,1.2rem) 1.2rem;text-align:center;border-bottom:1px solid rgba(245,242,234,0.12);}
 .arch-table th:first-child{text-align:left;padding-left:0;}
-.arch-table td{padding:clamp(0.6rem,1.5vh,1rem) clamp(0.5rem,1.5vw,1.2rem);border-bottom:1px solid rgba(240,236,226,0.04);color:rgba(240,236,226,0.25);font-weight:400;text-align:center;}
-.arch-table td:first-child{text-align:left;padding-left:0;color:rgba(240,236,226,0.5);}
-.arch-table td.dot::before{content:'·';color:rgba(240,236,226,0.2);font-size:1rem;}
-.arch-table tr.highlighted td{background:rgba(30,100,60,0.07);color:rgba(120,220,160,0.5);}
-.arch-table tr.highlighted td:first-child{color:rgba(120,220,160,0.7);}
-.arch-table td.buddy{background:rgba(30,100,60,0.18);color:rgba(120,220,160,0.8);border-radius:2px;font-size:0.5rem;letter-spacing:0.4em;}
-.arch-table td.star{color:rgba(240,236,226,0.15);}
-#upload{text-align:center;padding-top:clamp(6rem,14vh,12rem);padding-bottom:clamp(6rem,14vh,12rem);}
-#upload .big{font-size:clamp(1.3rem,4vw,2.8rem);font-weight:400;color:rgba(240,236,226,0.8);line-height:1.5;max-width:22ch;margin:0 auto clamp(2rem,4vh,3rem);}
-#upload .sub{font-size:clamp(0.75rem,1.2vw,0.95rem);line-height:2;color:rgba(240,236,226,0.3);max-width:48ch;margin:0 auto;}
-#buyers .pull-quote{font-size:clamp(1.1rem,2.8vw,2rem);font-weight:400;line-height:1.5;color:rgba(240,236,226,0.65);max-width:28ch;border-left:1px solid rgba(240,236,226,0.15);padding-left:clamp(1.5rem,4vw,3rem);margin-bottom:clamp(3rem,6vh,5rem);}
-#buyers .buyers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(240,236,226,0.06);margin-top:clamp(2rem,4vh,3rem);}
-.buyer{background:#000;padding:clamp(1.5rem,3vw,2.5rem);}
-.buyer-name{font-size:0.55rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(240,236,226,0.3);margin-bottom:0.8rem;}
-.buyer-desc{font-size:clamp(0.75rem,1.1vw,0.9rem);line-height:1.8;color:rgba(240,236,226,0.4);}
+.arch-table td{padding:clamp(0.6rem,1.5vh,1rem) clamp(0.5rem,1.5vw,1.2rem);border-bottom:1px solid rgba(245,242,234,0.06);color:rgba(245,242,234,0.45);font-weight:400;text-align:center;}
+.arch-table td:first-child{text-align:left;padding-left:0;color:rgba(255,253,247,0.85);}
+.arch-table td.dot::before{content:'·';color:rgba(245,242,234,0.4);font-size:1.1rem;}
+.arch-table tr.highlighted td{background:rgba(30,100,60,0.1);color:rgba(140,235,180,0.7);}
+.arch-table tr.highlighted td:first-child{color:rgba(140,235,180,0.95);}
+.arch-table td.buddy{background:rgba(30,100,60,0.22);color:rgba(160,250,200,1);border-radius:2px;font-size:0.6rem;letter-spacing:0.4em;}
+.arch-table td.star{color:rgba(245,242,234,0.25);}
+
+/* CURIO + TESLA */
+#curio{min-height:90vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);background:radial-gradient(ellipse at top right,rgba(80,30,120,0.1) 0%,#000 70%);}
+#curio .curio-headline{font-size:clamp(2rem,5vw,4rem);font-weight:400;line-height:1.15;color:rgba(255,253,247,1);max-width:18ch;margin-bottom:clamp(2rem,5vh,4rem);}
+#curio .curio-headline em{font-style:italic;color:rgba(200,180,255,0.95);}
+#curio .curio-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:start;}
+@media(max-width:750px){#curio .curio-grid{grid-template-columns:1fr;}}
+#curio .curio-block strong{display:block;font-size:clamp(1.1rem,1.9vw,1.4rem);font-weight:400;color:rgba(255,253,247,1);margin-bottom:0.7rem;}
+#curio .curio-block p{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.85;color:rgba(245,242,234,0.7);}
+#curio .curio-block p em{color:rgba(255,253,247,1);font-style:normal;}
+#curio .curio-final{font-size:clamp(1.2rem,2.4vw,1.7rem);line-height:1.5;color:rgba(255,253,247,0.95);max-width:42ch;margin-top:clamp(3rem,6vh,5rem);font-style:italic;}
+
+/* THE KROC PATTERN — centerpiece */
+#kroc{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);background:radial-gradient(ellipse at center,rgba(60,30,80,0.1) 0%,#000 70%);}
+#kroc .kroc-stack{display:flex;flex-direction:column;gap:clamp(1.5rem,4vh,3rem);max-width:48ch;}
+#kroc .kroc-line{font-size:clamp(1.1rem,2.2vw,1.55rem);line-height:1.55;color:rgba(245,242,234,0.72);}
+#kroc .kroc-line strong{display:block;font-size:clamp(1.15rem,2.3vw,1.65rem);font-weight:400;color:rgba(255,253,247,1);margin-bottom:0.4rem;}
+#kroc .kroc-final{font-size:clamp(1.3rem,2.8vw,2.1rem);line-height:1.45;color:rgba(255,253,247,1);margin-top:clamp(2rem,5vh,4rem);max-width:36ch;font-style:italic;}
+#kroc .kroc-final em{font-style:normal;color:rgba(245,242,234,0.7);}
+
+/* MOAT */
+#moat .moat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(245,242,234,0.1);margin-top:clamp(2rem,4vh,3rem);}
+.moat-item{background:#000;padding:clamp(1.8rem,3.2vw,2.8rem);}
+.moat-name{font-size:0.7rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(255,253,247,0.85);margin-bottom:1rem;}
+.moat-desc{font-size:clamp(0.95rem,1.35vw,1.1rem);line-height:1.8;color:rgba(245,242,234,0.7);}
+
+/* BUYERS */
+#buyers .pull-quote{font-size:clamp(1.3rem,3vw,2.2rem);font-weight:400;line-height:1.4;color:rgba(255,253,247,0.9);max-width:30ch;border-left:2px solid rgba(245,242,234,0.3);padding-left:clamp(1.5rem,4vw,3rem);margin-bottom:clamp(3rem,6vh,5rem);}
+#buyers .buyers-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:rgba(245,242,234,0.1);margin-top:clamp(2rem,4vh,3rem);}
+.buyer{background:#000;padding:clamp(1.8rem,3.2vw,2.8rem);}
+.buyer-name{font-size:0.7rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(255,253,247,0.85);margin-bottom:1rem;}
+.buyer-desc{font-size:clamp(0.95rem,1.35vw,1.1rem);line-height:1.8;color:rgba(245,242,234,0.7);}
+.buyer-desc em{font-style:italic;color:rgba(255,253,247,1);}
+
+/* WHY NOW */
 #whynow .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);margin-top:clamp(2rem,4vh,3rem);}
 @media(max-width:700px){#whynow .why-grid{grid-template-columns:1fr;}}
-.why-item p{font-size:clamp(0.8rem,1.2vw,0.95rem);line-height:1.9;color:rgba(240,236,226,0.4);}
-.why-item strong{display:block;font-size:clamp(0.9rem,1.5vw,1.1rem);color:rgba(240,236,226,0.7);font-weight:400;margin-bottom:0.5rem;}
+.why-item p{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.8;color:rgba(245,242,234,0.7);}
+.why-item p em{color:rgba(255,253,247,1);font-style:normal;}
+.why-item strong{display:block;font-size:clamp(1.15rem,1.9vw,1.45rem);color:rgba(255,253,247,1);font-weight:400;margin-bottom:0.7rem;}
+
+/* ECOSYSTEM */
 #ecosystem .eco-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(2rem,5vw,5rem);margin-top:clamp(2rem,4vh,3rem);}
-.eco-item .eco-name{font-size:clamp(1.2rem,2.5vw,1.8rem);color:rgba(240,236,226,0.85);margin-bottom:0.4rem;}
-.eco-item .eco-sub{font-size:0.5rem;letter-spacing:0.55em;text-transform:uppercase;color:rgba(240,236,226,0.2);margin-bottom:1.2rem;}
-.eco-item .eco-desc{font-size:clamp(0.75rem,1.1vw,0.9rem);line-height:1.9;color:rgba(240,236,226,0.38);}
-.eco-item .eco-line{width:clamp(20px,3vw,32px);height:1px;background:rgba(240,236,226,0.15);margin-bottom:1.2rem;}
-#patron{background:rgba(240,236,226,0.015);}
-#patron .patron-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(240,236,226,0.06);margin-top:clamp(2rem,4vh,3rem);}
+.eco-item .eco-name{font-size:clamp(1.5rem,2.8vw,2.1rem);color:rgba(255,253,247,1);margin-bottom:0.4rem;}
+.eco-item .eco-sub{font-size:0.6rem;letter-spacing:0.55em;text-transform:uppercase;color:rgba(245,242,234,0.5);margin-bottom:1.3rem;}
+.eco-item .eco-desc{font-size:clamp(0.95rem,1.35vw,1.1rem);line-height:1.85;color:rgba(245,242,234,0.7);}
+.eco-item .eco-line{width:clamp(20px,3vw,32px);height:1px;background:rgba(245,242,234,0.35);margin-bottom:1.3rem;}
+
+/* THE VENUE */
+#venue{padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);background:rgba(245,242,234,0.018);}
+#venue .venue-lede{font-size:clamp(1.4rem,3.2vw,2.4rem);font-weight:400;line-height:1.4;color:rgba(255,253,247,1);max-width:30ch;margin-bottom:clamp(2.5rem,6vh,4rem);}
+#venue .venue-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);margin-top:clamp(2rem,4vh,3rem);}
+@media(max-width:700px){#venue .venue-grid{grid-template-columns:1fr;}}
+#venue .venue-block{padding:clamp(1.8rem,3vw,2.5rem);border-left:2px solid rgba(245,242,234,0.18);}
+#venue .venue-block strong{display:block;font-size:clamp(1.1rem,1.9vw,1.4rem);color:rgba(255,253,247,1);margin-bottom:0.8rem;font-weight:400;}
+#venue .venue-block p{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.8;color:rgba(245,242,234,0.72);}
+#venue .venue-body{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.85;color:rgba(245,242,234,0.7);max-width:62ch;margin-top:clamp(2rem,4vh,3rem);}
+#venue .venue-body em{color:rgba(255,253,247,1);font-style:normal;}
+
+/* THE FLEET */
+#fleet{padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);}
+#fleet .fleet-headline{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:400;line-height:1.2;color:rgba(255,253,247,1);max-width:24ch;margin-bottom:clamp(2.5rem,6vh,4rem);}
+#fleet .fleet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:rgba(245,242,234,0.1);margin:clamp(2rem,4vh,3rem) 0;}
+.fleet-cap{background:#000;padding:clamp(1.5rem,2.6vw,2.2rem);}
+.fleet-cap strong{display:block;font-size:0.7rem;letter-spacing:0.55em;text-transform:uppercase;color:rgba(255,253,247,0.95);margin-bottom:0.8rem;font-weight:400;}
+.fleet-cap p{font-size:clamp(0.9rem,1.3vw,1.05rem);line-height:1.75;color:rgba(245,242,234,0.7);}
+#fleet .fleet-body{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.85;color:rgba(245,242,234,0.72);max-width:62ch;margin-top:clamp(2rem,4vh,3rem);}
+#fleet .fleet-body em{color:rgba(255,253,247,1);font-style:italic;}
+
+/* AUTOMATION OF EXCELLENCE / WHITEHEAD */
+#whitehead{padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);background:radial-gradient(ellipse at bottom left,rgba(20,80,60,0.08) 0%,#000 70%);}
+#whitehead .wh-quote{font-size:clamp(1.3rem,3.2vw,2.3rem);font-weight:400;line-height:1.4;color:rgba(255,253,247,1);max-width:28ch;margin-bottom:clamp(1rem,3vh,2rem);font-style:italic;}
+#whitehead .wh-attr{font-size:0.7rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.55);margin-bottom:clamp(3rem,6vh,4rem);}
+#whitehead .wh-body{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.85;color:rgba(245,242,234,0.72);max-width:62ch;}
+#whitehead .wh-body em{color:rgba(255,253,247,1);font-style:normal;}
+#whitehead .wh-final{font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.55;color:rgba(255,253,247,1);max-width:36ch;margin-top:clamp(2.5rem,5vh,4rem);font-style:italic;}
+
+/* I'M — INFINITE MEANINGS */
+#im{padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);background:radial-gradient(ellipse at top left,rgba(80,40,30,0.1) 0%,#000 70%);}
+#im .im-headline{font-size:clamp(2rem,5.5vw,4.5rem);font-weight:400;line-height:1.15;color:rgba(255,253,247,1);margin-bottom:clamp(2rem,5vh,3.5rem);}
+#im .im-headline em{font-style:italic;color:rgba(255,200,180,0.95);}
+#im .im-body{font-size:clamp(1.05rem,1.7vw,1.4rem);line-height:1.65;color:rgba(245,242,234,0.78);max-width:48ch;margin-bottom:clamp(3rem,6vh,5rem);}
+#im .im-body em{color:rgba(255,253,247,1);font-style:normal;}
+#im .im-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(245,242,234,0.1);margin-bottom:clamp(3rem,6vh,5rem);}
+.im-block{background:#000;padding:clamp(1.8rem,3.2vw,2.8rem);}
+.im-block strong{display:block;font-size:0.7rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(255,253,247,0.95);margin-bottom:1rem;font-weight:400;}
+.im-block p{font-size:clamp(0.95rem,1.35vw,1.1rem);line-height:1.8;color:rgba(245,242,234,0.7);}
+.im-block p em{color:rgba(255,253,247,1);font-style:normal;}
+#im .im-final{font-size:clamp(1.3rem,2.8vw,2.1rem);font-weight:400;line-height:1.45;color:rgba(255,253,247,1);max-width:36ch;font-style:italic;margin-bottom:clamp(2rem,4vh,3rem);}
+#im .im-crichton{font-size:clamp(1.1rem,2.2vw,1.55rem);line-height:1.5;color:rgba(245,242,234,0.78);max-width:34ch;padding-top:clamp(2rem,4vh,3rem);border-top:1px solid rgba(245,242,234,0.15);}
+#im .im-crichton em{color:rgba(255,253,247,1);font-style:italic;}
+
+/* DECALUX IN ORBIT */
+#orbit{padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);background:radial-gradient(ellipse at center,rgba(20,30,80,0.12) 0%,#000 75%);}
+#orbit .orbit-headline{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:400;line-height:1.2;color:rgba(255,253,247,1);max-width:24ch;margin-bottom:clamp(2.5rem,5vh,4rem);}
+#orbit .orbit-headline em{font-style:italic;color:rgba(180,200,255,0.95);}
+#orbit .orbit-body{font-size:clamp(1rem,1.5vw,1.25rem);line-height:1.85;color:rgba(245,242,234,0.75);max-width:60ch;}
+#orbit .orbit-body em{color:rgba(255,253,247,1);font-style:normal;}
+#orbit .orbit-final{font-size:clamp(1.25rem,2.6vw,1.85rem);line-height:1.45;color:rgba(255,253,247,1);max-width:36ch;margin-top:clamp(3rem,5vh,4rem);font-style:italic;padding-top:clamp(2rem,4vh,3rem);border-top:1px solid rgba(245,242,234,0.15);}
+
+/* PROOF — bloodline / what already exists */
+#proof{padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);background:rgba(245,242,234,0.018);}
+#proof .proof-lede{font-size:clamp(1.35rem,3vw,2.2rem);font-weight:400;line-height:1.45;color:rgba(255,253,247,1);max-width:34ch;margin-bottom:clamp(2rem,5vh,4rem);}
+#proof .proof-lede em{color:rgba(255,253,247,1);font-style:italic;}
+#proof .proof-body{font-size:clamp(1rem,1.45vw,1.2rem);line-height:1.85;color:rgba(245,242,234,0.75);max-width:60ch;}
+#proof .proof-body em{color:rgba(255,253,247,1);font-style:normal;}
+
+/* UPLOAD */
+#upload{text-align:center;padding-top:clamp(6rem,14vh,12rem);padding-bottom:clamp(6rem,14vh,12rem);}
+#upload .big{font-size:clamp(1.6rem,4.5vw,3.4rem);font-weight:400;color:rgba(255,253,247,1);line-height:1.4;max-width:24ch;margin:0 auto clamp(2rem,4vh,3rem);}
+#upload .sub{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.9;color:rgba(245,242,234,0.7);max-width:52ch;margin:0 auto;}
+
+/* MAGNA CARTA */
+#magna{padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);text-align:center;}
+#magna .magna-pre{font-size:0.65rem;letter-spacing:0.7em;text-transform:uppercase;color:rgba(245,242,234,0.5);margin-bottom:clamp(2rem,5vh,3rem);}
+#magna .magna-body{font-size:clamp(1.2rem,2.6vw,1.85rem);font-weight:400;line-height:1.5;color:rgba(255,253,247,0.92);max-width:34ch;margin:0 auto;}
+#magna .magna-body em{color:rgba(255,253,247,1);font-style:normal;}
+
+/* PATRON */
+#patron{background:rgba(245,242,234,0.018);}
+#patron .patron-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(245,242,234,0.1);margin-top:clamp(2rem,4vh,3rem);}
 @media(max-width:750px){#patron .patron-grid{grid-template-columns:1fr;}}
 .patron-tier{background:#000;padding:clamp(2rem,4vw,3.5rem);}
-.patron-tier-num{font-size:0.5rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(240,236,226,0.18);margin-bottom:1.5rem;display:block;}
-.patron-tier-name{font-size:clamp(1rem,2vw,1.4rem);color:rgba(240,236,226,0.75);margin-bottom:1rem;}
-.patron-tier-text{font-size:clamp(0.75rem,1.1vw,0.88rem);line-height:1.9;color:rgba(240,236,226,0.35);}
-#closing{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(4rem,10vh,8rem) clamp(2rem,8vw,8rem);position:relative;}
-#closing .close-statement{font-size:clamp(1rem,2.8vw,2rem);font-weight:400;line-height:1.6;color:rgba(240,236,226,0.6);max-width:32ch;margin-bottom:clamp(1.5rem,4vh,3rem);}
-#closing .close-question{font-size:clamp(1.2rem,3.5vw,2.5rem);font-weight:400;color:rgba(240,236,226,0.85);margin-bottom:clamp(3rem,7vh,5rem);}
-#closing .close-sub{font-size:clamp(0.7rem,1vw,0.85rem);letter-spacing:0.15em;color:rgba(240,236,226,0.2);margin-bottom:clamp(3rem,6vh,5rem);}
-#closing a.cta{font-size:0.55rem;letter-spacing:0.7em;text-transform:uppercase;color:rgba(240,236,226,0.4);text-decoration:none;border-bottom:1px solid rgba(240,236,226,0.1);padding-bottom:0.3rem;transition:color 0.3s ease,border-color 0.3s ease;}
-#closing a.cta:hover{color:rgba(240,236,226,0.8);border-color:rgba(240,236,226,0.4);}
-.sun-line{font-size:clamp(0.6rem,1vw,0.8rem);letter-spacing:0.3em;color:rgba(240,236,226,0.1);font-style:italic;position:absolute;bottom:clamp(2rem,4vh,3.5rem);}
+.patron-tier-num{font-size:0.6rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(245,242,234,0.4);margin-bottom:1.5rem;display:block;}
+.patron-tier-name{font-size:clamp(1.15rem,2.1vw,1.55rem);color:rgba(255,253,247,1);margin-bottom:1rem;line-height:1.4;}
+.patron-tier-text{font-size:clamp(0.9rem,1.3vw,1.05rem);line-height:1.85;color:rgba(245,242,234,0.7);}
+
+/* CLOSING */
+#closing{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(4rem,10vh,8rem) clamp(2rem,8vw,8rem);position:relative;border-top:1px solid rgba(245,242,234,0.08);}
+#closing .close-statement{font-size:clamp(1.15rem,2.8vw,2rem);font-weight:400;line-height:1.55;color:rgba(245,242,234,0.78);max-width:34ch;margin-bottom:clamp(1.5rem,4vh,3rem);}
+#closing .close-statement em{color:rgba(255,253,247,1);font-style:normal;}
+#closing .close-question{font-size:clamp(1.6rem,4.5vw,3.2rem);font-weight:400;color:rgba(255,253,247,1);margin-bottom:clamp(1rem,2.5vh,2rem);line-height:1.25;}
+#closing .close-answer{font-size:clamp(0.85rem,1.5vw,1.1rem);letter-spacing:0.3em;text-transform:uppercase;color:rgba(245,242,234,0.7);margin-bottom:clamp(2rem,4vh,3rem);}
+#closing .close-tagline{font-size:clamp(1rem,1.8vw,1.3rem);font-style:italic;color:rgba(255,253,247,0.95);margin-bottom:clamp(3rem,6vh,4.5rem);max-width:32ch;}
+#closing .close-sub{font-size:clamp(0.75rem,1.05vw,0.95rem);letter-spacing:0.5em;color:rgba(245,242,234,0.5);margin-top:clamp(2rem,4vh,3rem);text-transform:uppercase;}
+
+/* CONTACT FORM */
+#msg-form{width:100%;max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(1.2rem,2.5vh,1.8rem);}
+#msg-text{width:100%;background:rgba(245,242,234,0.04);border:1px solid rgba(245,242,234,0.18);color:rgba(255,253,247,1);font-family:'Georgia',serif;font-size:clamp(0.95rem,1.4vw,1.1rem);line-height:1.7;padding:clamp(1rem,2vw,1.5rem);resize:vertical;outline:none;transition:border-color 0.4s ease,background 0.4s ease;min-height:140px;border-radius:0;}
+#msg-text:focus{border-color:rgba(245,242,234,0.5);background:rgba(245,242,234,0.06);}
+#msg-form button{align-self:center;background:transparent;border:1px solid rgba(245,242,234,0.3);color:rgba(255,253,247,0.9);font-family:'Georgia',serif;font-size:0.65rem;letter-spacing:0.7em;text-transform:uppercase;padding:0.85rem 2.6rem;cursor:pointer;transition:color 0.3s ease,border-color 0.3s ease,background 0.3s ease;}
+#msg-form button:hover{color:rgba(255,253,247,1);border-color:rgba(255,253,247,0.85);background:rgba(245,242,234,0.05);}
+#msg-form button:disabled{opacity:0.4;cursor:default;}
+
+.sun-line{font-size:clamp(0.65rem,1.05vw,0.85rem);letter-spacing:0.3em;color:rgba(245,242,234,0.25);font-style:italic;position:absolute;bottom:clamp(2rem,4vh,3.5rem);}
+
+/* REVEALS */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.9s ease,transform 0.9s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
 </style>
@@ -146,9 +296,10 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,2
 <body>
 
 <div id="weapon-banner">
-  <p>DECALUX&nbsp;&nbsp;&middot;&nbsp;&nbsp;Weaponizing the Collective Subconscious to Save Civilization from Its Trajectory Towards Extinction.</p>
+  <p>Are you part of History? With Decalux everyone is.</p>
 </div>
 
+<!-- ─────────── INTRO CEREMONY ─────────── -->
 <div id="stage">
   <div id="keyboard">
     <div class="key" data-c="red"><div class="key-dot"></div></div>
@@ -165,20 +316,20 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,2
   <div id="dali">
     <a id="dali-link" href="mailto:moonstarplanet@icloud.com" aria-label="Contact DECALUX">
       <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(240,236,226,0.85)" stroke-width="1.2"/>
-        <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(240,236,226,0.85)" stroke-width="1.2"/>
-        <circle cx="326" cy="75" r="3.5" stroke="rgba(240,236,226,0.85)" stroke-width="1"/>
-        <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(240,236,226,0.85)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-        <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(240,236,226,0.75)" stroke-width="1" fill="none"/>
-        <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(240,236,226,0.6)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(240,236,226,0.85)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <ellipse cx="197" cy="360" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
-        <ellipse cx="233" cy="364" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
-        <ellipse cx="279" cy="367" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
-        <ellipse cx="319" cy="364" rx="7" ry="3" stroke="rgba(240,236,226,0.7)" stroke-width="1"/>
+        <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(248,245,238,0.95)" stroke-width="1.2"/>
+        <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(248,245,238,0.95)" stroke-width="1.2"/>
+        <circle cx="326" cy="75" r="3.5" stroke="rgba(248,245,238,0.95)" stroke-width="1"/>
+        <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(248,245,238,0.95)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(248,245,238,0.85)" stroke-width="1" fill="none"/>
+        <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(248,245,238,0.7)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <ellipse cx="197" cy="360" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
+        <ellipse cx="233" cy="364" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
+        <ellipse cx="279" cy="367" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
+        <ellipse cx="319" cy="364" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
       </svg>
       <div id="dali-title">DECALUX</div>
     </a>
@@ -192,16 +343,41 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,2
   </div>
 </div>
 
+<!-- ─────────── CONTENT ─────────── -->
 <div id="content">
 
-  <section id="first-text">
-    <div class="ft-main reveal">DECALUX&nbsp;&middot;&nbsp;Weaponizing the Collective Subconscious<br><em>to Save Civilization from Its Trajectory Towards Extinction.</em></div>
+  <!-- HISTORY -->
+  <section id="history">
+    <div class="history-statement reveal">Every generation produces one or two projects that &mdash; in retrospect &mdash; were obviously inevitable. <em>The printing press. The library. The internet.</em></div>
+    <div class="history-question reveal">Are you part of History?</div>
+    <div class="history-answer reveal">With Decalux everyone is.</div>
   </section>
 
-  <section class="section" id="manifesto">
-    <div class="section-label reveal">The Manifesto</div>
-    <div class="headline reveal">We monetize<br>curiosity.</div>
-    <div class="tagline reveal"><em>Palantir</em> that feels like <em>Duolingo.</em><br>Our Big Mac is culture. Our real estate is data.<br>One dollar. Once. For life.</div>
+  <!-- THESIS — TALENT -->
+  <section id="thesis">
+    <div class="thesis-line-1 reveal">We monetize<br>curiosity.</div>
+    <div class="thesis-talent reveal">No more guesswork with the most important commodity of our species: <em>TALENT.</em></div>
+    <div class="thesis-place reveal">Place minds where they belong. Passion where it thrives.</div>
+  </section>
+
+  <!-- ONE DOLLAR -->
+  <section id="dollar">
+    <div class="dollar-line reveal">One dollar.<span>&middot;</span>Once.<span>&middot;</span>For life.</div>
+    <div class="dollar-sub reveal">Ten doors &middot; Every language &middot; Forever</div>
+  </section>
+
+  <div class="inline-banner"><p>Are you part of History? With Decalux everyone is.</p></div>
+
+  <!-- WHAT IT IS -->
+  <section class="section" id="what">
+    <div class="section-label reveal">What It Is</div>
+    <div class="two-col">
+      <div class="lede reveal">The first platform built to map and certify human curiosity at civilizational scale. <em>Palantir</em> that feels like <em>Duolingo.</em> Our Big Mac is culture. Our real estate is data.</div>
+      <div class="body-text reveal">Ten doors into what it means to be alive and curious on this planet. The product is beloved. The asset is the curiosity graph &mdash; what a billion people aspired to understand, in what sequence, over time. Not what they clicked. <em>What they wanted to become.</em><br><br>Every curiosity journey is a certified record of a mind in motion &mdash; the first credential that belongs entirely to the person who earned it, regardless of institution, language, or class.<div class="pull">The curiosity graph is to data what land is to real estate: it appreciates forever, and everything built on it inherits its value.</div></div>
+    </div>
+    <div class="muses reveal">
+      <span class="muse">Literature</span><span class="muse">Cinema</span><span class="muse">Photography</span><span class="muse">Sound</span><span class="muse">Theater</span><span class="muse">Architecture</span><span class="muse">Management</span><span class="muse">The World</span><span class="muse">Art</span><span class="muse">Education</span>
+    </div>
     <div class="stats reveal">
       <div class="stat"><div class="stat-num">1B+</div><div class="stat-label">Addressable users</div></div>
       <div class="stat"><div class="stat-num">$1</div><div class="stat-label">Lifetime entry price</div></div>
@@ -210,32 +386,7 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,2
     </div>
   </section>
 
-  <div class="inline-banner"><p>DECALUX&nbsp;&nbsp;&middot;&nbsp;&nbsp;Weaponizing the Collective Subconscious to Save Civilization from Its Trajectory Towards Extinction.</p></div>
-
-  <section class="section" id="what">
-    <div class="section-label reveal">What It Is</div>
-    <div class="two-col">
-      <div class="lede reveal">The first platform built to map and certify human curiosity at civilizational scale.</div>
-      <div class="body-text reveal">Ten doors into what it means to be alive and curious on this planet. The product is beloved. The asset is the curiosity graph — what a billion people aspired to understand, in what sequence, over time. Not what they clicked. What they wanted to become.<br><br>Every curiosity journey is a certified record of a mind in motion — the first credential that belongs entirely to the person who earned it, regardless of institution, language, or class.<div class="space-line">The first provider of in-flight entertainment for space travel. When humanity leaves Earth, Decalux is already there.</div></div>
-    </div>
-    <div class="muses reveal">
-      <span class="muse">Literature</span><span class="muse">Cinema</span><span class="muse">Photography</span><span class="muse">Sound</span><span class="muse">Theater</span><span class="muse">Architecture</span><span class="muse">Management</span><span class="muse">The World</span><span class="muse">Art</span><span class="muse">Education</span>
-    </div>
-  </section>
-
-  <div class="inline-banner"><p>DECALUX&nbsp;&nbsp;&middot;&nbsp;&nbsp;Weaponizing the Collective Subconscious to Save Civilization from Its Trajectory Towards Extinction.</p></div>
-
-  <section class="section" id="moat">
-    <div class="section-label reveal">The Moat &mdash; Why This Cannot Be Replicated</div>
-    <div class="moat-grid reveal">
-      <div class="moat-item"><div class="moat-name">First mover on the data</div><div class="moat-desc">Once a curiosity graph exists at scale, it cannot be reverse-engineered. The graph is the product of a decade of human behavior. A competitor starting today starts ten years behind.</div></div>
-      <div class="moat-item"><div class="moat-name">The $1 commitment filter</div><div class="moat-desc">Free attracts browsers. One dollar selects for seriousness &mdash; the only quality curiosity requires. A billion people paying $1 is not a revenue model. It is a civilizational proof of concept.</div></div>
-      <div class="moat-item"><div class="moat-name">Sequence is the signal</div><div class="moat-desc">Individual data points are noise. The curiosity sequence &mdash; what a person moved from, to, in what order, at what time of night &mdash; is irreplaceable. It takes years to accumulate. It cannot be faked.</div></div>
-    </div>
-  </section>
-
-  <div class="inline-banner"><p>DECALUX&nbsp;&nbsp;&middot;&nbsp;&nbsp;Weaponizing the Collective Subconscious to Save Civilization from Its Trajectory Towards Extinction.</p></div>
-
+  <!-- THREE TIERS -->
   <section class="section" id="tiers">
     <div class="section-label reveal">Three Tiers of the Mind</div>
     <div class="tiers-grid">
@@ -245,6 +396,7 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,2
     </div>
   </section>
 
+  <!-- ARCHITECTURE MATRIX -->
   <section class="section" id="architecture">
     <div class="section-label reveal">The Architecture &mdash; Ten Muses &middot; Ten Domains</div>
     <div class="arch-wrap reveal">
@@ -266,13 +418,30 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,2
     </div>
   </section>
 
-  <div class="inline-banner"><p>DECALUX&nbsp;&nbsp;&middot;&nbsp;&nbsp;Weaponizing the Collective Subconscious to Save Civilization from Its Trajectory Towards Extinction.</p></div>
-
-  <section class="section" id="upload">
-    <div class="big reveal">Your grandfather wrote poems.<br>Now there is a place for them.</div>
-    <div class="sub reveal">Upload your writing, your music, your photographs, your films. Decalux is the first archive built for the kind of knowledge that does not come with a degree. No credential required. No institution standing between you and posterity. Publish what you know. Certify what you have mastered. Let the world find it after you are gone.</div>
+  <!-- CURIO + TESLA -->
+  <section id="curio">
+    <div class="section-label reveal">CURIO &mdash; The Engine</div>
+    <div class="curio-headline reveal">Curiosity is the <em>vector</em> and the <em>trajectory</em> toward singularity.</div>
+    <div class="curio-grid">
+      <div class="curio-block reveal"><strong>CURIO is the AI.</strong><p>Every curiosity journey trains it. Every certification refines it. CURIO becomes the most contextually aware intelligence ever assembled &mdash; not because it crawled the web, but because it watched <em>a billion minds choose what to learn next.</em></p></div>
+      <div class="curio-block reveal"><strong>The bots inherit the graph.</strong><p>CURIO uploads into Tesla bots and the embodied AI to come. Every domestic robot inherits a personality shaped by what humans actually wanted to understand. The bots serve the household with the curiosity of a thousand teachers behind them.</p></div>
+    </div>
+    <div class="curio-final reveal">A singularity vector that does not extinguish humanity. It is shaped by what made humanity worth preserving.</div>
   </section>
 
+  <div class="inline-banner"><p>Are you part of History? With Decalux everyone is.</p></div>
+
+  <!-- THE KROC PATTERN -->
+  <section id="kroc">
+    <div class="kroc-stack">
+      <div class="kroc-line reveal"><strong>McDonald&rsquo;s was a restaurant.</strong>Ray Kroc knew it was real estate.</div>
+      <div class="kroc-line reveal"><strong>Facebook was a social network.</strong>Zuckerberg knew it was a behavioral graph.</div>
+      <div class="kroc-line reveal"><strong>Decalux will be identified as an education platform.</strong>It is the data business.</div>
+    </div>
+    <div class="kroc-final reveal">The asset appreciates while the product is consumed. <em>This asymmetry is the entire business.</em></div>
+  </section>
+
+  <!-- BUYERS -->
   <section class="section" id="buyers">
     <div class="section-label reveal">The Buyers &mdash; Who Pays and Why</div>
     <div class="pull-quote reveal">The curiosity graph is deeper than behavior, deeper than preference, deeper than any social graph ever assembled.</div>
@@ -281,21 +450,31 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,2
       <div class="buyer"><div class="buyer-name">Sovereign Funds</div><div class="buyer-desc">Population curiosity precedes economic and political shifts by years. A government that knows what its citizens aspire to understand has a strategic intelligence advantage that no other dataset provides.</div></div>
       <div class="buyer"><div class="buyer-name">Insurance Actuaries</div><div class="buyer-desc">Sustained intellectual curiosity correlates with longevity more strongly than most lifestyle factors. This is actuarially actionable. No insurer has ever had access to this signal.</div></div>
       <div class="buyer"><div class="buyer-name">Universities</div><div class="buyer-desc">The first pipeline in history that identifies intellectual potential before formal credentials exist. Recruitment from verified curiosity portfolios is categorically superior to standardized testing.</div></div>
-      <div class="buyer"><div class="buyer-name">Publishers &amp; Studios</div><div class="buyer-desc">Pre-market demand signals. Decalux knows what humans will want to read or watch before they know themselves. This is not preference data. It is aspiration data &mdash; the most valuable signal in content creation.</div></div>
+      <div class="buyer"><div class="buyer-name">Publishers &amp; Studios</div><div class="buyer-desc">Pre-market demand signals. Decalux knows what humans will want to read or watch before they know themselves. Not preference data &mdash; <em>aspiration data.</em> The most valuable signal in content creation.</div></div>
       <div class="buyer"><div class="buyer-name">Governments</div><div class="buyer-desc">A real-time map of what a population wants to understand. No government has ever had this. It is the deepest available signal about a civilization&rsquo;s direction.</div></div>
     </div>
   </section>
 
-  <div class="inline-banner"><p>DECALUX&nbsp;&nbsp;&middot;&nbsp;&nbsp;Weaponizing the Collective Subconscious to Save Civilization from Its Trajectory Towards Extinction.</p></div>
+  <!-- MOAT -->
+  <section class="section" id="moat">
+    <div class="section-label reveal">The Moat &mdash; Why This Cannot Be Replicated</div>
+    <div class="moat-grid reveal">
+      <div class="moat-item"><div class="moat-name">First mover on the data</div><div class="moat-desc">Once a curiosity graph exists at scale, it cannot be reverse-engineered. The graph is the product of a decade of human behavior. A competitor starting today starts ten years behind.</div></div>
+      <div class="moat-item"><div class="moat-name">The $1 commitment filter</div><div class="moat-desc">Free attracts browsers. One dollar selects for seriousness &mdash; the only quality curiosity requires. A billion people paying $1 is not a revenue model. It is a civilizational proof of concept.</div></div>
+      <div class="moat-item"><div class="moat-name">Sequence is the signal</div><div class="moat-desc">Individual data points are noise. The curiosity sequence &mdash; what a person moved from, to, in what order, at what time of night &mdash; is irreplaceable. It takes years to accumulate. It cannot be faked.</div></div>
+    </div>
+  </section>
 
+  <!-- WHY NOW -->
   <section class="section" id="whynow">
     <div class="section-label reveal">Why Now</div>
     <div class="why-grid">
-      <div class="why-item reveal"><strong>AI has made content infinite.</strong><p>Attention is now the scarcest resource on earth. The platform that maps where human attention wants to go &mdash; not where it is pushed &mdash; owns the most valuable territory in the information economy.</p></div>
+      <div class="why-item reveal"><strong>AI has made content infinite.</strong><p>Attention is now the scarcest resource on earth. The platform that maps where human attention <em>wants</em> to go &mdash; not where it is pushed &mdash; owns the most valuable territory in the information economy.</p></div>
       <div class="why-item reveal"><strong>The credential system is collapsing.</strong><p>Employers, governments, and institutions are actively seeking alternatives to the degree as a signal of human capability. Decalux is the only platform positioned to replace it &mdash; with something deeper, more honest, and more predictive.</p></div>
     </div>
   </section>
 
+  <!-- ECOSYSTEM -->
   <section class="section" id="ecosystem">
     <div class="section-label reveal">The Ecosystem &mdash; One Architecture &middot; Three Expressions</div>
     <div class="eco-grid">
@@ -305,8 +484,96 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,2
     </div>
   </section>
 
-  <div class="inline-banner"><p>DECALUX&nbsp;&nbsp;&middot;&nbsp;&nbsp;Weaponizing the Collective Subconscious to Save Civilization from Its Trajectory Towards Extinction.</p></div>
+  <div class="inline-banner"><p>Are you part of History? With Decalux everyone is.</p></div>
 
+  <!-- THE VENUE -->
+  <section id="venue">
+    <div class="section-label reveal">The Venue &mdash; Curiosity as Icebreaker</div>
+    <div class="venue-lede reveal">Vote for the films that play at your local cinema. Eventually the cinema itself is a Decalux venue.</div>
+    <div class="venue-grid">
+      <div class="venue-block reveal"><strong>One neighborhood:</strong><p>A laundromat with Coors Light. Working-class warmth. Detergent and cold beer. Curiosity finds its first audience here.</p></div>
+      <div class="venue-block reveal"><strong>Another neighborhood:</strong><p>A dry cleaner with espresso martinis. Pressed shirts and conversation. Format follows demographic. Function stays the same.</p></div>
+    </div>
+    <div class="venue-body reveal">A place to <em>talk to each other.</em> Curiosity is the icebreaker. The first physical layer of the curiosity graph &mdash; rooms where what you wanted to understand finds the others who wanted the same.</div>
+  </section>
+
+  <!-- THE FLEET -->
+  <section id="fleet">
+    <div class="section-label reveal">The Fleet &mdash; Mobile Civilization Builders</div>
+    <div class="fleet-headline reveal">Solar-powered electric trucks. They <em>deliver</em>. They <em>install</em>. They <em>talk</em>.</div>
+    <div class="fleet-grid reveal">
+      <div class="fleet-cap"><strong>Charge</strong><p>The truck finds your parked car in the app, rolls up while you eat lunch, charges it, leaves.</p></div>
+      <div class="fleet-cap"><strong>Install</strong><p>The driver isn&rsquo;t a courier. The driver installs the product, sets it up, hands it off correctly.</p></div>
+      <div class="fleet-cap"><strong>Reuse</strong><p>Containers come with the driver and leave with the driver. Zero waste at population scale.</p></div>
+      <div class="fleet-cap"><strong>Thicken</strong><p>The further from the city, the more capability the truck adds: ambulance, elderly care, repair, comms, water.</p></div>
+    </div>
+    <div class="fleet-body reveal">Eventually, self-sustaining. Small nano-factories that replicate the truck. <em>Mobile civilization-builders that grow in proportion to the void around them.</em> The Decalux delivery fleet is not a logistics layer. It is the physical extension of the platform &mdash; a moving, self-replicating infrastructure that brings excellence to the door of every human being on earth.</div>
+  </section>
+
+  <!-- AUTOMATION OF EXCELLENCE — Whitehead -->
+  <section id="whitehead">
+    <div class="section-label reveal">The Automation of Excellence</div>
+    <div class="wh-quote reveal">&ldquo;Civilization advances by extending the number of important operations which we can perform without thinking about them.&rdquo;</div>
+    <div class="wh-attr reveal">&mdash; Alfred North Whitehead</div>
+    <div class="wh-body reveal">From the 1970s onward, the population has turned inward &mdash; yoga, meditation, contemplation. The astral cycles JP Morgan studied described it before it happened. The contextual energies were always real. <em>Decalux automates the highest operation of all: the recognition of what is worth knowing, eating, drinking, doing, and surrounding yourself with.</em><br><br>What the data tells us &mdash; what you eat, when you exercise, which incense, which soap, which juice, which book, which film, which conversation &mdash; arrives at your door, at the right time, in the right form, in a reusable container, installed by someone who talks to you. Excellence at population scale. Optimized per individual. Zero residue.</div>
+    <div class="wh-final reveal">Decalux holds within it every facet of human experience &mdash; and so becomes, by accumulation rather than extraction, <em>the largest company in history.</em></div>
+  </section>
+
+  <div class="inline-banner"><p>Are you part of History? With Decalux everyone is.</p></div>
+
+  <!-- I'M — INFINITE MEANINGS -->
+  <section id="im">
+    <div class="section-label reveal">I&rsquo;M &mdash; Infinite Meanings</div>
+    <div class="im-headline reveal">We have entered <em>I&rsquo;M.</em></div>
+    <div class="im-body reveal">AI is changing how we relate to art. We are no longer interested in the artist &mdash; we are interested in <em>the art within ourselves.</em><br><br>We will no longer consume content. <em>We will create it.</em></div>
+    <div class="im-grid reveal">
+      <div class="im-block">
+        <strong>The Elephant</strong>
+        <p>When the film is released, all the footage will be made available. <em>Every viewer becomes an editor.</em> Every cut a new film.</p>
+      </div>
+      <div class="im-block">
+        <strong>The Books</strong>
+        <p>Published with the raw typewritten manuscripts. <em>No definitive editions.</em> Only the source &mdash; and infinite readings of it.</p>
+      </div>
+      <div class="im-block">
+        <strong>Shakespeare</strong>
+        <p>After half a millennium, atrophying in English-speaking cultures because we do not translate him anew. <em>We need infinite meanings for our zero-principles culture.</em></p>
+      </div>
+    </div>
+    <div class="im-final reveal">No more Ego. No more artists. <em>Just self going from place to space.</em></div>
+    <div class="im-crichton reveal">If the planet is <em>Westworld</em>, we are <em>Crichton</em>.</div>
+  </section>
+
+  <!-- DECALUX IN ORBIT -->
+  <section id="orbit">
+    <div class="section-label reveal">Decalux in Orbit</div>
+    <div class="orbit-headline reveal">The first <em>in-flight entertainment</em> for space travel.</div>
+    <div class="orbit-body reveal">When humanity leaves Earth, what travels with us? Months between planets. Years between stars. The vessels are being built. The content layer is not.<br><br>Decalux is the first entertainment infrastructure designed at the scale of human consciousness &mdash; ten muses, three tiers, a curiosity graph that responds to a mind in motion. <em>The natural mind-nourishment for orbital, lunar, and Martian voyages.</em> The survival kit of what makes us human in the dark between stars.</div>
+    <div class="orbit-final reveal">When humanity leaves Earth, Decalux is already there.</div>
+  </section>
+
+  <div class="inline-banner"><p>Are you part of History? With Decalux everyone is.</p></div>
+
+  <!-- PROOF -->
+  <section id="proof">
+    <div class="section-label reveal">The Proof of Concept Already Exists</div>
+    <div class="proof-lede reveal">Decalux was prefigured in a screenplay called <em>The Elephant</em> &mdash; a man in a coma whose mind moves through four chambers of consciousness: reptilian, limbic, cortex, divine.</div>
+    <div class="proof-body reveal">The film maps one mind&rsquo;s journey through curiosity at the scale of a single life. Decalux maps a billion. <em>The architecture is identical.</em> Coins that change color. Tiers of the mind. A graph that accumulates while the subject is engaged.<br><br>Built by the descendants of men who lined the chemistry of the space shuttle and mapped Europe from the air &mdash; bloodline that made it possible for human beings to endure what would otherwise kill them. Now: infrastructure equal to the apparatus of curiosity itself.</div>
+  </section>
+
+  <!-- UPLOAD -->
+  <section class="section" id="upload">
+    <div class="big reveal">Your grandfather wrote poems.<br>Now there is a place for them.</div>
+    <div class="sub reveal">Upload your writing, your music, your photographs, your films. Decalux is the first archive built for the kind of knowledge that does not come with a degree. No credential required. No institution standing between you and posterity. Publish what you know. Certify what you have mastered. Let the world find it after you are gone.</div>
+  </section>
+
+  <!-- SECOND MAGNA CARTA -->
+  <section id="magna">
+    <div class="magna-pre reveal">Founding Document &middot; MMXXV</div>
+    <div class="magna-body reveal">The first Magna Carta addressed the tyranny of kings over bodies. <em>The Second Magna Carta addresses the tyranny of chaos over minds</em> &mdash; the condition in which seven billion human beings possess the full apparatus of curiosity, and yet have no infrastructure equal to its dignity.</div>
+  </section>
+
+  <!-- PATRON PITCH -->
   <section class="section" id="patron">
     <div class="section-label reveal">The Patron Pitch</div>
     <div class="patron-grid reveal">
@@ -316,11 +583,19 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(240,236,2
     </div>
   </section>
 
-  <section class="section" id="closing">
-    <div class="close-statement reveal">Every generation produces one or two projects that &mdash; in retrospect &mdash; were obviously inevitable. The printing press. The library. The internet.</div>
-    <div class="close-question reveal">Are you part of the legacy?</div>
+  <!-- CLOSING -->
+  <section id="closing">
+    <div class="close-statement reveal">Every generation produces one or two projects that &mdash; in retrospect &mdash; were obviously inevitable. <em>The printing press. The library. The internet.</em></div>
+    <div class="close-question reveal">Are you part of History?</div>
+    <div class="close-answer reveal">With Decalux everyone is.</div>
+    <div class="close-tagline reveal">The map for the &ldquo;Lost&rdquo; Generation.</div>
+
+    <form id="msg-form" class="reveal" onsubmit="sendMessage(event)" autocomplete="off">
+      <textarea id="msg-text" rows="6" aria-label="Message"></textarea>
+      <button type="submit" id="msg-send">Send</button>
+    </form>
+
     <div class="close-sub reveal">decalux.art &middot; one dollar &middot; every language &middot; forever</div>
-    <a class="cta reveal" href="mailto:moonstarplanet@icloud.com">Enter</a>
     <div class="sun-line">The sun gives light to all without asking who deserves it.</div>
   </section>
 
@@ -338,37 +613,84 @@ const content=document.getElementById('content');
 const banner=document.getElementById('weapon-banner');
 const rgbKeys={red:keys.find(k=>k.dataset.c==='red'),green:keys.find(k=>k.dataset.c==='green'),blue:keys.find(k=>k.dataset.c==='blue')};
 function wait(ms){return new Promise(r=>setTimeout(r,ms));}
+
 async function intro(){
-  await wait(400);kb.style.opacity='1';await wait(100);
+  await wait(400);
+  kb.style.opacity='1';
+  await wait(100);
   keys.forEach((k,i)=>setTimeout(()=>k.classList.add('dim'),i*90));
   await wait(1800);
-  for(let c of ['red','green','blue']){const k=rgbKeys[c];k.classList.remove('dim');k.classList.add('lit');await wait(180);k.classList.remove('lit');k.classList.add('pressed');await wait(320);}
+
+  for(let c of ['red','green','blue']){
+    const k=rgbKeys[c];
+    k.classList.remove('dim');
+    k.classList.add('lit');
+    await wait(180);
+    k.classList.remove('lit');
+    k.classList.add('pressed');
+    await wait(320);
+  }
   await wait(300);
   Object.values(rgbKeys).forEach(k=>{k.classList.remove('pressed');k.classList.add('lit');});
   await wait(600);
-  kb.style.transition='opacity 0.7s ease';kb.style.opacity='0';await wait(800);
+
+  kb.style.transition='opacity 0.7s ease';
+  kb.style.opacity='0';
+  await wait(800);
   dali.style.opacity='1';
-  daliSvg.style.transition='opacity 0.15s ease';daliSvg.style.opacity='1';
-  await wait(80);daliSvg.style.opacity='0.1';await wait(60);daliSvg.style.opacity='1';await wait(50);daliSvg.style.opacity='0.3';await wait(40);daliSvg.style.opacity='1';
+  daliSvg.style.transition='opacity 0.15s ease';
+  daliSvg.style.opacity='1';
+  await wait(80);daliSvg.style.opacity='0.1';
+  await wait(60);daliSvg.style.opacity='1';
+  await wait(50);daliSvg.style.opacity='0.3';
+  await wait(40);daliSvg.style.opacity='1';
   await wait(200);
-  daliTxt.style.transition='opacity 0.08s ease';daliTxt.style.opacity='1';
-  await wait(60);daliTxt.style.opacity='0.2';await wait(50);daliTxt.style.opacity='1';await wait(40);daliTxt.style.opacity='0.5';await wait(40);daliTxt.style.opacity='1';
+  daliTxt.style.transition='opacity 0.08s ease';
+  daliTxt.style.opacity='1';
+  await wait(60);daliTxt.style.opacity='0.2';
+  await wait(50);daliTxt.style.opacity='1';
+  await wait(40);daliTxt.style.opacity='0.5';
+  await wait(40);daliTxt.style.opacity='1';
   await wait(2400);
-  dali.style.transition='opacity 1.4s ease';dali.style.opacity='0';await wait(1600);
-  schop.style.transition='opacity 1.8s ease';schop.style.opacity='1';await wait(5000);
-  schop.style.transition='opacity 1.2s ease';schop.style.opacity='0';await wait(800);
-  hint.style.opacity='1';content.classList.add('visible');
-  await wait(1400);fireBanner();
+
+  dali.style.transition='opacity 1.4s ease';
+  dali.style.opacity='0';
+  await wait(1600);
+  schop.style.transition='opacity 1.8s ease';
+  schop.style.opacity='1';
+  await wait(5000);
+  schop.style.transition='opacity 1.2s ease';
+  schop.style.opacity='0';
+  await wait(800);
+
+  hint.style.opacity='1';
+  content.classList.add('visible');
+  await wait(1400);
+  fireBanner();
 }
 intro();
+
 function fireBanner(){
   banner.classList.remove('slam');
   void banner.offsetWidth;
   banner.classList.add('slam');
   setTimeout(fireBanner,18000+Math.random()*27000);
 }
-const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});
+},{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Contact form: sends textarea content to moonwinellc@gmail.com
+function sendMessage(e){
+  e.preventDefault();
+  const txt=document.getElementById('msg-text').value.trim();
+  if(!txt)return;
+  const subject=encodeURIComponent('From decalux.art');
+  const body=encodeURIComponent(txt);
+  window.location.href='mailto:moonwinellc@gmail.com?subject='+subject+'&body='+body;
+}
 </script>
 </body>
 </html>
