@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DECALUX</title>
-<meta name="description" content="Every era produces one or two ideas - that In retrospect - seem Obvious.  The chair. The home. The printing press. The library. The internet. Decalux.
-">
+<meta name="description" content="DECALUX. We monetize curiosity. The first platform built to map and certify human curiosity at civilizational scale. One dollar. Once. For life.">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -59,11 +58,14 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
 #dali-title{font-family:'Georgia',serif;font-size:clamp(0.7rem,1.6vw,1.1rem);font-weight:400;letter-spacing:clamp(0.4em,2vw,0.9em);text-transform:uppercase;color:rgba(248,245,238,0.95);margin-top:clamp(1rem,3vh,2.5rem);opacity:0;}
 
 #schopenhauer{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(2rem,8vw,8rem);opacity:0;pointer-events:none;z-index:15;text-align:center;}
-#schopenhauer p{font-size:clamp(1.25rem,3.2vw,2.4rem);font-weight:400;line-height:1.6;color:rgba(245,242,234,0.7);max-width:28ch;}
+#schopenhauer p{font-size:clamp(1.1rem,2.8vw,2.1rem);font-weight:400;line-height:1.55;color:rgba(245,242,234,0.75);max-width:34ch;}
 #schopenhauer p em{color:rgba(255,253,247,1);font-style:normal;}
 
-#scroll-hint{position:absolute;bottom:clamp(1.5rem,4vh,3rem);left:50%;transform:translateX(-50%);opacity:0;transition:opacity 1s ease;display:flex;flex-direction:column;align-items:center;gap:0.5rem;cursor:pointer;z-index:20;}
-#scroll-hint span{font-size:0.55rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.4);}
+#scroll-hint{position:absolute;bottom:clamp(1.5rem,4vh,3rem);left:50%;transform:translateX(-50%);opacity:0;transition:opacity 1s ease;display:flex;flex-direction:column;align-items:center;gap:0.7rem;cursor:pointer;z-index:20;}
+#scroll-hint .scroll-row{display:flex;align-items:center;gap:0.7rem;}
+#scroll-hint .scroll-row span{font-size:0.55rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.4);}
+#scroll-hint .scroll-row .dot{letter-spacing:0;color:rgba(245,242,234,0.25);}
+#scroll-hint .scroll-row .duration{color:rgba(245,242,234,0.55);}
 #scroll-hint .arrow{width:1px;height:clamp(24px,4vh,40px);background:rgba(245,242,234,0.2);position:relative;overflow:hidden;}
 #scroll-hint .arrow::after{content:'';position:absolute;top:-100%;left:0;width:1px;height:100%;background:rgba(245,242,234,0.6);animation:drip 2s ease-in-out infinite;}
 @keyframes drip{0%{top:-100%;}100%{top:200%;}}
@@ -122,27 +124,15 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
 .stat-num{font-size:clamp(2rem,5.5vw,3.8rem);font-weight:400;color:rgba(255,253,247,1);margin-bottom:0.3rem;}
 .stat-label{font-size:0.6rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.55);}
 
-/* TIERS */
-#tiers .tiers-grid{margin-top:clamp(2rem,4vh,3rem);}
-.tier{display:grid;grid-template-columns:clamp(60px,10vw,100px) 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:start;padding:clamp(2rem,4vh,3rem) 0;border-bottom:1px solid rgba(245,242,234,0.08);}
-.tier-num{font-size:clamp(0.6rem,0.9vw,0.75rem);letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.4);padding-top:0.25rem;}
-.tier-title{font-size:clamp(1.5rem,2.8vw,2.1rem);color:rgba(255,253,247,1);margin-bottom:0.3rem;}
-.tier-sub{font-size:0.65rem;letter-spacing:0.6em;text-transform:uppercase;color:rgba(245,242,234,0.5);margin-bottom:0.8rem;}
-.tier-example{font-style:italic;color:rgba(255,253,247,0.88);font-size:clamp(0.95rem,1.4vw,1.15rem);margin-bottom:0.8rem;}
-.tier-desc{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.8;color:rgba(245,242,234,0.7);max-width:55ch;}
-
-/* ARCHITECTURE TABLE */
-#architecture .arch-wrap{overflow-x:auto;margin-top:clamp(2rem,4vh,3rem);-webkit-overflow-scrolling:touch;}
-.arch-table{width:100%;border-collapse:collapse;font-size:clamp(0.6rem,0.9vw,0.75rem);letter-spacing:0.25em;text-transform:uppercase;min-width:700px;}
-.arch-table th{color:rgba(245,242,234,0.5);font-weight:400;padding:0 clamp(0.5rem,1.5vw,1.2rem) 1.2rem;text-align:center;border-bottom:1px solid rgba(245,242,234,0.12);}
-.arch-table th:first-child{text-align:left;padding-left:0;}
-.arch-table td{padding:clamp(0.6rem,1.5vh,1rem) clamp(0.5rem,1.5vw,1.2rem);border-bottom:1px solid rgba(245,242,234,0.06);color:rgba(245,242,234,0.45);font-weight:400;text-align:center;}
-.arch-table td:first-child{text-align:left;padding-left:0;color:rgba(255,253,247,0.85);}
-.arch-table td.dot::before{content:'·';color:rgba(245,242,234,0.4);font-size:1.1rem;}
-.arch-table tr.highlighted td{background:rgba(30,100,60,0.1);color:rgba(140,235,180,0.7);}
-.arch-table tr.highlighted td:first-child{color:rgba(140,235,180,0.95);}
-.arch-table td.buddy{background:rgba(30,100,60,0.22);color:rgba(160,250,200,1);border-radius:2px;font-size:0.6rem;letter-spacing:0.4em;}
-.arch-table td.star{color:rgba(245,242,234,0.25);}
+/* SOME EXAMPLES */
+#examples{padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);background:radial-gradient(ellipse at top right,rgba(80,30,120,0.08) 0%,#000 70%);}
+#examples .examples-lede{font-size:clamp(1.2rem,2.6vw,1.85rem);font-weight:400;line-height:1.45;color:rgba(255,253,247,0.95);max-width:36ch;margin-bottom:clamp(2.5rem,5vh,4rem);font-style:italic;}
+#examples .examples-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(245,242,234,0.1);}
+.example-card{background:#000;padding:clamp(1.8rem,3.2vw,2.8rem);}
+.example-card .example-name{font-size:clamp(1.35rem,2.5vw,1.9rem);color:rgba(255,253,247,1);margin-bottom:0.3rem;line-height:1.2;}
+.example-card .example-sub{font-size:0.6rem;letter-spacing:0.55em;text-transform:uppercase;color:rgba(245,242,234,0.5);margin-bottom:1.2rem;}
+.example-card .example-desc{font-size:clamp(0.92rem,1.3vw,1.08rem);line-height:1.8;color:rgba(245,242,234,0.72);}
+.example-card .example-desc em{color:rgba(255,253,247,1);font-style:italic;}
 
 /* CURIO + TESLA */
 #curio{min-height:90vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);background:radial-gradient(ellipse at top right,rgba(80,30,120,0.1) 0%,#000 70%);}
@@ -177,12 +167,23 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
 .buyer-desc{font-size:clamp(0.95rem,1.35vw,1.1rem);line-height:1.8;color:rgba(245,242,234,0.7);}
 .buyer-desc em{font-style:italic;color:rgba(255,253,247,1);}
 
-/* WHY NOW */
-#whynow .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,6rem);margin-top:clamp(2rem,4vh,3rem);}
-@media(max-width:700px){#whynow .why-grid{grid-template-columns:1fr;}}
-.why-item p{font-size:clamp(0.95rem,1.4vw,1.15rem);line-height:1.8;color:rgba(245,242,234,0.7);}
-.why-item p em{color:rgba(255,253,247,1);font-style:normal;}
-.why-item strong{display:block;font-size:clamp(1.15rem,1.9vw,1.45rem);color:rgba(255,253,247,1);font-weight:400;margin-bottom:0.7rem;}
+/* WHY NOW — single statement */
+#whynow .whynow-headline{font-size:clamp(2rem,5vw,3.8rem);font-weight:400;line-height:1.15;color:rgba(255,253,247,1);max-width:22ch;margin-bottom:clamp(1.5rem,3.5vh,2.5rem);}
+#whynow .whynow-body{font-size:clamp(1.05rem,1.7vw,1.4rem);line-height:1.75;color:rgba(245,242,234,0.78);max-width:54ch;}
+#whynow .whynow-body em{color:rgba(255,253,247,1);font-style:normal;}
+
+/* THE CREDENTIAL — philosophical pivot */
+#credential{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:clamp(5rem,12vh,10rem) clamp(2rem,10vw,12rem);border-top:1px solid rgba(245,242,234,0.08);background:radial-gradient(ellipse at bottom right,rgba(40,60,90,0.1) 0%,#000 70%);}
+#credential .cred-statement{font-size:clamp(2.2rem,5.5vw,4.5rem);font-weight:400;line-height:1.1;color:rgba(255,253,247,1);max-width:18ch;margin-bottom:clamp(2rem,4.5vh,3rem);}
+#credential .cred-body{font-size:clamp(1rem,1.6vw,1.3rem);line-height:1.75;color:rgba(245,242,234,0.78);max-width:54ch;margin-bottom:clamp(3rem,7vh,5rem);}
+#credential .cred-body em{color:rgba(255,253,247,1);font-style:italic;}
+#credential .cred-divider{width:clamp(40px,6vw,80px);height:1px;background:rgba(245,242,234,0.3);margin-bottom:clamp(3rem,6vh,4.5rem);}
+#credential .cred-definition{max-width:46ch;margin-bottom:clamp(4rem,9vh,7rem);}
+#credential .cred-definition p{font-size:clamp(1.3rem,2.8vw,2.2rem);line-height:1.45;color:rgba(255,253,247,1);font-weight:400;margin-bottom:clamp(1.5rem,3vh,2rem);}
+#credential .cred-definition p:last-child{margin-bottom:0;color:rgba(245,242,234,0.85);font-size:clamp(1.15rem,2.3vw,1.75rem);}
+#credential .cred-definition p em{color:rgba(255,253,247,1);font-style:italic;font-weight:400;}
+#credential .cred-kill{font-size:clamp(1.4rem,3.2vw,2.4rem);font-weight:400;line-height:1.4;color:rgba(255,253,247,1);max-width:30ch;font-style:italic;padding-top:clamp(2rem,4vh,3rem);border-top:1px solid rgba(245,242,234,0.15);}
+#credential .cred-kill span{display:inline-block;margin-top:clamp(0.5rem,1.2vh,0.8rem);color:rgba(245,242,234,0.7);font-style:italic;font-size:clamp(1.1rem,2.4vw,1.85rem);}
 
 /* ECOSYSTEM */
 #ecosystem .eco-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(2rem,5vw,5rem);margin-top:clamp(2rem,4vh,3rem);}
@@ -336,10 +337,10 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
     </a>
   </div>
   <div id="schopenhauer">
-    <p>All truth passes through three stages.<br>First, it is <em>ridiculed.</em><br>Second, it is <em>violently opposed.</em><br>Third, it is accepted as being <em>self-evident.</em></p>
+    <p>Every era produces one or two ideas &mdash; that In retrospect &mdash; seem <em>Obvious</em>. The chair. The home. The printing press. The library. The internet. <em>Decalux</em>.</p>
   </div>
   <div id="scroll-hint" onclick="document.getElementById('content').scrollIntoView({behavior:'smooth'})">
-    <span>scroll</span>
+    <div class="scroll-row"><span>scroll</span><span class="dot">&middot;</span><span class="duration">90 second read</span></div>
     <div class="arrow"></div>
   </div>
 </div>
@@ -347,17 +348,27 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
 <!-- ─────────── CONTENT ─────────── -->
 <div id="content">
 
-  <!-- HISTORY -->
-  <section id="history">
-    <div class="history-statement reveal">Every generation produces one or two projects that &mdash; in retrospect &mdash; were obviously inevitable. <em>The printing press. The library. The internet.</em></div>
-    <div class="history-question reveal">Are you part of History?</div>
-    <div class="history-answer reveal">With Decalux everyone is.</div>
+  <!-- THE CREDENTIAL — DNA. Lands cold. -->
+  <section id="credential">
+    <div class="cred-statement reveal">The credential system is collapsing.</div>
+    <div class="cred-body reveal">Employers, governments, institutions &mdash; openly seeking alternatives to the degree as a signal of human capability. Decalux is positioned to replace it. With something <em>deeper</em>. <em>More honest</em>. <em>More predictive</em>.</div>
+
+    <div class="cred-divider reveal"></div>
+
+    <div class="cred-definition reveal">
+      <p>Every curiosity journey is a certified record of a mind in motion.</p>
+      <p>The first credential that belongs entirely to the person who <em>earned it, shaped it, felt it, loved it</em> &mdash; regardless of institution, language, or class.</p>
+    </div>
+
+    <div class="cred-kill reveal">We must dissolve identity in order to survive as a species.<br><span>Especially knowing that intellect serves it.</span></div>
   </section>
+
+  <div class="inline-banner"><p>Are you part of History? With Decalux everyone is.</p></div>
 
   <!-- THESIS — TALENT -->
   <section id="thesis">
     <div class="thesis-line-1 reveal">We monetize<br>curiosity.</div>
-    <div class="thesis-talent reveal">No more guesswork with the most important commodity of our species: <em>TALENT.</em></div>
+    <div class="thesis-talent reveal"><em>TALENT</em> &mdash; the only commodity that matters. The guesswork ends here.</div>
     <div class="thesis-place reveal">Place minds where they belong. Passion where it thrives.</div>
   </section>
 
@@ -367,14 +378,12 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
     <div class="dollar-sub reveal">Ten doors &middot; Every language &middot; Forever</div>
   </section>
 
-  <div class="inline-banner"><p>Are you part of History? With Decalux everyone is.</p></div>
-
   <!-- WHAT IT IS -->
   <section class="section" id="what">
     <div class="section-label reveal">What It Is</div>
     <div class="two-col">
       <div class="lede reveal">The first platform built to map and certify human curiosity at civilizational scale. <em>Palantir</em> that feels like <em>Duolingo.</em> Our Big Mac is culture. Our real estate is data.</div>
-      <div class="body-text reveal">Ten doors into what it means to be alive and curious on this planet. The product is beloved. The asset is the curiosity graph &mdash; what a billion people aspired to understand, in what sequence, over time. Not what they clicked. <em>What they wanted to become.</em><br><br>Every curiosity journey is a certified record of a mind in motion &mdash; the first credential that belongs entirely to the person who earned it, regardless of institution, language, or class.<div class="pull">The curiosity graph is to data what land is to real estate: it appreciates forever, and everything built on it inherits its value.</div></div>
+      <div class="body-text reveal">Ten doors into what it means to be alive and curious on this planet. The product is beloved. The asset is the curiosity graph &mdash; what a billion people aspired to understand, in what sequence, over time. Not what they clicked. <em>What they wanted to become.</em><div class="pull">The curiosity graph is to data what land is to real estate: it appreciates forever, and everything built on it inherits its value.</div></div>
     </div>
     <div class="muses reveal">
       <span class="muse">Literature</span><span class="muse">Cinema</span><span class="muse">Photography</span><span class="muse">Sound</span><span class="muse">Theater</span><span class="muse">Architecture</span><span class="muse">Management</span><span class="muse">The World</span><span class="muse">Art</span><span class="muse">Education</span>
@@ -387,47 +396,37 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
     </div>
   </section>
 
-  <!-- THREE TIERS -->
-  <section class="section" id="tiers">
-    <div class="section-label reveal">Three Tiers of the Mind</div>
-    <div class="tiers-grid">
-      <div class="tier reveal"><div class="tier-num">I</div><div><div class="tier-title">Lightning</div><div class="tier-sub">Reptilian</div><div class="tier-example">&ldquo;I&rsquo;d like to know about the French Revolution.&rdquo;</div><div class="tier-desc">A 3-minute primer video. Immediate ignition. The essential story, nothing more.</div></div></div>
-      <div class="tier reveal"><div class="tier-num">II</div><div><div class="tier-title">Storm</div><div class="tier-sub">Amphibian</div><div class="tier-example">The outline deepens.</div><div class="tier-desc">From bullet to minutiae &mdash; in the vein of Durant&rsquo;s History of Civilization. The full arc, layered, at your own depth.</div></div></div>
-      <div class="tier reveal"><div class="tier-num">III</div><div><div class="tier-title">Climate</div><div class="tier-sub">Cerebral Cortex</div><div class="tier-example">Full immersion.</div><div class="tier-desc">An in-depth exploration. Primary sources. Cross-muse connections. Resulting in a Decalux certification.</div></div></div>
+  <!-- SOME EXAMPLES — consolidated ecosystem preview -->
+  <section id="examples">
+    <div class="section-label reveal">Some Examples</div>
+    <div class="examples-lede reveal">One architecture. Many expressions. Each one a doorway into the same graph.</div>
+    <div class="examples-grid">
+      <div class="example-card reveal">
+        <div class="example-name">CURIO</div>
+        <div class="example-sub">The AI</div>
+        <div class="example-desc">Trained on a billion curiosity journeys. The most contextually aware intelligence ever assembled &mdash; not because it crawled the web, but because it watched <em>humanity choose what to learn next.</em> Uploads into Tesla bots and the embodied AI to come.</div>
+      </div>
+      <div class="example-card reveal">
+        <div class="example-name">The Venue</div>
+        <div class="example-sub">Curiosity as icebreaker</div>
+        <div class="example-desc">Vote for the films that play at your local cinema. Eventually the cinema itself is a Decalux venue. A laundromat with Coors Light. A dry cleaner with espresso martinis. <em>Format follows demographic. Function stays the same.</em></div>
+      </div>
+      <div class="example-card reveal">
+        <div class="example-name">The Fleet</div>
+        <div class="example-sub">Mobile civilization builders</div>
+        <div class="example-desc">Solar-powered electric trucks. They <em>deliver, install, charge</em> your parked car while you eat lunch. Reusable containers. The further from the city, the more capability the truck adds: ambulance, repair, comms, water. Eventually self-replicating.</div>
+      </div>
+      <div class="example-card reveal">
+        <div class="example-name">Buddy</div>
+        <div class="example-sub">Companion biology</div>
+        <div class="example-desc">A smart collar and companion app that <em>automates every aspect of your pet&rsquo;s life with longevity in mind.</em> The first longitudinal companion health graph. Detection 6&ndash;18 months before clinical symptoms.</div>
+      </div>
+      <div class="example-card reveal">
+        <div class="example-name">Wolf Water</div>
+        <div class="example-sub">Ancestral hydration</div>
+        <div class="example-desc">A saliva swab tells us what your dog needs. We deliver it. <em>The dog was the proof of concept. The human was always the market.</em></div>
+      </div>
     </div>
-  </section>
-
-  <!-- ARCHITECTURE MATRIX -->
-  <section class="section" id="architecture">
-    <div class="section-label reveal">The Architecture &mdash; Ten Muses &middot; Ten Domains</div>
-    <div class="arch-wrap reveal">
-      <table class="arch-table">
-        <thead><tr><th></th><th>Space</th><th>Place</th><th>Web</th><th>Basics</th><th>Museum</th><th>Foundation</th><th>R&amp;D</th><th>Legal</th><th>Festival</th><th>Certified</th></tr></thead>
-        <tbody>
-          <tr><td>Literature</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
-          <tr><td>Cinema</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
-          <tr><td>Photography</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
-          <tr><td>Sound</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
-          <tr><td>Theater</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
-          <tr><td>Architecture</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
-          <tr><td>Management</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
-          <tr class="highlighted"><td>The World</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="buddy">Buddy</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="star">*</td></tr>
-          <tr><td>Art</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
-          <tr><td>Education</td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td><td class="dot"></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- CURIO + TESLA -->
-  <section id="curio">
-    <div class="section-label reveal">CURIO &mdash; The Engine</div>
-    <div class="curio-headline reveal">Curiosity is the <em>vector</em> and the <em>trajectory</em> toward singularity.</div>
-    <div class="curio-grid">
-      <div class="curio-block reveal"><strong>CURIO is the AI.</strong><p>Every curiosity journey trains it. Every certification refines it. CURIO becomes the most contextually aware intelligence ever assembled &mdash; not because it crawled the web, but because it watched <em>a billion minds choose what to learn next.</em></p></div>
-      <div class="curio-block reveal"><strong>The bots inherit the graph.</strong><p>CURIO uploads into Tesla bots and the embodied AI to come. Every domestic robot inherits a personality shaped by what humans actually wanted to understand. The bots serve the household with the curiosity of a thousand teachers behind them.</p></div>
-    </div>
-    <div class="curio-final reveal">A singularity vector that does not extinguish humanity. It is shaped by what made humanity worth preserving.</div>
   </section>
 
   <div class="inline-banner"><p>Are you part of History? With Decalux everyone is.</p></div>
@@ -447,12 +446,12 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
     <div class="section-label reveal">The Buyers &mdash; Who Pays and Why</div>
     <div class="pull-quote reveal">The curiosity graph is deeper than behavior, deeper than preference, deeper than any social graph ever assembled.</div>
     <div class="buyers-grid reveal">
-      <div class="buyer"><div class="buyer-name">Pharmaceutical</div><div class="buyer-desc">Curiosity decline is a pre-clinical cognitive signal that predicts neurological onset 6&ndash;18 months before clinical presentation. No longitudinal dataset of intellectual appetite has ever existed. Decalux builds it passively, at scale, forever.</div></div>
-      <div class="buyer"><div class="buyer-name">Sovereign Funds</div><div class="buyer-desc">Population curiosity precedes economic and political shifts by years. A government that knows what its citizens aspire to understand has a strategic intelligence advantage that no other dataset provides.</div></div>
-      <div class="buyer"><div class="buyer-name">Insurance Actuaries</div><div class="buyer-desc">Sustained intellectual curiosity correlates with longevity more strongly than most lifestyle factors. This is actuarially actionable. No insurer has ever had access to this signal.</div></div>
-      <div class="buyer"><div class="buyer-name">Universities</div><div class="buyer-desc">The first pipeline in history that identifies intellectual potential before formal credentials exist. Recruitment from verified curiosity portfolios is categorically superior to standardized testing.</div></div>
-      <div class="buyer"><div class="buyer-name">Publishers &amp; Studios</div><div class="buyer-desc">Pre-market demand signals. Decalux knows what humans will want to read or watch before they know themselves. Not preference data &mdash; <em>aspiration data.</em> The most valuable signal in content creation.</div></div>
-      <div class="buyer"><div class="buyer-name">Governments</div><div class="buyer-desc">A real-time map of what a population wants to understand. No government has ever had this. It is the deepest available signal about a civilization&rsquo;s direction.</div></div>
+      <div class="buyer"><div class="buyer-name">Pharmaceutical</div><div class="buyer-desc">Curiosity decline is a pre-clinical cognitive signal. It predicts neurological onset &mdash; Alzheimer&rsquo;s, Parkinson&rsquo;s, frontotemporal dementia &mdash; six to eighteen months before clinical symptoms emerge. No longitudinal dataset of intellectual appetite has ever existed in human history. Decalux builds it passively, at scale, forever. <em>Every cognition-targeting pipeline becomes orders of magnitude more efficient with access to this signal.</em></div></div>
+      <div class="buyer"><div class="buyer-name">Sovereign Funds</div><div class="buyer-desc">Population curiosity precedes economic and political inflection by years. The countries whose citizens turn toward entrepreneurship before the markets catch up. The unrest brewing in what the people stop wanting to understand. <em>An instrument of strategic foresight no central bank, intelligence service, or election poll has ever possessed.</em></div></div>
+      <div class="buyer"><div class="buyer-name">Insurance Actuaries</div><div class="buyer-desc">Sustained intellectual curiosity correlates with longevity more strongly than diet, exercise, or income &mdash; and unlike those factors, it cannot be faked. This is actuarially actionable. The first behavioral signal that predicts decades of biological life, priced into every policy underwritten on the platform. <em>Decalux turns life insurance from a guess into a measurement.</em></div></div>
+      <div class="buyer"><div class="buyer-name">Universities</div><div class="buyer-desc">The first pipeline in history that identifies intellectual potential before any credential exists. An admissions office that has watched ten years of a student&rsquo;s actual mind in motion &mdash; what they pursued without being asked, what they finished, what they returned to at two in the morning &mdash; recruits from truth, not from test scores. <em>The standardized test does not survive the curiosity graph.</em></div></div>
+      <div class="buyer"><div class="buyer-name">Publishers &amp; Studios</div><div class="buyer-desc">Pre-market demand signals at the depth of the soul. Decalux knows what humans will want to read or watch before they know themselves. Not what they click. Not what they preference. <em>What they aspire to become.</em> Aspiration data is the most valuable signal in content creation. It has never existed before.</div></div>
+      <div class="buyer"><div class="buyer-name">Governments</div><div class="buyer-desc">A real-time map of a population&rsquo;s intellectual direction. The first civilizational compass. The deepest available signal about where a country is going &mdash; earlier than census data, earlier than economic indicators, earlier than political polling. <em>Curiosity is the leading indicator of every civilizational shift that follows.</em></div></div>
     </div>
   </section>
 
@@ -469,46 +468,8 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
   <!-- WHY NOW -->
   <section class="section" id="whynow">
     <div class="section-label reveal">Why Now</div>
-    <div class="why-grid">
-      <div class="why-item reveal"><strong>AI has made content infinite.</strong><p>Attention is now the scarcest resource on earth. The platform that maps where human attention <em>wants</em> to go &mdash; not where it is pushed &mdash; owns the most valuable territory in the information economy.</p></div>
-      <div class="why-item reveal"><strong>The credential system is collapsing.</strong><p>Employers, governments, and institutions are actively seeking alternatives to the degree as a signal of human capability. Decalux is the only platform positioned to replace it &mdash; with something deeper, more honest, and more predictive.</p></div>
-    </div>
-  </section>
-
-  <!-- ECOSYSTEM -->
-  <section class="section" id="ecosystem">
-    <div class="section-label reveal">The Ecosystem &mdash; One Architecture &middot; Three Expressions</div>
-    <div class="eco-grid">
-      <div class="eco-item reveal"><div class="eco-line"></div><div class="eco-name">Decalux</div><div class="eco-sub">The curiosity graph</div><div class="eco-desc">The first longitudinal map of human intellectual desire at civilizational scale. The asset appreciates while the product is consumed. This asymmetry is the entire business.</div></div>
-      <div class="eco-item reveal"><div class="eco-line"></div><div class="eco-name">Buddy</div><div class="eco-sub">Companion biology</div><div class="eco-desc">A smart collar. The first longitudinal companion health graph. Individual data points are noise. The sequence is everything. Detection 6&ndash;18 months before clinical symptoms.</div></div>
-      <div class="eco-item reveal"><div class="eco-line"></div><div class="eco-name">Wolf Water</div><div class="eco-sub">Ancestral hydration</div><div class="eco-desc">A saliva swab tells us what your dog needs. We deliver it. The dog was the proof of concept. The human was always the market.</div></div>
-    </div>
-  </section>
-
-  <div class="inline-banner"><p>Are you part of History? With Decalux everyone is.</p></div>
-
-  <!-- THE VENUE -->
-  <section id="venue">
-    <div class="section-label reveal">The Venue &mdash; Curiosity as Icebreaker</div>
-    <div class="venue-lede reveal">Vote for the films that play at your local cinema. Eventually the cinema itself is a Decalux venue.</div>
-    <div class="venue-grid">
-      <div class="venue-block reveal"><strong>One neighborhood:</strong><p>A laundromat with Coors Light. Working-class warmth. Detergent and cold beer. Curiosity finds its first audience here.</p></div>
-      <div class="venue-block reveal"><strong>Another neighborhood:</strong><p>A dry cleaner with espresso martinis. Pressed shirts and conversation. Format follows demographic. Function stays the same.</p></div>
-    </div>
-    <div class="venue-body reveal">A place to <em>talk to each other.</em> Curiosity is the icebreaker. The first physical layer of the curiosity graph &mdash; rooms where what you wanted to understand finds the others who wanted the same.</div>
-  </section>
-
-  <!-- THE FLEET -->
-  <section id="fleet">
-    <div class="section-label reveal">The Fleet &mdash; Mobile Civilization Builders</div>
-    <div class="fleet-headline reveal">Solar-powered electric trucks. They <em>deliver</em>. They <em>install</em>. They <em>talk</em>.</div>
-    <div class="fleet-grid reveal">
-      <div class="fleet-cap"><strong>Charge</strong><p>The truck finds your parked car in the app, rolls up while you eat lunch, charges it, leaves.</p></div>
-      <div class="fleet-cap"><strong>Install</strong><p>The driver isn&rsquo;t a courier. The driver installs the product, sets it up, hands it off correctly.</p></div>
-      <div class="fleet-cap"><strong>Reuse</strong><p>Containers come with the driver and leave with the driver. Zero waste at population scale.</p></div>
-      <div class="fleet-cap"><strong>Thicken</strong><p>The further from the city, the more capability the truck adds: ambulance, elderly care, repair, comms, water.</p></div>
-    </div>
-    <div class="fleet-body reveal">Eventually, self-sustaining. Small nano-factories that replicate the truck. <em>Mobile civilization-builders that grow in proportion to the void around them.</em> The Decalux delivery fleet is not a logistics layer. It is the physical extension of the platform &mdash; a moving, self-replicating infrastructure that brings excellence to the door of every human being on earth.</div>
+    <div class="whynow-headline reveal">AI has made content infinite.</div>
+    <div class="whynow-body reveal">Attention is now the scarcest resource on earth. The platform that maps where human attention <em>wants</em> to go &mdash; not where it is pushed &mdash; owns the most valuable territory in the information economy.</div>
   </section>
 
   <!-- AUTOMATION OF EXCELLENCE — Whitehead -->
@@ -516,7 +477,7 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
     <div class="section-label reveal">The Automation of Excellence</div>
     <div class="wh-quote reveal">&ldquo;Civilization advances by extending the number of important operations which we can perform without thinking about them.&rdquo;</div>
     <div class="wh-attr reveal">&mdash; Alfred North Whitehead</div>
-    <div class="wh-body reveal">From the 1970s onward, the population has turned inward &mdash; yoga, meditation, contemplation. The astral cycles JP Morgan studied described it before it happened. The contextual energies were always real. <em>Decalux automates the highest operation of all: the recognition of what is worth knowing, eating, drinking, doing, and surrounding yourself with.</em><br><br>What the data tells us &mdash; what you eat, when you exercise, which incense, which soap, which juice, which book, which film, which conversation &mdash; arrives at your door, at the right time, in the right form, in a reusable container, installed by someone who talks to you. Excellence at population scale. Optimized per individual. Zero residue.</div>
+    <div class="wh-body reveal">From the 1970s onward, the population has turned inward &mdash; yoga, meditation, contemplation. <em>Decalux automates the highest operation of all: the recognition of what is worth knowing, eating, drinking, doing, and surrounding yourself with.</em><br><br>What the data tells us &mdash; what you eat, when you exercise, which incense, which soap, which juice, which book, which film, which conversation &mdash; arrives at your door, at the right time, in the right form, in a reusable container, installed by someone who talks to you. Excellence at population scale. Optimized per individual. Zero residue.</div>
     <div class="wh-final reveal">Decalux holds within it every facet of human experience &mdash; and so becomes, by accumulation rather than extraction, <em>the largest company in history.</em></div>
   </section>
 
@@ -526,7 +487,7 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
   <section id="im">
     <div class="section-label reveal">I&rsquo;M &mdash; Infinite Meanings</div>
     <div class="im-headline reveal">We have entered <em>I&rsquo;M.</em></div>
-    <div class="im-body reveal">AI is changing how we relate to art. We are no longer interested in the artist &mdash; we are interested in <em>the art within ourselves.</em><br><br>We will no longer consume content. <em>We will create it.</em></div>
+    <div class="im-body reveal">AI has changed how we relate to art. We are no longer interested in the artist &mdash; we are interested in <em>the art within ourselves.</em><br><br>We will no longer consume content. <em>We will create it.</em></div>
     <div class="im-grid reveal">
       <div class="im-block">
         <strong>The Elephant</strong>
@@ -549,7 +510,7 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
   <section id="orbit">
     <div class="section-label reveal">Decalux in Orbit</div>
     <div class="orbit-headline reveal">The first <em>in-flight entertainment</em> for space travel.</div>
-    <div class="orbit-body reveal">When humanity leaves Earth, what travels with us? Months between planets. Years between stars. The vessels are being built. The content layer is not.<br><br>Decalux is the first entertainment infrastructure designed at the scale of human consciousness &mdash; ten muses, three tiers, a curiosity graph that responds to a mind in motion. <em>The natural mind-nourishment for orbital, lunar, and Martian voyages.</em> The survival kit of what makes us human in the dark between stars.</div>
+    <div class="orbit-body reveal">When humanity leaves Earth, what travels with us? Months between planets. Years between stars. The vessels are being built. The content layer is not.<br><br>Decalux is the first entertainment infrastructure designed at the scale of human consciousness &mdash; ten muses, a curiosity graph that responds to a mind in motion. <em>The natural mind-nourishment for orbital, lunar, and Martian voyages.</em> The survival kit of what makes us human in the dark between stars.</div>
     <div class="orbit-final reveal">When humanity leaves Earth, Decalux is already there.</div>
   </section>
 
@@ -559,26 +520,26 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
   <section id="proof">
     <div class="section-label reveal">The Proof of Concept Already Exists</div>
     <div class="proof-lede reveal">Decalux was prefigured in a screenplay called <em>The Elephant</em> &mdash; a man in a coma whose mind moves through four chambers of consciousness: reptilian, limbic, cortex, divine.</div>
-    <div class="proof-body reveal">The film maps one mind&rsquo;s journey through curiosity at the scale of a single life. Decalux maps a billion. <em>The architecture is identical.</em> Coins that change color. Tiers of the mind. A graph that accumulates while the subject is engaged.<br><br>Built by the descendants of men who lined the chemistry of the space shuttle and mapped Europe from the air &mdash; bloodline that made it possible for human beings to endure what would otherwise kill them. Now: infrastructure equal to the apparatus of curiosity itself.</div>
+    <div class="proof-body reveal">The film maps one mind&rsquo;s journey through curiosity at the scale of a single life. Decalux maps a billion. <em>The architecture is identical.</em> Coins that change color. A graph that accumulates while the subject is engaged.<br><br>Built by the descendants of men who lined the chemistry of the space shuttle and mapped Europe from the air. Now: infrastructure equal to the apparatus of curiosity itself.</div>
   </section>
 
   <!-- UPLOAD -->
   <section class="section" id="upload">
     <div class="big reveal">Your grandfather wrote poems.<br>Now there is a place for them.</div>
-    <div class="sub reveal">Upload your writing, your music, your photographs, your films. Decalux is the first archive built for the kind of knowledge that does not come with a degree. No credential required. No institution standing between you and posterity. Publish what you know. Certify what you have mastered. Let the world find it after you are gone.</div>
+    <div class="sub reveal">Upload your writing, your music, your photographs, your films. Decalux is the first archive built for the kind of knowledge that cannot be credentialed. No institution standing between you and posterity. Publish what you know. Certify what you have mastered. Let the world find it after you are gone.</div>
   </section>
 
   <!-- SECOND MAGNA CARTA -->
   <section id="magna">
     <div class="magna-pre reveal">Founding Document &middot; MMXXV</div>
-    <div class="magna-body reveal">The first Magna Carta addressed the tyranny of kings over bodies. <em>The Second Magna Carta addresses the tyranny of chaos over minds</em> &mdash; the condition in which seven billion human beings possess the full apparatus of curiosity, and yet have no infrastructure equal to its dignity.</div>
+    <div class="magna-body reveal">The first Magna Carta addressed the tyranny of kings over bodies. <em>The Second Magna Carta addresses the tyranny of chaos over minds</em> &mdash; the condition in which humanity possesses the full apparatus of curiosity, and yet has no infrastructure equal to its dignity.</div>
   </section>
 
   <!-- PATRON PITCH -->
   <section class="section" id="patron">
     <div class="section-label reveal">The Patron Pitch</div>
     <div class="patron-grid reveal">
-      <div class="patron-tier"><span class="patron-tier-num">I &middot; Reptilian</span><div class="patron-tier-name">Civilization has been building toward this.</div><div class="patron-tier-text">Every generation produces one or two projects that &mdash; in retrospect &mdash; were obviously inevitable. The printing press. The library. The internet. You do not evaluate these. You recognize them. Or you miss them. Decalux is that project. It already exists. What happens next is not whether &mdash; it is who was in the room.</div></div>
+      <div class="patron-tier"><span class="patron-tier-num">I &middot; Reptilian</span><div class="patron-tier-name">Civilization has been building toward this.</div><div class="patron-tier-text">Every era produces one or two ideas &mdash; that In retrospect &mdash; seem Obvious. The chair. The home. The printing press. The library. The internet. Decalux. You do not evaluate these. You recognize them. Or you miss them. Decalux is that project. It already exists. What happens next is not whether &mdash; it is who was in the room.</div></div>
       <div class="patron-tier"><span class="patron-tier-num">II &middot; Limbic</span><div class="patron-tier-name">There was a subject you went deep into alone.</div><div class="patron-tier-text">No class. No credential. Just you and the thing itself, because you couldn&rsquo;t help it. That was not a hobby. That was you, being fully human. Decalux is built for every person who has ever done that. The retired surgeon in Naples reading Rumi at seventy. The nineteen-year-old in Lagos who finished every course online and wants more.</div></div>
       <div class="patron-tier"><span class="patron-tier-num">III &middot; Cortex</span><div class="patron-tier-name">It is not in the education business.</div><div class="patron-tier-text">McDonald&rsquo;s was a restaurant. Ray Kroc knew it was real estate. Facebook was a social network. Zuckerberg knew it was a behavioral graph. Decalux will be identified as an education platform. It is the first longitudinal map of human intellectual desire at civilizational scale. The asset appreciates while the product is consumed. This asymmetry is the entire business.</div></div>
     </div>
@@ -586,7 +547,7 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
 
   <!-- CLOSING -->
   <section id="closing">
-    <div class="close-statement reveal">Every generation produces one or two projects that &mdash; in retrospect &mdash; were obviously inevitable. <em>The printing press. The library. The internet.</em></div>
+    <div class="close-statement reveal">Every era produces one or two ideas &mdash; that In retrospect &mdash; seem <em>Obvious</em>. The chair. The home. The printing press. The library. The internet. <em>Decalux</em>.</div>
     <div class="close-question reveal">Are you part of History?</div>
     <div class="close-answer reveal">With Decalux everyone is.</div>
     <div class="close-tagline reveal">The map for the &ldquo;Lost&rdquo; Generation.</div>
