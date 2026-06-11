@@ -7,12 +7,13 @@
 <meta name="description" content="DECALUX. We monetize curiosity. The first platform built to map and certify human curiosity at civilizational scale. One dollar. Once. For life.">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,234,0.92);overflow-x:hidden;}
+html,body{height:100%;overflow:hidden;}
+body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,234,0.92);}
 ::selection{background:rgba(245,242,234,0.18);color:#fff;}
 
-/* ─────────── INTRO STAGE ─────────── */
-#stage{width:100vw;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+/* ─────────── STAGE (the only page) ─────────── */
+#stage{width:100vw;height:100vh;height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+
 #keyboard{display:flex;gap:clamp(6px,1.2vw,14px);align-items:flex-end;opacity:0;transition:opacity 1.2s ease;position:relative;z-index:2;}
 .key{border-radius:3px 3px 5px 5px;position:relative;transition:background 0.4s ease,box-shadow 0.4s ease,transform 0.15s ease;cursor:default;}
 .key:nth-child(1){width:clamp(28px,3.5vw,50px);height:clamp(70px,9vw,120px);}
@@ -36,24 +37,40 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
 .key[data-c="ochre"].dim{background:rgba(160,110,20,0.12);border-color:rgba(160,110,20,0.2);}
 .key[data-c="black"].dim{background:rgba(40,40,40,0.18);border-color:rgba(80,80,80,0.2);}
 .key[data-c="white"].dim{background:rgba(220,220,210,0.08);border-color:rgba(220,220,210,0.15);}
-.key[data-c="red"].lit{background:#b0281c;box-shadow:0 0 30px rgba(176,40,28,0.8),0 0 60px rgba(176,40,28,0.35);border-color:#c0392b;}
-.key[data-c="orange"].lit{background:#be5a14;box-shadow:0 0 30px rgba(190,90,20,0.8),0 0 60px rgba(190,90,20,0.35);border-color:#d4691a;}
-.key[data-c="yellow"].lit{background:#b4a014;box-shadow:0 0 30px rgba(180,160,20,0.8),0 0 60px rgba(180,160,20,0.35);border-color:#c8b020;}
-.key[data-c="green"].lit{background:#1e643c;box-shadow:0 0 30px rgba(30,100,60,0.8),0 0 60px rgba(30,100,60,0.35);border-color:#2d8a52;}
-.key[data-c="teal"].lit{background:#14786e;box-shadow:0 0 30px rgba(20,120,110,0.8),0 0 60px rgba(20,120,110,0.35);border-color:#1a9080;}
-.key[data-c="blue"].lit{background:#193c82;box-shadow:0 0 30px rgba(25,60,130,0.9),0 0 70px rgba(25,60,130,0.4);border-color:#2a54b0;}
-.key[data-c="violet"].lit{background:#501e8c;box-shadow:0 0 30px rgba(80,30,140,0.8),0 0 60px rgba(80,30,140,0.35);border-color:#6a28c0;}
-.key[data-c="ochre"].lit{background:#a06e14;box-shadow:0 0 30px rgba(160,110,20,0.8),0 0 60px rgba(160,110,20,0.35);border-color:#c08418;}
-.key[data-c="black"].lit{background:#282828;box-shadow:0 0 30px rgba(80,80,80,0.5),0 0 60px rgba(80,80,80,0.2);border-color:#505050;}
-.key[data-c="white"].lit{background:#dcdcd2;box-shadow:0 0 30px rgba(220,220,210,0.7),0 0 60px rgba(220,220,210,0.3);border-color:#eeeeee;}
+
+/* lit during the ceremony — and on hover/focus once the keyboard is playable */
+.key[data-c="red"].lit,#keyboard.playable .key[data-c="red"]:hover,#keyboard.playable .key[data-c="red"]:focus-visible{background:#b0281c;box-shadow:0 0 30px rgba(176,40,28,0.8),0 0 60px rgba(176,40,28,0.35);border-color:#c0392b;}
+.key[data-c="orange"].lit,#keyboard.playable .key[data-c="orange"]:hover,#keyboard.playable .key[data-c="orange"]:focus-visible{background:#be5a14;box-shadow:0 0 30px rgba(190,90,20,0.8),0 0 60px rgba(190,90,20,0.35);border-color:#d4691a;}
+.key[data-c="yellow"].lit,#keyboard.playable .key[data-c="yellow"]:hover,#keyboard.playable .key[data-c="yellow"]:focus-visible{background:#b4a014;box-shadow:0 0 30px rgba(180,160,20,0.8),0 0 60px rgba(180,160,20,0.35);border-color:#c8b020;}
+.key[data-c="green"].lit,#keyboard.playable .key[data-c="green"]:hover,#keyboard.playable .key[data-c="green"]:focus-visible{background:#1e643c;box-shadow:0 0 30px rgba(30,100,60,0.8),0 0 60px rgba(30,100,60,0.35);border-color:#2d8a52;}
+.key[data-c="teal"].lit,#keyboard.playable .key[data-c="teal"]:hover,#keyboard.playable .key[data-c="teal"]:focus-visible{background:#14786e;box-shadow:0 0 30px rgba(20,120,110,0.8),0 0 60px rgba(20,120,110,0.35);border-color:#1a9080;}
+.key[data-c="blue"].lit,#keyboard.playable .key[data-c="blue"]:hover,#keyboard.playable .key[data-c="blue"]:focus-visible{background:#193c82;box-shadow:0 0 30px rgba(25,60,130,0.9),0 0 70px rgba(25,60,130,0.4);border-color:#2a54b0;}
+.key[data-c="violet"].lit,#keyboard.playable .key[data-c="violet"]:hover,#keyboard.playable .key[data-c="violet"]:focus-visible{background:#501e8c;box-shadow:0 0 30px rgba(80,30,140,0.8),0 0 60px rgba(80,30,140,0.35);border-color:#6a28c0;}
+.key[data-c="ochre"].lit,#keyboard.playable .key[data-c="ochre"]:hover,#keyboard.playable .key[data-c="ochre"]:focus-visible{background:#a06e14;box-shadow:0 0 30px rgba(160,110,20,0.8),0 0 60px rgba(160,110,20,0.35);border-color:#c08418;}
+.key[data-c="black"].lit,#keyboard.playable .key[data-c="black"]:hover,#keyboard.playable .key[data-c="black"]:focus-visible{background:#282828;box-shadow:0 0 30px rgba(80,80,80,0.5),0 0 60px rgba(80,80,80,0.2);border-color:#505050;}
+.key[data-c="white"].lit,#keyboard.playable .key[data-c="white"]:hover,#keyboard.playable .key[data-c="white"]:focus-visible{background:#dcdcd2;box-shadow:0 0 30px rgba(220,220,210,0.7),0 0 60px rgba(220,220,210,0.3);border-color:#eeeeee;}
+
 .key[data-c="red"].pressed{background:#e8281a;box-shadow:0 0 50px rgba(232,40,26,1),0 0 100px rgba(232,40,26,0.6);transform:translateY(3px);}
 .key[data-c="green"].pressed{background:#1a9050;box-shadow:0 0 50px rgba(26,144,80,1),0 0 100px rgba(26,144,80,0.6);transform:translateY(3px);}
 .key[data-c="blue"].pressed{background:#1e4aaa;box-shadow:0 0 50px rgba(30,74,170,1),0 0 110px rgba(30,74,170,0.65);transform:translateY(3px);}
+.key.pressed-anim{transform:translateY(3px);filter:brightness(1.45);}
 .key-dot{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,0.12);transition:background 0.4s ease;}
-.key.lit .key-dot,.key.pressed .key-dot{background:rgba(255,255,255,0.5);}
+.key.lit .key-dot,.key.pressed .key-dot,#keyboard.playable .key:hover .key-dot{background:rgba(255,255,255,0.5);}
+#keyboard.playable .key{cursor:pointer;outline:none;}
 
+/* name of the section under the hovered key */
+#key-label{height:1.3em;margin-top:clamp(0.9rem,2.2vh,1.5rem);font-size:0.6rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.45);opacity:0;transition:opacity 0.35s ease,color 0.35s ease;z-index:2;text-align:center;}
+
+/* ─────────── MINI ELEPHANT → $1 ─────────── */
+#mini{position:relative;margin-top:clamp(1.2rem,3.5vh,2.6rem);width:clamp(48px,6.5vw,72px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 1.2s ease;cursor:pointer;z-index:2;outline:none;}
+#mini.on{opacity:1;pointer-events:auto;}
+#mini svg{display:block;width:100%;height:auto;transition:opacity 0.45s ease;}
+#mini .mini-dollar{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:clamp(1.15rem,2.2vw,1.6rem);color:#fffdf7;text-shadow:0 0 24px rgba(245,242,234,0.4);opacity:0;transition:opacity 0.45s ease;user-select:none;}
+#mini:hover svg,#mini:focus-visible svg{opacity:0;}
+#mini:hover .mini-dollar,#mini:focus-visible .mini-dollar{opacity:1;}
+
+/* ─────────── INTRO OVERLAYS ─────────── */
 #dali{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:10;transition:opacity 1s ease;}
-#dali-link{display:flex;flex-direction:column;align-items:center;text-decoration:none;cursor:default;pointer-events:none;}
 #dali svg{width:clamp(260px,45vw,600px);height:auto;opacity:0;}
 #dali-title{font-family:'Georgia',serif;font-size:clamp(0.7rem,1.6vw,1.1rem);font-weight:400;letter-spacing:clamp(0.4em,2vw,0.9em);text-transform:uppercase;color:rgba(248,245,238,0.95);margin-top:clamp(1rem,3vh,2.5rem);opacity:0;}
 
@@ -61,99 +78,45 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
 #schopenhauer p{font-size:clamp(1.1rem,2.8vw,2.1rem);font-weight:400;line-height:1.55;color:rgba(245,242,234,0.75);max-width:34ch;}
 #schopenhauer p em{color:rgba(255,253,247,1);font-style:normal;}
 
-#scroll-hint{position:absolute;bottom:clamp(1.5rem,4vh,3rem);left:50%;transform:translateX(-50%);opacity:0;transition:opacity 1s ease;display:flex;flex-direction:column;align-items:center;gap:0.7rem;cursor:pointer;z-index:20;}
-#scroll-hint .scroll-row{display:flex;align-items:center;gap:0.7rem;}
-#scroll-hint .scroll-row span{font-size:0.55rem;letter-spacing:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.4);}
-#scroll-hint .scroll-row .dot{letter-spacing:0;color:rgba(245,242,234,0.25);}
-#scroll-hint .scroll-row .duration{color:rgba(245,242,234,0.55);}
-#scroll-hint .arrow{width:1px;height:clamp(24px,4vh,40px);background:rgba(245,242,234,0.2);position:relative;overflow:hidden;}
-#scroll-hint .arrow::after{content:'';position:absolute;top:-100%;left:0;width:1px;height:100%;background:rgba(245,242,234,0.6);animation:drip 2s ease-in-out infinite;}
-@keyframes drip{0%{top:-100%;}100%{top:200%;}}
+/* ─────────── SECTION OVERLAY ─────────── */
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,0.94);opacity:0;pointer-events:none;transition:opacity 0.6s ease;z-index:50;display:flex;align-items:center;justify-content:center;padding:clamp(2rem,6vw,5rem);}
+#overlay.open{opacity:1;pointer-events:auto;}
+#ov-inner{max-width:640px;width:100%;max-height:84vh;overflow-y:auto;text-align:center;padding:0.5rem;scrollbar-width:none;}
+#ov-inner::-webkit-scrollbar{display:none;}
+#ov-bar{width:42px;height:2px;margin:0 auto clamp(1.4rem,3.5vh,2.2rem);background:rgba(245,242,234,0.5);transition:background 0.4s ease;}
+#ov-title{font-size:clamp(0.8rem,1.5vw,1rem);font-weight:400;letter-spacing:0.55em;text-transform:uppercase;margin-bottom:clamp(1.6rem,4.5vh,2.6rem);color:rgba(245,242,234,0.9);transition:color 0.4s ease;}
+#ov-body{font-size:clamp(1.05rem,2vw,1.4rem);line-height:1.7;color:rgba(245,242,234,0.82);}
+#ov-body em{color:#fffdf7;font-style:normal;}
+#ov-close{position:absolute;top:clamp(1.2rem,3.5vh,2.2rem);right:clamp(1.4rem,4vw,2.6rem);background:none;border:none;font-family:'Georgia',serif;font-size:1.5rem;line-height:1;color:rgba(245,242,234,0.35);cursor:pointer;transition:color 0.3s ease;padding:0.4rem;}
+#ov-close:hover{color:rgba(255,253,247,0.9);}
 
-/* ─────────── THE GATE ─────────── */
-#gate{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:clamp(3rem,8vh,6rem) clamp(2rem,8vw,8rem);
-  position:relative;
-  background:#000;
-  opacity:0;
-  transition:opacity 1.6s ease;
-}
-#gate.visible{opacity:1;}
+/* dollar overlay content */
+.dollar-glyph{font-size:clamp(3.2rem,10vw,6.5rem);color:#fffdf7;text-shadow:0 0 50px rgba(245,242,234,0.3);margin-bottom:clamp(1.2rem,3vh,2rem);line-height:1;}
+.dollar-line{font-size:clamp(1.05rem,2vw,1.4rem);color:rgba(245,242,234,0.85);}
+.claim{display:inline-block;margin-top:clamp(1.8rem,4.5vh,2.8rem);font-size:clamp(0.85rem,1.4vw,1rem);letter-spacing:0.35em;text-transform:uppercase;color:rgba(255,253,247,0.9);text-decoration:none;border-bottom:1px solid rgba(245,242,234,0.35);padding-bottom:0.45rem;transition:border-color 0.4s ease,color 0.4s ease;}
+.claim:hover{border-color:rgba(255,253,247,0.9);color:#fff;}
+.sunline{margin-top:clamp(2.4rem,6vh,3.6rem);font-size:clamp(0.62rem,1vw,0.8rem);font-style:italic;letter-spacing:0.28em;color:rgba(245,242,234,0.32);}
 
-.gate-watermark{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:clamp(1.4rem,3.6vw,2.6rem);
-  font-weight:400;
-  line-height:1.45;
-  color:rgba(245,242,234,0.07);
-  letter-spacing:0.02em;
-  text-align:center;
-  max-width:24ch;
-  pointer-events:none;
-  user-select:none;
-  z-index:1;
-  white-space:normal;
-}
-
-#msg-form{
-  width:100%;
-  max-width:640px;
-  margin:0 auto;
-  position:relative;
-  z-index:2;
-}
-#msg-text{
-  width:100%;
-  background:transparent;
-  border:none;
-  border-bottom:1px solid rgba(245,242,234,0.18);
-  color:rgba(255,253,247,1);
-  font-family:'Georgia',serif;
-  font-size:clamp(1.05rem,1.7vw,1.35rem);
-  line-height:1.7;
-  padding:clamp(1rem,2vw,1.5rem) 0;
-  resize:none;
-  outline:none;
-  transition:border-color 0.6s ease;
-  min-height:180px;
-  border-radius:0;
-  caret-color:rgba(255,253,247,0.9);
-}
+/* write overlay content */
+#msg-text{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(245,242,234,0.18);color:rgba(255,253,247,1);font-family:'Georgia',serif;font-size:clamp(1.05rem,1.7vw,1.3rem);line-height:1.7;padding:clamp(1rem,2vw,1.4rem) 0;resize:none;outline:none;transition:border-color 0.6s ease;min-height:160px;border-radius:0;caret-color:rgba(255,253,247,0.9);text-align:left;}
 #msg-text:focus{border-bottom-color:rgba(245,242,234,0.5);}
-#msg-text::placeholder{color:rgba(245,242,234,0.3);}
+.send-hint{margin-top:1rem;font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:rgba(245,242,234,0.3);}
 
-.sun-line{
-  position:absolute;
-  bottom:clamp(2rem,4vh,3.5rem);
-  left:50%;
-  transform:translateX(-50%);
-  font-size:clamp(0.65rem,1.05vw,0.85rem);
-  letter-spacing:0.3em;
-  color:rgba(245,242,234,0.25);
-  font-style:italic;
-  white-space:nowrap;
-  z-index:2;
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:0.01ms !important;animation-duration:0.01ms !important;}
 }
-
 @media(max-width:600px){
-  .gate-watermark{font-size:clamp(1.1rem,5vw,1.5rem);max-width:18ch;}
-  .sun-line{font-size:0.55rem;letter-spacing:0.2em;white-space:normal;text-align:center;width:90%;}
+  #key-label{letter-spacing:0.35em;font-size:0.55rem;}
+  #ov-body{font-size:1rem;}
 }
 </style>
 </head>
 <body>
 
-<!-- ─────────── INTRO CEREMONY ─────────── -->
+<!-- ─────────── THE ONE PAGE ─────────── -->
 <div id="stage">
-  <div id="keyboard">
+
+  <div id="keyboard" aria-label="Decalux keyboard">
     <div class="key" data-c="red"><div class="key-dot"></div></div>
     <div class="key" data-c="orange"><div class="key-dot"></div></div>
     <div class="key" data-c="yellow"><div class="key-dot"></div></div>
@@ -165,46 +128,60 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
     <div class="key" data-c="black"><div class="key-dot"></div></div>
     <div class="key" data-c="white"><div class="key-dot"></div></div>
   </div>
-  <div id="dali">
-    <a id="dali-link" href="mailto:moonstarplanet@icloud.com" aria-label="Contact DECALUX">
-      <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(248,245,238,0.95)" stroke-width="1.2"/>
-        <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(248,245,238,0.95)" stroke-width="1.2"/>
-        <circle cx="326" cy="75" r="3.5" stroke="rgba(248,245,238,0.95)" stroke-width="1"/>
-        <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(248,245,238,0.95)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-        <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(248,245,238,0.85)" stroke-width="1" fill="none"/>
-        <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(248,245,238,0.7)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <ellipse cx="197" cy="360" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
-        <ellipse cx="233" cy="364" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
-        <ellipse cx="279" cy="367" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
-        <ellipse cx="319" cy="364" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
-      </svg>
-      <div id="dali-title">DECALUX</div>
-    </a>
+
+  <div id="key-label">&nbsp;</div>
+
+  <div id="mini" role="button" tabindex="0" aria-label="One dollar — Decalux">
+    <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(248,245,238,0.85)" stroke-width="4"/>
+      <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(248,245,238,0.85)" stroke-width="4"/>
+      <circle cx="326" cy="75" r="3.5" stroke="rgba(248,245,238,0.85)" stroke-width="3"/>
+      <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(248,245,238,0.85)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(248,245,238,0.75)" stroke-width="3" fill="none"/>
+      <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(248,245,238,0.6)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(248,245,238,0.85)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(248,245,238,0.85)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(248,245,238,0.85)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(248,245,238,0.85)" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="mini-dollar">$1</span>
   </div>
+
+  <!-- intro ceremony layers -->
+  <div id="dali">
+    <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(248,245,238,0.95)" stroke-width="1.2"/>
+      <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(248,245,238,0.95)" stroke-width="1.2"/>
+      <circle cx="326" cy="75" r="3.5" stroke="rgba(248,245,238,0.95)" stroke-width="1"/>
+      <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(248,245,238,0.95)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+      <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(248,245,238,0.85)" stroke-width="1" fill="none"/>
+      <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(248,245,238,0.7)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(248,245,238,0.95)" stroke-width="1" fill="none" stroke-linecap="round"/>
+      <ellipse cx="197" cy="360" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
+      <ellipse cx="233" cy="364" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
+      <ellipse cx="279" cy="367" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
+      <ellipse cx="319" cy="364" rx="7" ry="3" stroke="rgba(248,245,238,0.8)" stroke-width="1"/>
+    </svg>
+    <div id="dali-title">DECALUX</div>
+  </div>
+
   <div id="schopenhauer">
     <p>Every era produces one or two ideas &mdash; that In retrospect &mdash; seem <em>Obvious</em>. The chair. The home. The printing press. The library. The internet. <em>Decalux</em>.</p>
   </div>
-  <div id="scroll-hint" onclick="document.getElementById('gate').scrollIntoView({behavior:'smooth'})">
-    <div class="arrow"></div>
-  </div>
+
 </div>
 
-<!-- ─────────── THE GATE ─────────── -->
-<div id="gate">
-
-  <div class="gate-watermark">Are you part of History? With Decalux everyone is.</div>
-
-  <form id="msg-form" onsubmit="sendMessage(event)" autocomplete="off">
-    <textarea id="msg-text" rows="6" aria-label="Message" autofocus></textarea>
-  </form>
-
-  <div class="sun-line">The sun gives light to all without asking who deserves it.</div>
-
+<!-- ─────────── SECTION OVERLAY ─────────── -->
+<div id="overlay" role="dialog" aria-modal="true">
+  <button id="ov-close" aria-label="Close">&times;</button>
+  <div id="ov-inner">
+    <div id="ov-bar"></div>
+    <div id="ov-title"></div>
+    <div id="ov-body"></div>
+  </div>
 </div>
 
 
@@ -215,11 +192,124 @@ const dali=document.getElementById('dali');
 const daliSvg=dali.querySelector('svg');
 const daliTxt=document.getElementById('dali-title');
 const schop=document.getElementById('schopenhauer');
-const hint=document.getElementById('scroll-hint');
-const gate=document.getElementById('gate');
+const mini=document.getElementById('mini');
+const label=document.getElementById('key-label');
+const overlay=document.getElementById('overlay');
+const ovBar=document.getElementById('ov-bar');
+const ovTitle=document.getElementById('ov-title');
+const ovBody=document.getElementById('ov-body');
 const rgbKeys={red:keys.find(k=>k.dataset.c==='red'),green:keys.find(k=>k.dataset.c==='green'),blue:keys.find(k=>k.dataset.c==='blue')};
 function wait(ms){return new Promise(r=>setTimeout(r,ms));}
 
+/* ─────────── SECTIONS — edit your copy here ─────────── */
+const SECTIONS={
+  red:{title:'Manifesto',accent:'#e05548',
+    body:'<p>We monetize <em>curiosity</em>. Not attention &mdash; curiosity. The one resource that grows when it is spent.</p>'},
+  orange:{title:'The Idea',accent:'#e08a3c',
+    body:'<p>Every era produces one or two ideas that &mdash; in retrospect &mdash; seem <em>obvious</em>. Decalux is this era&rsquo;s.</p>'},
+  yellow:{title:'Curiosity',accent:'#d8c44a',
+    body:'<p>The first platform built to map and certify human curiosity at <em>civilizational scale</em>.</p>'},
+  green:{title:'The Map',accent:'#4aa873',
+    body:'<p>A living atlas of what humanity wants to know &mdash; drawn in real time, one question at a time.</p>'},
+  teal:{title:'Certify',accent:'#3cb0a2',
+    body:'<p>Your curiosity, certified. A permanent record of the questions you asked <em>before the world did</em>.</p>'},
+  blue:{title:'History',accent:'#5078d8',
+    body:'<p>Are you part of History? <em>With Decalux, everyone is.</em></p>'},
+  violet:{title:'The Vision',accent:'#9a5ce0',
+    body:'<p>The chair. The home. The printing press. The library. The internet. <em>Decalux.</em></p>'},
+  ochre:{title:'The Elephant',accent:'#d8a83c',
+    body:'<p>Memory on stilts. The elephant forgets nothing &mdash; and from now on, neither does your curiosity.</p>'},
+  black:{title:'The Rule',accent:'#9a9a9a',
+    body:'<p><em>One dollar. Once. For life.</em> No subscriptions. No tiers. No asking twice.</p>'},
+  white:{title:'Write',accent:'#f0efe8',
+    body:'<form id="msg-form" onsubmit="sendMessage(event)" autocomplete="off">'+
+         '<textarea id="msg-text" rows="6" aria-label="Message"></textarea>'+
+         '<div class="send-hint">&#8984; / ctrl + &#8629; to send</div></form>'},
+  dollar:{title:'',accent:'#f0efe8',
+    body:'<div class="dollar-glyph">$1</div>'+
+         '<p class="dollar-line">One dollar. Once. For life.</p>'+
+         '<a class="claim" href="mailto:moonstarplanet@icloud.com?subject=%241%20%E2%80%94%20Decalux">Claim yours</a>'+
+         '<p class="sunline">The sun gives light to all without asking who deserves it.</p>'}
+};
+
+/* one soft note per key — a major pentatonic, left to right */
+const NOTES={red:261.63,orange:293.66,yellow:329.63,green:392.00,teal:440.00,blue:523.25,violet:587.33,ochre:659.25,black:783.99,white:880.00};
+let actx=null;
+function tone(f){
+  try{
+    actx=actx||new (window.AudioContext||window.webkitAudioContext)();
+    if(actx.state==='suspended')actx.resume();
+    const o=actx.createOscillator(),g=actx.createGain();
+    o.type='sine';o.frequency.value=f;
+    g.gain.setValueAtTime(0.0001,actx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.15,actx.currentTime+0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001,actx.currentTime+0.9);
+    o.connect(g);g.connect(actx.destination);
+    o.start();o.stop(actx.currentTime+1);
+  }catch(e){}
+}
+
+/* ─────────── OVERLAY ─────────── */
+let overlayOpen=false;
+function openSection(c){
+  const s=SECTIONS[c];if(!s)return;
+  ovBar.style.background=s.accent;
+  ovTitle.textContent=s.title;
+  ovTitle.style.color=s.accent;
+  ovTitle.style.display=s.title?'':'none';
+  ovBody.innerHTML=s.body;
+  overlay.classList.add('open');
+  overlayOpen=true;
+  if(c==='white'){setTimeout(()=>{const t=document.getElementById('msg-text');if(t)t.focus();},420);}
+}
+function closeOverlay(){overlay.classList.remove('open');overlayOpen=false;}
+document.getElementById('ov-close').addEventListener('click',closeOverlay);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeOverlay();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlayOpen)closeOverlay();});
+
+/* cmd / ctrl + enter sends, from inside the injected form */
+overlay.addEventListener('keydown',e=>{
+  if(e.target&&e.target.id==='msg-text'&&(e.metaKey||e.ctrlKey)&&e.key==='Enter'){
+    e.preventDefault();
+    document.getElementById('msg-form').requestSubmit();
+  }
+});
+
+/* contact form → moonwinellc@gmail.com */
+function sendMessage(e){
+  e.preventDefault();
+  const txt=document.getElementById('msg-text').value.trim();
+  if(!txt)return;
+  const subject=encodeURIComponent('From decalux.art');
+  const body=encodeURIComponent(txt);
+  window.location.href='mailto:moonwinellc@gmail.com?subject='+subject+'&body='+body;
+}
+
+/* ─────────── PLAYABLE KEYBOARD ─────────── */
+function playKey(k){
+  const c=k.dataset.c;
+  tone(NOTES[c]);
+  k.classList.add('pressed-anim');
+  setTimeout(()=>k.classList.remove('pressed-anim'),260);
+  setTimeout(()=>openSection(c),230);
+}
+function enablePlay(){
+  kb.classList.add('playable');
+  keys.forEach(k=>{
+    const c=k.dataset.c;
+    k.setAttribute('role','button');
+    k.setAttribute('tabindex','0');
+    k.setAttribute('aria-label',SECTIONS[c].title);
+    k.addEventListener('click',()=>playKey(k));
+    k.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();playKey(k);}});
+    k.addEventListener('mouseenter',()=>{label.textContent=SECTIONS[c].title;label.style.color=SECTIONS[c].accent;label.style.opacity='1';});
+    k.addEventListener('mouseleave',()=>{label.style.opacity='0';});
+  });
+}
+mini.addEventListener('click',()=>{tone(130.81);openSection('dollar');});
+mini.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tone(130.81);openSection('dollar');}});
+
+/* ─────────── INTRO CEREMONY ─────────── */
 async function intro(){
   await wait(400);
   kb.style.opacity='1';
@@ -267,30 +357,18 @@ async function intro(){
   await wait(5000);
   schop.style.transition='opacity 1.2s ease';
   schop.style.opacity='0';
-  await wait(800);
+  await wait(1400);
 
-  hint.style.opacity='1';
-  gate.classList.add('visible');
+  /* the keyboard returns — this time it can be played */
+  keys.forEach(k=>k.classList.remove('lit','pressed','dim'));
+  kb.style.transition='opacity 1.2s ease';
+  kb.style.opacity='1';
+  keys.forEach((k,i)=>setTimeout(()=>k.classList.add('dim'),200+i*70));
+  enablePlay();
+  await wait(1400);
+  mini.classList.add('on');
 }
 intro();
-
-// Send on Cmd/Ctrl + Enter; otherwise newline behaves normally.
-document.getElementById('msg-text').addEventListener('keydown',function(e){
-  if((e.metaKey||e.ctrlKey)&&e.key==='Enter'){
-    e.preventDefault();
-    document.getElementById('msg-form').requestSubmit();
-  }
-});
-
-// Contact form: sends textarea content to moonwinellc@gmail.com
-function sendMessage(e){
-  e.preventDefault();
-  const txt=document.getElementById('msg-text').value.trim();
-  if(!txt)return;
-  const subject=encodeURIComponent('From decalux.art');
-  const body=encodeURIComponent(txt);
-  window.location.href='mailto:moonwinellc@gmail.com?subject='+subject+'&body='+body;
-}
 </script>
 </body>
 </html>
