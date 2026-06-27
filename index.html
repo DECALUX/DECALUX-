@@ -64,13 +64,19 @@ body{width:100%;background:#000;font-family:'Georgia',serif;color:rgba(245,242,2
 /* ─────────── MINI ELEPHANT → APP ─────────── */
 #mini{position:relative;margin-top:clamp(1.2rem,3.5vh,2.6rem);width:clamp(48px,6.5vw,72px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 1.2s ease;cursor:pointer;z-index:2;outline:none;}
 #mini.on{opacity:1;pointer-events:auto;}
-#mini svg{display:block;width:100%;height:auto;transition:filter 0.45s ease;}
-#mini:hover svg,#mini:focus-visible svg{filter:brightness(1.5) drop-shadow(0 0 14px rgba(245,242,234,0.35));}
+#mini > svg{display:block;width:100%;height:auto;transition:filter 0.45s ease;}
+#mini:hover > svg,#mini:focus-visible > svg{filter:brightness(1.5) drop-shadow(0 0 14px rgba(245,242,234,0.35));}
 
 /* ─────────── QR CARD (generated locally — no network) ─────────── */
 .qr-card{display:inline-block;background:#f5f2ea;padding:clamp(16px,3vw,26px);border-radius:10px;box-shadow:0 0 60px rgba(245,242,234,0.12);}
 .qr-svg{display:block;width:clamp(180px,42vw,240px);height:auto;color:#0b0b0b;}
 .qr-cap{margin-top:clamp(1.4rem,3.5vh,2.2rem);font-size:clamp(0.62rem,1vw,0.78rem);letter-spacing:0.4em;text-transform:uppercase;color:rgba(245,242,234,0.4);}
+
+/* ─────────── FLOATING SUN QR (elephant hover / tap) ─────────── */
+#qr-float{position:absolute;bottom:calc(100% + clamp(14px,3vh,22px));left:50%;transform:translateX(-50%) scale(0.92);opacity:0;pointer-events:none;transition:opacity 0.45s ease,transform 0.45s ease;z-index:60;text-decoration:none;}
+#mini.qr-on #qr-float{opacity:1;pointer-events:auto;transform:translateX(-50%) scale(1);}
+.qr-sun{display:block;background:#f5f2ea;padding:clamp(12px,2vw,18px);border-radius:12px;position:relative;box-shadow:0 0 0 1px rgba(245,242,234,0.12),0 0 34px 6px rgba(255,238,198,0.30),0 0 80px 26px rgba(255,224,150,0.14);}
+.qr-sun svg{display:block;width:clamp(118px,18vw,150px);height:auto;color:#0b0b0b;}
 
 /* ─────────── INTRO OVERLAYS ─────────── */
 #dali{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:10;transition:opacity 1s ease;}
@@ -327,12 +333,27 @@ function enablePlay(){
     k.setAttribute('aria-label',SECTIONS[c].title);
     k.addEventListener('click',()=>playKey(k));
     k.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();playKey(k);}});
-    k.addEventListener('mouseenter',()=>{label.textContent=SECTIONS[c].title;label.style.color=SECTIONS[c].accent;label.style.opacity='1';});
-    k.addEventListener('mouseleave',()=>{label.style.opacity='0';});
   });
 }
-mini.addEventListener('click',()=>{tone(130.81);openSection('app');});
-mini.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tone(130.81);openSection('app');}});
+/* elephant → floating sun QR: scan it on a phone, or click to open the app in the browser */
+const qrFloat=document.createElement('a');
+qrFloat.id='qr-float';
+qrFloat.href=APP_DOWNLOAD_URL;
+qrFloat.setAttribute('aria-label','Open the Decalux app');
+qrFloat.innerHTML='<span class="qr-sun">'+renderQrSvg(APP_DOWNLOAD_URL)+'</span>';
+mini.appendChild(qrFloat);
+let qrTimer=null;
+function showQR(){clearTimeout(qrTimer);mini.classList.add('qr-on');}
+function hideQR(){qrTimer=setTimeout(()=>mini.classList.remove('qr-on'),260);}
+mini.addEventListener('mouseenter',showQR);
+mini.addEventListener('mouseleave',hideQR);
+mini.addEventListener('focus',showQR);
+qrFloat.addEventListener('mouseenter',showQR);
+qrFloat.addEventListener('mouseleave',hideQR);
+qrFloat.addEventListener('focus',showQR);
+mini.addEventListener('click',e=>{ if(!mini.classList.contains('qr-on')){e.preventDefault();tone(130.81);showQR();} });
+mini.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();showQR();} });
+document.addEventListener('pointerdown',e=>{ if(!mini.contains(e.target))mini.classList.remove('qr-on'); });
 
 /* ─────────── INTRO CEREMONY ─────────── */
 async function intro(){
