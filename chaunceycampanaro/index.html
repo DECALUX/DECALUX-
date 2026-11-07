@@ -35,13 +35,11 @@ a{color:inherit;text-decoration:none}
   backdrop-filter:blur(8px);transition:background .5s,border-color .5s}
 #sound:hover,#sound:focus-visible{background:rgba(245,242,234,.12);border-color:rgba(245,242,234,.9)}
 #sound.on{background:var(--bone);color:#000;border-color:var(--bone)}
-#hero .hint{position:absolute;left:50%;bottom:5vh;transform:translateX(-50%);width:1px;height:48px;
-  background:linear-gradient(to bottom,rgba(245,242,234,.7),transparent);animation:drop 2.6s ease-in-out infinite}
-@keyframes drop{0%{opacity:0;transform:translate(-50%,-14px)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
+#hero .hint{position:absolute;left:50%;bottom:5vh;transform:translateX(-50%);width:1px;height:40px;background:linear-gradient(to bottom,rgba(245,242,234,.6),transparent)}
 
 /* THE ROOM — colour field behind everything below the reel */
 #room{position:relative;background:#06040c}
-#field{position:absolute;inset:0;z-index:0;pointer-events:none;
+#field{position:absolute;inset:0;z-index:0;pointer-events:none;background-attachment:scroll;
   background:
     radial-gradient(70% 55% at 50% 40%, var(--b) 0%, transparent 70%),
     radial-gradient(90% 60% at 50% 100%, var(--c) 0%, transparent 65%),
@@ -50,23 +48,38 @@ a{color:inherit;text-decoration:none}
 #field::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 22vmin 6vmin rgba(6,4,12,.9)}
 #grain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.9'/></svg>")}
-#room>section{position:relative;z-index:2;padding:12vh 5vw}
+#room>section{position:relative;z-index:2;padding:9vh 5vw}
 .head{display:flex;align-items:baseline;justify-content:space-between;gap:2rem;margin-bottom:3.5rem;flex-wrap:wrap}
 h2{font-weight:400;font-size:clamp(2rem,5vw,4rem);letter-spacing:.02em;line-height:1}
 .head .cap{color:var(--dim)}
 
+
+/* CV */
+.cvsec .head{margin-bottom:2.5rem}
+.cvsec .cap a{border-bottom:1px solid rgba(245,242,234,.4)}
+.cv{display:grid;grid-template-columns:1fr 1fr;gap:2rem 5rem;max-width:72rem}
+.cv h4{font-weight:400;color:var(--dim);margin:1.8rem 0 .7rem}
+.cv h4:first-child{margin-top:0}
+.cv table{width:100%;border-collapse:collapse;font-size:1rem}
+.cv td{padding:.3rem 0;vertical-align:top;border-bottom:1px solid rgba(245,242,234,.08)}
+.cv td:first-child{width:3.4em;color:var(--dim)}
+.cv td:last-child{color:rgba(245,242,234,.7);text-align:right}
+.cv i{color:var(--dim);font-style:normal;font-size:.85em}
+.cv p{line-height:1.7;color:rgba(245,242,234,.8)}
+@media (max-width:860px){.cv{grid-template-columns:1fr}.cv td:last-child{display:block;text-align:left;border:0;padding-top:0}.cv tr{display:block;border-bottom:1px solid rgba(245,242,234,.08);padding:.3rem 0}.cv td{border:0;display:inline-block;padding:0 .4em 0 0}.cv td:first-child{width:3.2em}}
+
 /* THE WORK — five doors */
-.work{display:grid;grid-template-columns:repeat(6,1fr);gap:1.2rem}
-.door{position:relative;display:block;overflow:hidden;border-radius:2px;background:#000;grid-column:span 2;aspect-ratio:3/4;
+.work{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem}
+.door{position:relative;display:block;overflow:hidden;border-radius:2px;background:#000;aspect-ratio:3/4;
   box-shadow:0 0 0 1px rgba(245,242,234,.08),0 30px 80px -20px rgba(0,0,0,.7)}
-.door.wide{grid-column:span 3;aspect-ratio:16/9}
-.door img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform 1.6s cubic-bezier(.2,.7,.2,1),filter 1.2s;filter:saturate(.9)}
+
+.door img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .5s;filter:saturate(.9)}
 .door:hover img,.door:focus-visible img{transform:scale(1.08);filter:saturate(1.05)}
-.door .t{position:absolute;left:0;right:0;bottom:0;padding:1.6rem 1.5rem;
+.door .t{position:absolute;left:0;right:0;bottom:0;padding:1.1rem 1rem;
   background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.25) 60%,transparent)}
-.door .t b{display:block;font-weight:400;font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.05;letter-spacing:.01em}
-.door .t span{display:block;margin-top:.5rem;color:rgba(245,242,234,.7);font-size:.9rem;line-height:1.4;
-  opacity:0;transform:translateY(6px);transition:opacity .9s,transform .9s}
+.door .t b{display:block;font-weight:400;font-size:clamp(1.2rem,1.7vw,1.6rem);line-height:1.05;letter-spacing:.01em}
+.door .t span{display:block;margin-top:.4rem;color:rgba(245,242,234,.7);font-size:.8rem;line-height:1.4;
+  opacity:0;transform:translateY(6px);transition:opacity .35s,transform .35s}
 .door:hover .t span,.door:focus-visible .t span{opacity:1;transform:none}
 .door.light .t{background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.5) 55%,transparent)}
 
@@ -100,12 +113,11 @@ h2{font-weight:400;font-size:clamp(2rem,5vw,4rem);letter-spacing:.02em;line-heig
 #home:hover{opacity:1;filter:drop-shadow(0 0 16px rgba(245,242,234,.35))}
 #home svg{display:block;width:100%;height:auto}
 
-.in{opacity:0;transform:translateY(16px);transition:opacity 1.6s ease,transform 1.6s ease}
-.on .in,.in.on{opacity:1;transform:none}
+.in{opacity:1}
 
 @media (max-width:860px){
   .work{grid-template-columns:1fr 1fr;gap:.8rem}
-  .door{grid-column:span 1;aspect-ratio:3/4}.door.wide,.door.cin{grid-column:span 2;aspect-ratio:16/10}.door.cin img{object-position:50% 30%}
+  .work{grid-template-columns:repeat(3,1fr);gap:.5rem}.door{aspect-ratio:3/4}.door.wide{aspect-ratio:3/4}
   .film,.kit{grid-template-columns:1fr;gap:1.6rem}
   .kit img{order:-1}
   .portrait{float:none;width:min(60vw,260px);margin:0 0 2.5rem}
@@ -125,8 +137,8 @@ h2{font-weight:400;font-size:clamp(2rem,5vw,4rem);letter-spacing:.02em;line-heig
   <div class="name">Chauncey Campanaro</div>
   <div class="hint" aria-hidden="true"></div>
   <div class="foot">
-    <div class="l cap">Reel · 1:37</div>
-    <button id="sound" type="button" aria-pressed="false">Sound</button>
+    <div class="l cap">Reel · 1:08</div>
+    <button id="sound" type="button" aria-pressed="false">Full screen · Sound</button>
   </div>
 </section>
 
@@ -134,8 +146,43 @@ h2{font-weight:400;font-size:clamp(2rem,5vw,4rem);letter-spacing:.02em;line-heig
   <div id="field" aria-hidden="true"></div>
   <div id="grain" aria-hidden="true"></div>
 
+
+  <section aria-label="CV" class="cvsec">
+    <div class="head"><h2>Chauncey Campanaro</h2><span class="cap">6′5″ · Rome / Los Angeles · <a href="/chaunceycampanaro/resume.pdf" target="_blank" rel="noopener">PDF</a></span></div>
+    <div class="cv">
+      <div><h4 class="cap">Film</h4>
+        <table>
+        <tr><td>2026</td><td>Emtiness <i>(short)</i></td><td>Calvin Treats</td></tr>
+        <tr><td>2023</td><td>Giorni Felici</td><td>Simone Petralia</td></tr>
+        <tr><td>2020</td><td>Sipario <i>(short)</i></td><td>Davide Scarciello</td></tr>
+        <tr><td>2019</td><td>Rome in Love <i>(TV)</i></td><td>Eric Bross</td></tr>
+        <tr><td>2018</td><td>Un Grande Amore</td><td>Cristian De Mateis</td></tr>
+        </table>
+        <h4 class="cap">Directing</h4>
+        <table>
+        <tr><td>2019</td><td>L’Homme au Piano <i>(feature)</i></td><td>Cannes pre-selection</td></tr>
+        <tr><td></td><td>Kittens <i>(short)</i></td><td>Paris</td></tr>
+        <tr><td></td><td>Like a Lady</td><td>Best Director &amp; Best Play, Riant Theatre NY</td></tr>
+        </table>
+      </div>
+      <div><h4 class="cap">Theatre</h4>
+        <table>
+        <tr><td>2017</td><td>Free for All</td><td>Rebecca Martin</td></tr>
+        <tr><td>2016</td><td>The World Is on Fire</td><td>RSC / Shakespeare Institute</td></tr>
+        <tr><td>2016</td><td>Julius Caesar</td><td>Rebecca Martin</td></tr>
+        <tr><td>2015</td><td>Casey 30 Years Later</td><td>Beverly Bonner, NY</td></tr>
+        <tr><td>2014</td><td>Saturday Night Sleeping</td><td>Jorge Franco IV, NY</td></tr>
+        </table>
+        <h4 class="cap">Training</h4>
+        <p>Lee Strasberg Institute — Johnny Depp Acting Scholarship · Anna Strasberg<br>Royal Shakespeare Company / Shakespeare Institute — Ewan Fernie<br>Meisner — John Ruskin, Los Angeles<br>American University of Paris — Literature, honors</p>
+        <h4 class="cap">Skills</h4>
+        <p>English · Italian · French · Spanish<br>Stage combat · Boxing · Kenpo · Tango · Guitar · Equestrian · Surf</p>
+      </div>
+    </div>
+  </section>
+
   <section aria-label="The work">
-    <div class="head in"><h2>The work</h2><span class="cap">Actor · Director · Writer</span></div>
+    <div class="head"><h2>The work</h2><span class="cap">Actor · Director · Writer</span></div>
     <div class="work in">
       <a class="door" href="https://drive.google.com/drive/folders/1liC1gCi2nVtR3A1X4QPzK9a3Me_mALX1" target="_blank" rel="noopener">
         <img src="/chaunceycampanaro/img/acting.jpg" alt="Chauncey Campanaro, portrait by Rory Lewis" loading="lazy">
@@ -220,21 +267,17 @@ h2{font-weight:400;font-size:clamp(2rem,5vw,4rem);letter-spacing:.02em;line-heig
 <script>
 (function(){
   var reel=document.getElementById('reel'),btn=document.getElementById('sound'),hero=document.getElementById('hero');
-  function setSound(on){reel.muted=!on;btn.classList.toggle('on',on);btn.setAttribute('aria-pressed',on);btn.textContent=on?'Sound on':'Sound';if(on&&reel.paused)reel.play();}
+  function setSound(on){reel.muted=!on;btn.classList.toggle('on',on);btn.setAttribute('aria-pressed',on);btn.textContent=on?'Sound on':'Full screen · Sound';if(on&&reel.paused)reel.play();}
   reel.addEventListener('timeupdate',function(){if(reel.currentTime<2.9)reel.currentTime=3;});
-  btn.addEventListener('click',function(e){e.stopPropagation();setSound(reel.muted);});
-  hero.addEventListener('click',function(){setSound(reel.muted);});
+  function full(){setSound(true);reel.currentTime=0;var r=reel.requestFullscreen||reel.webkitRequestFullscreen||reel.webkitEnterFullscreen;if(r)r.call(reel);}
+  btn.addEventListener('click',function(e){e.stopPropagation();full();});
+  hero.addEventListener('click',full);
+  document.addEventListener('fullscreenchange',function(){if(!document.fullscreenElement){setSound(false);}});
+  reel.addEventListener('webkitendfullscreen',function(){setSound(false);reel.play().catch(function(){});});
   // pause the reel when it leaves the screen
   new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){reel.play().catch(function(){});}else{reel.pause();}});},{threshold:.2}).observe(hero);
 
-  // the room breathes
-  var P=[['#2a1660','#8a1f6e','#1b3a9a'],['#3a1250','#b5304a','#2b2f8c'],['#13245c','#5a2fa0','#1a7a80'],['#4a1e14','#b0481c','#3a1450'],['#0f2a4a','#2f55b0','#1e8a6a'],['#3a1230','#9a2a5a','#1e2f8a']];
-  var f=document.getElementById('field'),i=0,m=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function set(k){var p=P[k%P.length];f.style.setProperty('--a',p[0]);f.style.setProperty('--b',p[1]);f.style.setProperty('--c',p[2]);}
-  set(0); if(!m)setInterval(function(){set(++i);},9000);
 
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.15});
-  document.querySelectorAll('.in').forEach(function(s){io.observe(s);});
 })();
 </script>
 </body>
