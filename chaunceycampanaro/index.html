@@ -4,148 +4,201 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#06040c">
+<meta name="theme-color" content="#000000">
 <title>Chauncey Campanaro</title>
-<meta name="description" content="Chauncey Campanaro — actor. Born in Rome, 1989. Los Angeles.">
+<meta name="description" content="Chauncey Campanaro — actor, director, writer. Rome · Paris · Los Angeles.">
 <meta property="og:title" content="Chauncey Campanaro">
 <meta property="og:image" content="https://www.decalux.art/chaunceycampanaro/img/headshot_sm.jpg">
-<link rel="preload" as="image" href="/chaunceycampanaro/img/headshot_sm.jpg">
 <style>
 @property --a{syntax:'<color>';inherits:true;initial-value:#2a1660}
 @property --b{syntax:'<color>';inherits:true;initial-value:#8a1f6e}
 @property --c{syntax:'<color>';inherits:true;initial-value:#1b3a9a}
-:root{
-  --bone:#f5f2ea;
-  --a:#2a1660; --b:#8a1f6e; --c:#1b3a9a;
-  --ink:rgba(245,242,234,.92);
-  --dim:rgba(245,242,234,.55);
-}
+:root{--bone:#f5f2ea;--ink:rgba(245,242,234,.94);--dim:rgba(245,242,234,.55);--a:#2a1660;--b:#8a1f6e;--c:#1b3a9a}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;background:#06040c}
-body{
-  font-family:Georgia,"Times New Roman",serif;color:var(--ink);
-  background:#06040c;min-height:100vh;overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
-/* the field */
-#field{position:fixed;inset:0;z-index:0;pointer-events:none;
+html{background:#000;scroll-behavior:smooth}
+body{font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:#000;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.cap{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase}
+.cap.ti{text-indent:.3em}
+
+/* HERO — the reel, immediately */
+#hero{position:relative;height:100svh;min-height:520px;background:#000;overflow:hidden;cursor:pointer}
+#hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+#hero .shade{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(0,0,0,.45),transparent 28%,transparent 62%,rgba(0,0,0,.7))}
+#hero .name{position:absolute;left:5vw;top:5vh;font-size:clamp(.95rem,1.6vw,1.2rem);letter-spacing:.42em;text-transform:uppercase;
+  text-shadow:0 1px 20px rgba(0,0,0,.6)}
+#hero .foot{position:absolute;left:5vw;right:5vw;bottom:5vh;display:flex;justify-content:space-between;align-items:flex-end;gap:1rem}
+#hero .foot .l{color:var(--dim)}
+#sound{appearance:none;background:none;border:1px solid rgba(245,242,234,.45);color:var(--ink);font:inherit;
+  padding:.75rem 1.25rem;border-radius:999px;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;font-size:.7rem;cursor:pointer;
+  backdrop-filter:blur(8px);transition:background .5s,border-color .5s}
+#sound:hover,#sound:focus-visible{background:rgba(245,242,234,.12);border-color:rgba(245,242,234,.9)}
+#sound.on{background:var(--bone);color:#000;border-color:var(--bone)}
+#hero .hint{position:absolute;left:50%;bottom:5vh;transform:translateX(-50%);width:1px;height:48px;
+  background:linear-gradient(to bottom,rgba(245,242,234,.7),transparent);animation:drop 2.6s ease-in-out infinite}
+@keyframes drop{0%{opacity:0;transform:translate(-50%,-14px)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
+
+/* THE ROOM — colour field behind everything below the reel */
+#room{position:relative;background:#06040c}
+#field{position:absolute;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(70% 60% at 50% 50%, var(--b) 0%, transparent 70%),
-    radial-gradient(90% 70% at 50% -10%, var(--c) 0%, transparent 65%),
+    radial-gradient(70% 55% at 50% 40%, var(--b) 0%, transparent 70%),
+    radial-gradient(90% 60% at 50% 100%, var(--c) 0%, transparent 65%),
     var(--a);
-  transition:--a 7s linear,--b 7s linear,--c 7s linear;
-}
-#grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.9'/></svg>");}
-/* aperture: a soft opening, the only edge in the room */
-#aperture{position:fixed;inset:0;z-index:1;pointer-events:none;
-  box-shadow:inset 0 0 22vmin 6vmin rgba(6,4,12,.9);}
-main{position:relative;z-index:2}
-section{min-height:100svh;display:flex;align-items:center;justify-content:center;
-  padding:14vh 8vw;text-align:center}
-.in{max-width:40rem;opacity:0;transform:translateY(10px);filter:blur(6px);
-  transition:opacity 3.2s ease,transform 3.2s ease,filter 3.2s ease}
-.on .in{opacity:1;transform:none;filter:none}
-h1{font-weight:400;letter-spacing:.42em;text-indent:.42em;font-size:clamp(1rem,2.4vw,1.5rem);
-  text-transform:uppercase}
-.sub{margin-top:1.2rem;letter-spacing:.3em;text-indent:.3em;font-size:.72rem;text-transform:uppercase;color:var(--dim)}
-.bio p,.pitch p{font-size:clamp(1.1rem,2.1vw,1.45rem);line-height:1.75;font-weight:400;text-shadow:0 1px 18px rgba(0,0,0,.35)}
+  transition:--a 7s linear,--b 7s linear,--c 7s linear}
+#field::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 22vmin 6vmin rgba(6,4,12,.9)}
+#grain{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.9'/></svg>")}
+#room>section{position:relative;z-index:2;padding:12vh 5vw}
+.head{display:flex;align-items:baseline;justify-content:space-between;gap:2rem;margin-bottom:3.5rem;flex-wrap:wrap}
+h2{font-weight:400;font-size:clamp(2rem,5vw,4rem);letter-spacing:.02em;line-height:1}
+.head .cap{color:var(--dim)}
+
+/* THE WORK — five doors */
+.work{display:grid;grid-template-columns:repeat(6,1fr);gap:1.2rem}
+.door{position:relative;display:block;overflow:hidden;border-radius:2px;background:#000;grid-column:span 2;aspect-ratio:3/4;
+  box-shadow:0 0 0 1px rgba(245,242,234,.08),0 30px 80px -20px rgba(0,0,0,.7)}
+.door.wide{grid-column:span 3;aspect-ratio:16/9}
+.door img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);transition:transform 1.6s cubic-bezier(.2,.7,.2,1),filter 1.2s;filter:saturate(.9)}
+.door:hover img,.door:focus-visible img{transform:scale(1.08);filter:saturate(1.05)}
+.door .t{position:absolute;left:0;right:0;bottom:0;padding:1.6rem 1.5rem;
+  background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.25) 60%,transparent)}
+.door .t b{display:block;font-weight:400;font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.05;letter-spacing:.01em}
+.door .t span{display:block;margin-top:.5rem;color:rgba(245,242,234,.7);font-size:.9rem;line-height:1.4;
+  opacity:0;transform:translateY(6px);transition:opacity .9s,transform .9s}
+.door:hover .t span,.door:focus-visible .t span{opacity:1;transform:none}
+.door.light .t{background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.5) 55%,transparent)}
+
+/* CINEMA — the film */
+.film{display:grid;grid-template-columns:1.6fr 1fr;gap:3rem;align-items:center}
+.film video{width:100%;aspect-ratio:16/9;display:block;background:#000;border-radius:2px;
+  box-shadow:0 0 0 1px rgba(245,242,234,.08),0 30px 100px -10px rgba(0,0,0,.8)}
+.film h3{font-weight:400;font-size:clamp(1.6rem,3vw,2.6rem);line-height:1.1;margin-bottom:1rem}
+.film p{color:rgba(245,242,234,.78);line-height:1.7;font-size:1.02rem}
+.film p+p{margin-top:.9rem}
+.film .cap{color:var(--dim);margin-bottom:1rem}
+.kit{display:grid;grid-template-columns:1fr 1.6fr;gap:3rem;align-items:center;margin-top:7vh}
+.kit img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:2px;box-shadow:0 0 0 1px rgba(245,242,234,.08),0 30px 100px -10px rgba(0,0,0,.8)}
+
+/* BIO */
+.bio{max-width:62rem}
+.bio p{font-size:clamp(1.25rem,2.4vw,1.9rem);line-height:1.55;text-shadow:0 1px 18px rgba(0,0,0,.35)}
 .bio p+p{margin-top:1.4em}
-.pitch p{font-style:normal;letter-spacing:.01em}
-.small{font-size:.8rem;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:var(--dim);margin-top:2.6rem}
-/* reel */
-.reel{width:min(92vw,960px);aspect-ratio:16/9;position:relative;border-radius:2px;overflow:hidden;
-  box-shadow:0 0 0 1px rgba(245,242,234,.08),0 0 120px 20px rgba(0,0,0,.45)}
-.reel video{width:100%;height:100%;display:block;background:#000;object-fit:cover}
-.reel::after{content:"";position:absolute;inset:0;pointer-events:none;
-  box-shadow:inset 0 0 60px 14px #06040c}
-/* portrait */
-.portrait{width:min(62vw,340px);aspect-ratio:4/5;overflow:hidden;margin:0 auto;border-radius:1px;
-  box-shadow:0 0 0 1px rgba(245,242,234,.08),0 0 140px 20px rgba(0,0,0,.5)}
-.portrait img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.85)}
-/* works */
-nav.works{display:flex;flex-wrap:wrap;justify-content:center;gap:1.1rem 2.2rem;margin-top:.4rem}
-nav.works a,.links a{color:var(--ink);text-decoration:none;letter-spacing:.28em;text-indent:.28em;
-  text-transform:uppercase;font-size:.78rem;position:relative;padding:.4rem 0;transition:color .6s}
-nav.works a::after,.links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
-  background:currentColor;transform:scaleX(0);transform-origin:center;transition:transform .7s ease}
-nav.works a:hover::after,nav.works a:focus-visible::after,.links a:hover::after{transform:scaleX(1)}
-.links{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem 2.2rem;margin-top:3rem}
-.links a{color:var(--dim)}
-/* elephant */
-#home{display:block;width:84px;margin:0 auto;opacity:.75;transition:opacity 1s,filter 1s}
-#home:hover,#home:focus-visible{opacity:1;filter:drop-shadow(0 0 16px rgba(245,242,234,.35))}
+.bio .pitch{margin-top:3rem;color:rgba(245,242,234,.8);font-size:clamp(1.05rem,1.7vw,1.35rem);line-height:1.6}
+.portrait{float:right;width:min(38vw,300px);aspect-ratio:4/5;margin:0 0 2rem 3rem;overflow:hidden;border-radius:2px;
+  box-shadow:0 0 0 1px rgba(245,242,234,.08),0 30px 100px -10px rgba(0,0,0,.8)}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* LINKS */
+.links{display:flex;flex-wrap:wrap;gap:1rem 3rem;align-items:center;justify-content:space-between}
+.links nav{display:flex;flex-wrap:wrap;gap:1rem 2.4rem}
+.links nav a{position:relative;padding:.4rem 0}
+.links nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .6s}
+.links nav a:hover::after{transform:scaleX(1)}
+#home{display:block;width:72px;opacity:.75;transition:opacity .8s,filter .8s}
+#home:hover{opacity:1;filter:drop-shadow(0 0 16px rgba(245,242,234,.35))}
 #home svg{display:block;width:100%;height:auto}
-footer{position:relative;z-index:2;text-align:center;padding:0 0 9vh;color:var(--dim);font-size:.7rem;letter-spacing:.25em;text-indent:.25em;text-transform:uppercase}
-footer a{color:inherit;text-decoration:none}
-@media (prefers-reduced-motion:reduce){.in{transition:none;opacity:1;transform:none;filter:none}#field{transition:none}}
-@media (max-width:480px){section{padding:12vh 7vw}.bio p,.pitch p{font-size:1.05rem;line-height:1.7}}
+
+.in{opacity:0;transform:translateY(16px);transition:opacity 1.6s ease,transform 1.6s ease}
+.on .in,.in.on{opacity:1;transform:none}
+
+@media (max-width:860px){
+  .work{grid-template-columns:1fr 1fr;gap:.8rem}
+  .door{grid-column:span 1;aspect-ratio:3/4}.door.wide,.door.cin{grid-column:span 2;aspect-ratio:16/10}.door.cin img{object-position:50% 30%}
+  .film,.kit{grid-template-columns:1fr;gap:1.6rem}
+  .kit img{order:-1}
+  .portrait{float:none;width:min(60vw,260px);margin:0 0 2.5rem}
+  #room>section{padding:10vh 6vw}
+  .door .t{padding:1rem}.door .t b{font-size:1.25rem}.door .t span{display:none}
+}
+@media (prefers-reduced-motion:reduce){.in{transition:none;opacity:1;transform:none}#field{transition:none}#hero .hint{animation:none}}
 </style>
 </head>
 <body>
-<div id="field" aria-hidden="true"></div>
-<div id="grain" aria-hidden="true"></div>
-<div id="aperture" aria-hidden="true"></div>
 
-<main>
-  <section id="name">
-    <div class="in">
-      <h1>Chauncey Campanaro</h1>
-      <p class="sub">Actor</p>
+<section id="hero" aria-label="Reel">
+  <video id="reel" autoplay muted loop playsinline preload="auto" poster="/chaunceycampanaro/img/poster.jpg">
+    <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
+  </video>
+  <div class="shade" aria-hidden="true"></div>
+  <div class="name">Chauncey Campanaro</div>
+  <div class="hint" aria-hidden="true"></div>
+  <div class="foot">
+    <div class="l cap">Reel · 1:37</div>
+    <button id="sound" type="button" aria-pressed="false">Sound</button>
+  </div>
+</section>
+
+<div id="room">
+  <div id="field" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
+
+  <section aria-label="The work">
+    <div class="head in"><h2>The work</h2><span class="cap">Actor · Director · Writer</span></div>
+    <div class="work in">
+      <a class="door" href="https://drive.google.com/drive/folders/1liC1gCi2nVtR3A1X4QPzK9a3Me_mALX1" target="_blank" rel="noopener">
+        <img src="/chaunceycampanaro/img/acting.jpg" alt="Chauncey Campanaro, portrait by Rory Lewis" loading="lazy">
+        <div class="t"><b>Acting</b><span>Reel, headshots, résumé. Film and theatre, 2014 to now. Strasberg, RSC, Meisner.</span></div>
+      </a>
+      <a class="door" href="https://drive.google.com/drive/folders/1M82BPEg9HrnXQQa5g2RQ3PAiD0Odusnb" target="_blank" rel="noopener">
+        <img src="/chaunceycampanaro/img/model.jpg" alt="Chauncey Campanaro, full length" loading="lazy">
+        <div class="t"><b>Modeling</b><span>Six foot five. Photographs by Rory Lewis and others.</span></div>
+      </a>
+      <a class="door light cin" href="https://drive.google.com/drive/folders/1NHPWcnw6-D_edYMDd4WHzym61X0nrzFV" target="_blank" rel="noopener">
+        <img src="/chaunceycampanaro/img/piano_poster.jpg" alt="L'Homme au Piano poster by Anthony Russo" loading="lazy">
+        <div class="t"><b>Cinema</b><span>L’Homme au Piano, a feature. Kittens, a short. Directed.</span></div>
+      </a>
+      <a class="door wide light" href="https://drive.google.com/file/d/1zN8Ih4T7lHF3Rsi8Yd6mJwxUYDLaQlbC/view" target="_blank" rel="noopener">
+        <img src="/chaunceycampanaro/img/script.jpg" alt="The Elephant — title page" loading="lazy">
+        <div class="t"><b>Script</b><span>The Elephant. A screenplay, 64 pages.</span></div>
+      </a>
+      <a class="door wide light" href="https://drive.google.com/file/d/12Bk5jhPxKFhR6peJWZqJV_Nr59WdByF5/view" target="_blank" rel="noopener">
+        <img src="/chaunceycampanaro/img/poetry.jpg" alt="The Red Marlin — cover" loading="lazy">
+        <div class="t"><b>Poetry</b><span>The Red Marlin. 154 pages, typewritten. First of three.</span></div>
+      </a>
     </div>
   </section>
 
-  <section class="bio" aria-label="Biography">
-    <div class="in">
-      <p>Born in Rome in 1989, Chauncey Campanaro grew up between Italy and the United States, read Literature with honors at the American University of Paris, and trained at the Lee Strasberg Institute on the Johnny Depp Acting Scholarship and with the Royal Shakespeare Company at the Shakespeare Institute under Ewan Fernie.</p>
-      <p>He directed the feature <em>L’Homme au Piano</em>, in English, French and Catalan, edited by Mathilde Van de Moortel (<em>Mustang</em>), photographed by Gina Ferrer (<em>Biutiful</em>) and written by Olivia Baes, translator of Duras.</p>
-      <p>He is six foot five, speaks four languages, and lives in Los Angeles.</p>
-    </div>
-  </section>
-
-  <section class="pitch" aria-label="Pitch">
-    <div class="in">
-      <p>Named for Chauncey Gardiner in <em>Being There</em>. Raised in Rome, educated in Paris, trained in New York and Stratford, a feature directed at thirty. He comes into the room with nothing to prove and everything to give. Now, only acting.</p>
-    </div>
-  </section>
-
-  <section aria-label="Reel">
-    <div class="in">
-      <div class="reel">
-        <video controls playsinline preload="metadata" poster="/chaunceycampanaro/img/poster.jpg">
-          <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
-        </video>
+  <section aria-label="Cinema">
+    <div class="film in">
+      <video controls playsinline preload="metadata" poster="/chaunceycampanaro/img/trailer_poster.jpg">
+        <source src="/chaunceycampanaro/trailer.mp4" type="video/mp4">
+      </video>
+      <div>
+        <div class="cap">Feature · Director</div>
+        <h3>L’Homme au Piano</h3>
+        <p>Shot in Spain in English, French and Catalan. Screenplay by Olivia Baes, photographed by Gina Ferrer (<em>Biutiful</em>), edited by Mathilde Van de Moortel (<em>Mustang</em>). Posters by Anthony Russo.</p>
+        <p>Cannes pre-selection, 2019.</p>
       </div>
-      <p class="small">Reel · 1:37</p>
+    </div>
+    <div class="kit in">
+      <div>
+        <div class="cap">Short · Director</div>
+        <h3 style="font-weight:400;font-size:clamp(1.6rem,3vw,2.6rem);line-height:1.1;margin-bottom:1rem">Kittens</h3>
+        <p style="color:rgba(245,242,234,.78);line-height:1.7">Paris. Seventeen minutes. Written by Jorge Franco IV.</p>
+      </div>
+      <img src="/chaunceycampanaro/img/kittens.jpg" alt="Still from Kittens" loading="lazy">
     </div>
   </section>
 
-  <section aria-label="Portrait">
-    <div class="in">
-      <div class="portrait"><img src="/chaunceycampanaro/img/headshot_sm.jpg" srcset="/chaunceycampanaro/img/headshot_sm.jpg 640w,/chaunceycampanaro/img/headshot.jpg 1600w" sizes="(max-width:480px) 62vw, 340px" alt="Chauncey Campanaro, portrait by Rory Lewis" loading="lazy"></div>
-      <p class="small">Photograph · Rory Lewis</p>
+  <section aria-label="Biography">
+    <div class="bio in">
+      <div class="portrait"><img src="/chaunceycampanaro/img/headshot_sm.jpg" srcset="/chaunceycampanaro/img/headshot_sm.jpg 640w,/chaunceycampanaro/img/headshot.jpg 1600w" sizes="(max-width:860px) 60vw, 300px" alt="Chauncey Campanaro, photograph by Rory Lewis" loading="lazy"></div>
+      <p>Born in Rome in 1989, Chauncey Campanaro grew up between Italy and the United States, read Literature with honors at the American University of Paris, and trained at the Lee Strasberg Institute on the Johnny Depp Acting Scholarship and with the Royal Shakespeare Company at the Shakespeare Institute under Ewan Fernie.</p>
+      <p>He directed the feature <em>L’Homme au Piano</em>, in English, French and Catalan, edited by Mathilde Van de Moortel, photographed by Gina Ferrer and written by Olivia Baes, translator of Duras.</p>
+      <p>He is six foot five, speaks four languages, and lives in Los Angeles.</p>
+      <p class="pitch">Named for Chauncey Gardiner in <em>Being There</em>. Raised in Rome, educated in Paris, trained in New York and Stratford, a feature directed at thirty. He comes into the room with nothing to prove and everything to give.</p>
     </div>
   </section>
 
-  <section aria-label="Work">
-    <div class="in">
-      <nav class="works" aria-label="Work">
-        <a href="https://drive.google.com/drive/folders/1liC1gCi2nVtR3A1X4QPzK9a3Me_mALX1" target="_blank" rel="noopener">Acting</a>
-        <a href="https://drive.google.com/drive/folders/1M82BPEg9HrnXQQa5g2RQ3PAiD0Odusnb" target="_blank" rel="noopener">Modeling</a>
-        <a href="https://drive.google.com/drive/folders/1NHPWcnw6-D_edYMDd4WHzym61X0nrzFV" target="_blank" rel="noopener">Cinema</a>
-        <a href="https://drive.google.com/file/d/1zN8Ih4T7lHF3Rsi8Yd6mJwxUYDLaQlbC/view" target="_blank" rel="noopener">Script</a>
-        <a href="https://drive.google.com/file/d/12Bk5jhPxKFhR6peJWZqJV_Nr59WdByF5/view" target="_blank" rel="noopener">Poetry</a>
-      </nav>
-      <div class="links">
+  <section aria-label="Links">
+    <div class="links in">
+      <nav class="cap" aria-label="Links">
         <a href="/chaunceycampanaro/resume.pdf" target="_blank" rel="noopener">Résumé</a>
         <a href="https://www.imdb.com/name/nm7841711/" target="_blank" rel="noopener">IMDb</a>
         <a href="mailto:moonwinellc@gmail.com">Contact</a>
-      </div>
-    </div>
-  </section>
-
-  <section aria-label="Decalux" style="min-height:50svh">
-    <div class="in">
+      </nav>
       <a id="home" href="https://www.decalux.art" aria-label="Decalux">
         <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(248,245,238,0.85)" stroke-width="4"/>
@@ -162,31 +215,26 @@ footer a{color:inherit;text-decoration:none}
       </a>
     </div>
   </section>
-</main>
-<footer><a href="https://www.decalux.art">Decalux</a> · Los Angeles</footer>
+</div>
 
 <script>
 (function(){
-  // The room breathes: one colour field slowly becoming another. No edges, no hurry.
-  var P=[ // [base, low, high]
-    ['#2a1660','#8a1f6e','#1b3a9a'],   // violet, magenta, cobalt
-    ['#3a1250','#b5304a','#2b2f8c'],   // wine
-    ['#13245c','#5a2fa0','#1a7a80'],   // cobalt, teal
-    ['#4a1e14','#b0481c','#3a1450'],   // ember
-    ['#0f2a4a','#2f55b0','#1e8a6a'],   // sea
-    ['#3a1230','#9a2a5a','#1e2f8a']    // rose dusk
-  ];
+  var reel=document.getElementById('reel'),btn=document.getElementById('sound'),hero=document.getElementById('hero');
+  function setSound(on){reel.muted=!on;btn.classList.toggle('on',on);btn.setAttribute('aria-pressed',on);btn.textContent=on?'Sound on':'Sound';if(on&&reel.paused)reel.play();}
+  reel.addEventListener('timeupdate',function(){if(reel.currentTime<2.9)reel.currentTime=3;});
+  btn.addEventListener('click',function(e){e.stopPropagation();setSound(reel.muted);});
+  hero.addEventListener('click',function(){setSound(reel.muted);});
+  // pause the reel when it leaves the screen
+  new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){reel.play().catch(function(){});}else{reel.pause();}});},{threshold:.2}).observe(hero);
 
+  // the room breathes
+  var P=[['#2a1660','#8a1f6e','#1b3a9a'],['#3a1250','#b5304a','#2b2f8c'],['#13245c','#5a2fa0','#1a7a80'],['#4a1e14','#b0481c','#3a1450'],['#0f2a4a','#2f55b0','#1e8a6a'],['#3a1230','#9a2a5a','#1e2f8a']];
   var f=document.getElementById('field'),i=0,m=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function set(k){var p=P[k%P.length];f.style.setProperty('--a',p[0]);f.style.setProperty('--b',p[1]);f.style.setProperty('--c',p[2]);}
-  var t=null;function run(){if(!m&&!t)t=setInterval(function(){set(++i);},9000);}function stop(){clearInterval(t);t=null;}
-  set(0); run();
-  // Text surfaces as you arrive
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.35});
-  document.querySelectorAll('section').forEach(function(s){io.observe(s);});
-  var v=document.querySelector('video');
-  if(v){v.addEventListener('play',function(){stop();f.style.setProperty('--a','#06040c');f.style.setProperty('--b','#0c0a14');f.style.setProperty('--c','#06040c');});
-       v.addEventListener('pause',function(){set(i);run();});}
+  set(0); if(!m)setInterval(function(){set(++i);},9000);
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:.15});
+  document.querySelectorAll('.in').forEach(function(s){io.observe(s);});
 })();
 </script>
 </body>
