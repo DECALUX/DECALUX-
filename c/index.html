@@ -17,7 +17,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* Screen 1: Full-Screen Pure Reel (Immediate Playback, Zero Chrome) */
+/* Screen 1: Full-Screen Native Reel (Immediate, Edge-to-Edge) */
 #stage-reel{
   position:relative;
   width:100vw;
@@ -54,12 +54,12 @@ body{
   text-shadow:0 0 30px rgba(0,0,0,0.9);
 }
 
-/* Atmospheric Nebula Space — No Boxes, No Lines, Zero Cards */
+/* Atmospheric Gaseous Nebula Field */
 .nebula-space{
   position:relative;
-  min-height:100vh;
+  min-height:160vh;
   background:#000;
-  padding:15vh 6vw 12vh;
+  padding:10vh 6vw 15vh;
   overflow:hidden;
 }
 
@@ -81,43 +81,45 @@ body{
   100%{transform:scale(1.06) translate(4vw, -2vh);opacity:0.7}
 }
 
-.content-stream{
+/* OVERLAY CONTAINER: Act Three (CV) floats directly over Act Two (Nebula Works) */
+.palimpsest-theatre{
   position:relative;
-  z-index:1;
+  width:100%;
   max-width:1300px;
   margin:0 auto;
+  min-height:140vh;
 }
 
-/* ACT TWO: The Fluid Random Selector Cloud (All Boundaries Dissolved) */
-.act-two{
-  position:relative;
-  min-height:90vh;
-  margin:6vh 0 25vh;
+/* ACT TWO: The Under-Layer (Random Gaseous Media Stream) */
+.gaseous-underlayer{
+  position:sticky;
+  top:6vh;
+  width:100%;
+  height:88vh;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
+  z-index:1;
+  pointer-events:none;
 }
 
 .gaseous-cycler{
   position:relative;
   width:100%;
-  height:clamp(440px, 68vh, 760px);
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
-  touch-action:pan-y;
-  cursor:crosshair;
 }
 
 .plasma-node{
   position:absolute;
-  max-width:86%;
-  max-height:90%;
+  max-width:88%;
+  max-height:92%;
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:all 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:all 2s cubic-bezier(0.16, 1, 0.3, 1);
   will-change:transform, opacity, filter;
   pointer-events:none;
 }
@@ -130,96 +132,81 @@ body{
   border:none;
   outline:none;
   box-shadow:none;
-  filter:drop-shadow(0 0 60px rgba(0,0,0,0.95));
-  transition:filter 1.2s ease;
+  filter:drop-shadow(0 0 80px rgba(0,0,0,0.95));
 }
 
-/* Gaseous states */
 .plasma-node.center{
-  opacity:1;
+  opacity:0.75;
   transform:translate3d(0, 0, 0) scale(1) rotate(0deg);
   filter:none;
-  z-index:5;
+  z-index:3;
 }
 .plasma-node.center img, .plasma-node.center video{
-  filter:drop-shadow(0 0 85px rgba(255,253,248,0.22)) drop-shadow(0 20px 40px rgba(0,0,0,0.9));
+  filter:drop-shadow(0 0 100px rgba(255,253,248,0.25)) drop-shadow(0 20px 40px rgba(0,0,0,0.9));
 }
 .plasma-node.drift-left{
-  opacity:0.22;
-  transform:translate3d(-28%, 5%, 0) scale(0.82) rotate(-6deg);
-  filter:blur(4px) brightness(0.6);
-  z-index:3;
+  opacity:0.18;
+  transform:translate3d(-26%, 5%, 0) scale(0.82) rotate(-6deg);
+  filter:blur(5px) brightness(0.5);
+  z-index:2;
 }
 .plasma-node.drift-right{
-  opacity:0.22;
-  transform:translate3d(28%, 5%, 0) scale(0.82) rotate(6deg);
-  filter:blur(4px) brightness(0.6);
-  z-index:3;
+  opacity:0.18;
+  transform:translate3d(26%, 5%, 0) scale(0.82) rotate(6deg);
+  filter:blur(5px) brightness(0.5);
+  z-index:2;
 }
 .plasma-node.dissolved{
   opacity:0;
   transform:translate3d(0, 12%, 0) scale(0.65);
-  filter:blur(16px) brightness(0.2);
+  filter:blur(18px) brightness(0.2);
   z-index:1;
 }
 
-/* Prose extracts within the nebula */
 .prose-nebula{
   padding:3vh 4vw;
   font-family:"Courier New",Courier,monospace;
-  font-size:clamp(0.85rem, 1.4vw, 1.15rem);
-  line-height:2.1;
-  color:rgba(242,238,233,0.9);
+  font-size:clamp(0.9rem, 1.5vw, 1.2rem);
+  line-height:2.2;
+  color:rgba(242,238,233,0.85);
   max-width:48rem;
   margin:0 auto;
-  text-shadow:0 0 35px rgba(255,255,255,0.2);
+  text-shadow:0 0 35px rgba(255,255,255,0.25);
   text-align:left;
 }
 
-/* Aura whisper */
-.aura-whisper{
-  margin-top:3vh;
-  text-align:center;
-  font-family:"Georgia",serif;
-  font-size:0.85rem;
-  letter-spacing:0.3em;
-  text-transform:uppercase;
-  color:rgba(242,238,233,0.35);
-  min-height:1.4rem;
-  transition:color 1s ease, text-shadow 1s ease;
-}
-.gaseous-cycler:hover + .aura-whisper{
-  color:rgba(242,238,233,0.85);
-  text-shadow:0 0 30px rgba(255,255,255,0.35);
+/* ACT THREE: The Over-Layer (CV Typewritten Text Floating Over the Media) */
+.cv-overlay{
+  position:relative;
+  z-index:4;
+  max-width:54rem;
+  margin:0 auto;
+  padding:8vh 3vw 12vh;
+  font-family:"Courier New",Courier,monospace;
+  color:rgba(242,238,233,0.92);
+  font-size:0.92rem;
+  line-height:1.8;
+  text-shadow:0 2px 20px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.9);
+  pointer-events:auto;
 }
 
-/* ACT THREE: CV Stream — Pure Monospace Output */
-.cv-manifest{
-  max-width:54rem;
-  margin:25vh auto 15vh;
-  padding:0 3vw;
-  font-family:"Courier New",Courier,monospace;
-  color:rgba(242,238,233,0.85);
-  font-size:0.88rem;
-  line-height:1.75;
-}
-.cv-manifest h3{
-  font-size:1.15rem;
+.cv-overlay h3{
+  font-size:1.25rem;
   font-weight:400;
-  letter-spacing:0.28em;
+  letter-spacing:0.3em;
   text-transform:uppercase;
   color:#fff;
-  border-bottom:1px solid rgba(242,238,233,0.2);
+  border-bottom:1px solid rgba(242,238,233,0.25);
   padding-bottom:1.2rem;
   margin-bottom:2.5rem;
 }
-.cv-manifest h4{
+.cv-overlay h4{
   font-size:0.75rem;
   font-weight:400;
   letter-spacing:0.35em;
   text-transform:uppercase;
-  color:rgba(242,238,233,0.45);
-  margin:2.5rem 0 0.8rem;
+  color:rgba(242,238,233,0.55);
+  margin:2.8rem 0 0.8rem;
 }
 .cv-line{
   display:grid;
@@ -227,13 +214,17 @@ body{
   padding:0.25rem 0;
   gap:1rem;
 }
-.cv-line span:first-child{color:rgba(242,238,233,0.45)}
-.cv-line span:last-child{text-align:right;color:rgba(242,238,233,0.6)}
-.cv-block-text{color:rgba(242,238,233,0.75);margin-top:0.4rem;line-height:1.8}
+.cv-line span:first-child{color:rgba(242,238,233,0.5)}
+.cv-line span:last-child{text-align:right;color:rgba(242,238,233,0.75)}
+.cv-block-text{
+  color:rgba(242,238,233,0.85);
+  margin-top:0.4rem;
+  line-height:1.85;
+}
 .cv-end{
-  margin-top:4rem;
+  margin-top:4.5rem;
   padding-top:1.5rem;
-  border-top:1px solid rgba(242,238,233,0.2);
+  border-top:1px solid rgba(242,238,233,0.25);
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
@@ -241,10 +232,19 @@ body{
   font-size:0.75rem;
   letter-spacing:0.2em;
 }
-.cv-end a{color:rgba(242,238,233,0.7);text-decoration:none;transition:color 0.4s}
-.cv-end a:hover{color:#fff;text-shadow:0 0 15px rgba(255,255,255,0.6)}
+.cv-end a{
+  color:rgba(242,238,233,0.8);
+  text-decoration:none;
+  transition:color 0.4s;
+}
+.cv-end a:hover{
+  color:#fff;
+  text-shadow:0 0 15px rgba(255,255,255,0.7);
+}
 
 footer{
+  position:relative;
+  z-index:5;
   text-align:center;
   padding:12vh 0 10vh;
 }
@@ -258,9 +258,8 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
 @media(max-width:768px){
   .cv-line{grid-template-columns:4rem 1fr}
-  .cv-line span:last-child{grid-column:2;text-align:left;color:rgba(242,238,233,0.45)}
-  .gaseous-cycler{height:56vh}
-  .plasma-node{max-width:94%;max-height:94%}
+  .cv-line span:last-child{grid-column:2;text-align:left;color:rgba(242,238,233,0.5)}
+  .plasma-node{max-width:96%;max-height:96%}
 }
 </style>
 </head>
@@ -277,16 +276,16 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
   <div class="monogram">Chauncey Alan</div>
 </section>
 
-<!-- MAIN NEBULA EXPERIENCE -->
+<!-- THE NEBULA STREAM: ACT THREE DIRECTLY OVERLAYING ACT TWO -->
 <div class="nebula-space">
-  <div class="content-stream">
+  <div class="palimpsest-theatre">
 
-    <!-- ACT TWO: The Unlabeled Organic Random Selector Experience -->
-    <section class="act-two" aria-label="Selected Works">
+    <!-- UNDER-LAYER (ACT TWO): Gaseous Random Selector Media Stream -->
+    <div class="gaseous-underlayer">
       <div class="gaseous-cycler" id="nebula-cycler">
 
-        <!-- 1. The Elephant (Florence Manuscript) -->
-        <div class="plasma-node center" data-title="The Elephant &middot; Manuscript">
+        <!-- 1. The Elephant -->
+        <div class="plasma-node center" data-title="The Elephant">
           <div class="prose-nebula">
             &ldquo;When we are asleep in this world we are awake in another.<br><br>
             Understand! What the devil has it to do with understanding? Since when has a picture been a mathematical proof? It is not there to explain &mdash; explain what, for God's sake &mdash; but to awaken feeling in the heart of the person looking at it.<br><br>
@@ -295,76 +294,75 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
         </div>
 
         <!-- 2. Rory Lewis Portrait -->
-        <div class="plasma-node drift-right" data-title="Presence &middot; Portrait">
+        <div class="plasma-node drift-right" data-title="Presence">
           <img src="/chaunceycampanaro/img/headshot.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 3. L'Homme au Piano (Cannes Poster) -->
-        <div class="plasma-node drift-left" data-title="L'Homme au Piano &middot; Cinema">
+        <!-- 3. L'Homme au Piano Poster -->
+        <div class="plasma-node drift-left" data-title="L'Homme au Piano">
           <img src="/chaunceycampanaro/img/piano_poster.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 4. The Red Marlin (Poetry) -->
-        <div class="plasma-node dissolved" data-title="The Red Marlin &middot; Poetry">
+        <!-- 4. The Red Marlin -->
+        <div class="plasma-node dissolved" data-title="The Red Marlin">
           <div class="prose-nebula">
             &ldquo;We have it backwards. Those who love, those who have &mdash; they are the ones that want. You can see this play out in temperature. There is no limit to heat, like love, while cold stops. It becomes frozen. Still.<br><br>
             The universe is an ebb and flow of light and the first human thought was a bird's.&rdquo;
           </div>
         </div>
 
-        <!-- 5. Acting Dramatic Still -->
-        <div class="plasma-node dissolved" data-title="Emtiness &middot; Frame Still">
+        <!-- 5. Acting Frame -->
+        <div class="plasma-node dissolved" data-title="Emtiness">
           <img src="/chaunceycampanaro/img/acting.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 6. Imaginary Kittens & Paris Movement -->
-        <div class="plasma-node dissolved" data-title="Imaginary Kittens &middot; Paris Archive">
+        <!-- 6. Imaginary Kittens Archive -->
+        <div class="plasma-node dissolved" data-title="Imaginary Kittens">
           <img src="/chaunceycampanaro/img/cinema.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 7. Green Birds (Novella Excerpt) -->
-        <div class="plasma-node dissolved" data-title="Green Birds &middot; Prose">
+        <!-- 7. Green Birds -->
+        <div class="plasma-node dissolved" data-title="Green Birds">
           <div class="prose-nebula">
             &ldquo;In the city of the mind, we find ourselves in a bare-bones western frontier town with two spurred dirt roads intersecting.<br><br>
             In the spring tread softly, the earth is pregnant. From black to white, from absence of meaning to love, from gas to liquid, from unconscious to conscious.&rdquo;
           </div>
         </div>
 
-        <!-- 8. Modeling Fashion Still -->
-        <div class="plasma-node dissolved" data-title="Study in Shadow &middot; Fashion">
+        <!-- 8. Modeling Study -->
+        <div class="plasma-node dissolved" data-title="Shadow">
           <img src="/chaunceycampanaro/img/model.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 9. Silent Movement Loop -->
-        <div class="plasma-node dissolved" data-title="Cinema &middot; 35mm Motion">
+        <!-- 9. Silent 35mm Motion -->
+        <div class="plasma-node dissolved" data-title="Movement">
           <video autoplay muted loop playsinline preload="metadata">
             <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
           </video>
         </div>
 
-        <!-- 10. Script Draft Stills -->
-        <div class="plasma-node dissolved" data-title="Typewritten Draft &middot; Script">
+        <!-- 10. Script Folio -->
+        <div class="plasma-node dissolved" data-title="Script">
           <img src="/chaunceycampanaro/img/script.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 11. Poetry Draft Stills -->
-        <div class="plasma-node dissolved" data-title="Poetry Folio &middot; Fragment">
+        <!-- 11. Poetry Folio -->
+        <div class="plasma-node dissolved" data-title="Poetry">
           <img src="/chaunceycampanaro/img/poetry.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 12. Intimate Portrait Still -->
-        <div class="plasma-node dissolved" data-title="Portrait &middot; Studio Study">
+        <!-- 12. Studio Portrait -->
+        <div class="plasma-node dissolved" data-title="Study">
           <img src="/chaunceycampanaro/img/headshot_sm.jpg" alt="" loading="lazy">
         </div>
 
       </div>
-      <div class="aura-whisper" id="aura-whisper">The Elephant &middot; Manuscript</div>
-    </section>
+    </div>
 
-    <!-- ACT THREE: The 2026 Actors Access Résumé -->
-    <section class="cv-manifest" aria-label="Curriculum Vitae">
+    <!-- OVER-LAYER (ACT THREE): The Résumé Floated Directly Across Act Two -->
+    <section class="cv-overlay" aria-label="Curriculum Vitae">
       <h3>Chauncey Allen</h3>
-      <div class="cv-block-text" style="color:rgba(242,238,233,0.55);margin-bottom:2rem">
+      <div class="cv-block-text" style="color:rgba(242,238,233,0.6);margin-bottom:2rem">
         6'5" &middot; 190 lbs &middot; Representation: Jager Campbell Talent (312) 545-5861
       </div>
 
@@ -410,24 +408,24 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
       </div>
     </section>
 
-    <footer>
-      <a href="https://www.decalux.art" aria-label="Decalux">
-        <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(248,245,238,0.7)" stroke-width="3.5"/>
-          <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(248,245,238,0.7)" stroke-width="3.5"/>
-          <circle cx="326" cy="75" r="3" stroke="rgba(248,245,238,0.7)" stroke-width="3"/>
-          <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(248,245,238,0.6)" stroke-width="3"/>
-          <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(248,245,238,0.5)" stroke-width="3" stroke-linecap="round"/>
-          <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
-        </svg>
-      </a>
-    </footer>
-
   </div>
+
+  <footer>
+    <a href="https://www.decalux.art" aria-label="Decalux">
+      <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(248,245,238,0.7)" stroke-width="3.5"/>
+        <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(248,245,238,0.7)" stroke-width="3.5"/>
+        <circle cx="326" cy="75" r="3" stroke="rgba(248,245,238,0.7)" stroke-width="3"/>
+        <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(248,245,238,0.6)" stroke-width="3"/>
+        <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(248,245,238,0.5)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </footer>
 </div>
 
 <script>
@@ -462,10 +460,9 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     }, {threshold:0.1}).observe(reelStage);
   }
 
-  // ACT TWO: The Organic Random Selector Engine
+  // ACT TWO: Gaseous Random Selector Engine underneath
   const cycler = document.getElementById('nebula-cycler');
   const nodes = Array.from(cycler.querySelectorAll('.plasma-node'));
-  const whisperEl = document.getElementById('aura-whisper');
   const total = nodes.length;
   let activeIdx = 0;
   let interacting = false;
@@ -476,7 +473,6 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
       node.className = 'plasma-node';
       if(offset === 0){
         node.classList.add('center');
-        if(whisperEl) whisperEl.innerHTML = node.dataset.title || '';
       } else if(offset === 1 || offset === 2){
         node.classList.add('drift-right');
       } else if(offset === total - 1 || offset === total - 2){
@@ -487,7 +483,6 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     });
   }
 
-  // Random jump selector
   function randomShift(){
     let nextIdx;
     do {
@@ -497,11 +492,9 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     render();
   }
 
-  // Hover scrub across the cloud
-  cycler.addEventListener('mousemove', e => {
-    interacting = true;
-    const rect = cycler.getBoundingClientRect();
-    const pct = Math.max(0, Math.min(0.999, (e.clientX - rect.left) / rect.width));
+  // Hover scrub across the window
+  window.addEventListener('mousemove', e => {
+    const pct = Math.max(0, Math.min(0.999, e.clientX / window.innerWidth));
     const targetIdx = Math.floor(pct * total);
     if(targetIdx !== activeIdx){
       activeIdx = targetIdx;
@@ -509,18 +502,13 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     }
   });
 
-  cycler.addEventListener('mouseleave', () => {
-    interacting = false;
-  });
-
   // Touch sweep
   let startX = null;
-  cycler.addEventListener('touchstart', e => {
-    interacting = true;
+  window.addEventListener('touchstart', e => {
     startX = e.touches[0].clientX;
   }, {passive:true});
 
-  cycler.addEventListener('touchmove', e => {
+  window.addEventListener('touchmove', e => {
     if(startX === null) return;
     const dx = e.touches[0].clientX - startX;
     if(Math.abs(dx) > 30){
@@ -530,19 +518,12 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     }
   }, {passive:true});
 
-  cycler.addEventListener('touchend', () => {
-    setTimeout(() => { interacting = false; }, 2500);
-  });
-
-  // Autonomous Walk-Through: shifts randomly through all works if visitor does nothing
+  // Continuous autonomous random drift of the media underneath
   setInterval(() => {
-    if(!interacting && !document.hidden){
-      const rect = cycler.getBoundingClientRect();
-      if(rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15){
-        randomShift();
-      }
+    if(!document.hidden){
+      randomShift();
     }
-  }, 4200);
+  }, 4400);
 
   render();
 })();
