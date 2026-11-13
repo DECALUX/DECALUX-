@@ -254,6 +254,8 @@ footer a:hover{opacity:0.9}
 footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
 @media(max-width:768px){
+  #screen-reel{height:56.25vw}
+  #screen-reel .dissolve{height:12vw}
   .resume-line{grid-template-columns:4rem 1fr}
   .resume-line span:last-child{grid-column:2;text-align:left;color:rgba(242,238,233,0.5)}
   .stream-node{max-width:96%;max-height:96%}
@@ -266,9 +268,8 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
 <!-- SCREEN 1: Full-Screen Exact Reel (1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ / local fallback) -->
 <section id="screen-reel" aria-label="Chauncey Alan Reel">
-  <video id="hero-reel" autoplay loop playsinline preload="auto" poster="/chaunceycampanaro/img/poster.jpg">
-    <source src="https://drive.google.com/uc?export=download&id=1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ" type="video/mp4">
-    <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
+  <video id="hero-reel" autoplay loop playsinline preload="auto" poster="/c/img/poster.jpg">
+    <source src="/c/reel.mp4" type="video/mp4">
   </video>
   <div class="dissolve"></div>
   <div class="monogram">Chauncey Alan</div>
@@ -335,8 +336,7 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
         <!-- 9. Silent 35mm Motion Sequence -->
         <div class="stream-node dissolved">
           <video autoplay muted loop playsinline preload="metadata">
-            <source src="https://drive.google.com/uc?export=download&id=1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ" type="video/mp4">
-            <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
+                    <source src="/c/reel.mp4" type="video/mp4">
           </video>
         </div>
 
@@ -360,7 +360,7 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
     <!-- TOP LAYER: Résumé (Chauncey - CV ACTING 2026.pdf) Floated Directly On Top -->
     <section class="resume-top-layer" aria-label="Curriculum Vitae">
-      <h3>Chauncey Allen</h3>
+      <h3>Chauncey Alan</h3>
       <div class="resume-block" style="color:rgba(242,238,233,0.6);margin-bottom:2rem">
         6'5" &middot; 190 lbs &middot; Representation: Jager Campbell Talent (312) 545-5861
       </div>
