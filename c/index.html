@@ -17,7 +17,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* Screen 1: Immediate Full-Screen Reel — Edge to Edge Native Video */
+/* Screen 1: Full-Screen Pure Reel (Immediate Playback, Zero Chrome) */
 #stage-reel{
   position:relative;
   width:100vw;
@@ -54,7 +54,7 @@ body{
   text-shadow:0 0 30px rgba(0,0,0,0.9);
 }
 
-/* Organic Nebula Space — No Outlines, No Cards, No Boxes */
+/* Atmospheric Nebula Space — No Boxes, No Lines, Zero Cards */
 .nebula-space{
   position:relative;
   min-height:100vh;
@@ -63,23 +63,22 @@ body{
   overflow:hidden;
 }
 
-/* Glowing Gaseous Background Field */
 .nebula-gas{
   position:fixed;
   inset:0;
   pointer-events:none;
   z-index:0;
   background:
-    radial-gradient(circle at 30% 40%, rgba(35, 45, 65, 0.18) 0%, transparent 60%),
-    radial-gradient(circle at 75% 70%, rgba(45, 30, 40, 0.15) 0%, transparent 55%),
-    radial-gradient(circle at 50% 90%, rgba(20, 35, 25, 0.12) 0%, transparent 65%);
-  filter:blur(80px);
-  animation:gasBreathe 22s ease-in-out infinite alternate;
+    radial-gradient(circle at 35% 45%, rgba(38, 48, 68, 0.22) 0%, transparent 60%),
+    radial-gradient(circle at 75% 65%, rgba(55, 30, 42, 0.18) 0%, transparent 55%),
+    radial-gradient(circle at 50% 85%, rgba(22, 42, 30, 0.16) 0%, transparent 65%);
+  filter:blur(90px);
+  animation:gasBreathe 24s ease-in-out infinite alternate;
 }
 @keyframes gasBreathe{
   0%{transform:scale(1) translate(0, 0);opacity:0.6}
-  50%{transform:scale(1.15) translate(-2vw, 3vh);opacity:0.9}
-  100%{transform:scale(1.05) translate(3vw, -2vh);opacity:0.7}
+  50%{transform:scale(1.18) translate(-3vw, 4vh);opacity:0.95}
+  100%{transform:scale(1.06) translate(4vw, -2vh);opacity:0.7}
 }
 
 .content-stream{
@@ -89,59 +88,41 @@ body{
   margin:0 auto;
 }
 
-/* Floating Ether Chapters */
-.ether-chapter{
+/* ACT TWO: The Fluid Random Selector Cloud (All Boundaries Dissolved) */
+.act-two{
   position:relative;
-  min-height:85vh;
-  margin-bottom:22vh;
+  min-height:90vh;
+  margin:6vh 0 25vh;
   display:flex;
   flex-direction:column;
+  align-items:center;
   justify-content:center;
 }
-.ether-voice{
-  margin-bottom:4vh;
-  padding:0 2vw;
-}
-.ether-voice h2{
-  font-family:"Georgia",serif;
-  font-weight:300;
-  font-size:clamp(1.8rem, 4.2vw, 3.4rem);
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:#fff;
-  text-shadow:0 0 50px rgba(255,255,255,0.25);
-  margin-bottom:0.8rem;
-}
-.ether-voice p{
-  font-size:0.7rem;
-  letter-spacing:0.4em;
-  text-transform:uppercase;
-  color:rgba(242,238,233,0.4);
-}
 
-/* Floating Gaseous Nebula Cloud Canvas (Automated & Hover Responsive) */
-.gaseous-cloud{
+.gaseous-cycler{
   position:relative;
   width:100%;
-  height:clamp(400px, 62vh, 720px);
+  height:clamp(440px, 68vh, 760px);
   display:flex;
   align-items:center;
   justify-content:center;
   touch-action:pan-y;
-  cursor:none;
+  cursor:crosshair;
 }
-.nebula-entity{
+
+.plasma-node{
   position:absolute;
-  max-width:82%;
-  max-height:88%;
+  max-width:86%;
+  max-height:90%;
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:all 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:all 1.8s cubic-bezier(0.16, 1, 0.3, 1);
   will-change:transform, opacity, filter;
   pointer-events:none;
 }
-.nebula-entity img, .nebula-entity video{
+
+.plasma-node img, .plasma-node video{
   max-width:100%;
   max-height:100%;
   object-fit:contain;
@@ -153,73 +134,66 @@ body{
   transition:filter 1.2s ease;
 }
 
-/* Gaseous states — no outlines, pure aura */
-.nebula-entity.active{
+/* Gaseous states */
+.plasma-node.center{
   opacity:1;
   transform:translate3d(0, 0, 0) scale(1) rotate(0deg);
   filter:none;
   z-index:5;
 }
-.nebula-entity.active img, .nebula-entity.active video{
-  filter:drop-shadow(0 0 70px rgba(255,253,248,0.18)) drop-shadow(0 20px 40px rgba(0,0,0,0.9));
+.plasma-node.center img, .plasma-node.center video{
+  filter:drop-shadow(0 0 85px rgba(255,253,248,0.22)) drop-shadow(0 20px 40px rgba(0,0,0,0.9));
 }
-.nebula-entity.drift-1{
-  opacity:0.25;
-  transform:translate3d(-26%, 4%, 0) scale(0.85) rotate(-5deg);
-  filter:blur(3px) brightness(0.7);
+.plasma-node.drift-left{
+  opacity:0.22;
+  transform:translate3d(-28%, 5%, 0) scale(0.82) rotate(-6deg);
+  filter:blur(4px) brightness(0.6);
   z-index:3;
 }
-.nebula-entity.drift-2{
-  opacity:0.25;
-  transform:translate3d(26%, 4%, 0) scale(0.85) rotate(5deg);
-  filter:blur(3px) brightness(0.7);
+.plasma-node.drift-right{
+  opacity:0.22;
+  transform:translate3d(28%, 5%, 0) scale(0.82) rotate(6deg);
+  filter:blur(4px) brightness(0.6);
   z-index:3;
 }
-.nebula-entity.dissolved{
+.plasma-node.dissolved{
   opacity:0;
-  transform:translate3d(0, 10%, 0) scale(0.7);
-  filter:blur(14px) brightness(0.3);
+  transform:translate3d(0, 12%, 0) scale(0.65);
+  filter:blur(16px) brightness(0.2);
   z-index:1;
 }
 
-/* Ambient title aura */
-.aura-title{
+/* Prose extracts within the nebula */
+.prose-nebula{
+  padding:3vh 4vw;
+  font-family:"Courier New",Courier,monospace;
+  font-size:clamp(0.85rem, 1.4vw, 1.15rem);
+  line-height:2.1;
+  color:rgba(242,238,233,0.9);
+  max-width:48rem;
+  margin:0 auto;
+  text-shadow:0 0 35px rgba(255,255,255,0.2);
+  text-align:left;
+}
+
+/* Aura whisper */
+.aura-whisper{
   margin-top:3vh;
   text-align:center;
   font-family:"Georgia",serif;
   font-size:0.85rem;
-  letter-spacing:0.25em;
-  text-transform:uppercase;
-  color:rgba(242,238,233,0.5);
-  transition:color 0.8s ease, text-shadow 0.8s ease;
-}
-.gaseous-cloud:hover + .aura-title{
-  color:rgba(242,238,233,0.9);
-  text-shadow:0 0 25px rgba(255,255,255,0.3);
-}
-
-/* Typewritten Manuscript Prose Extracts (The Elephant, The Red Marlin, Green Birds) */
-.manuscript-excerpt{
-  padding:3vh 4vw;
-  font-family:"Courier New",Courier,monospace;
-  font-size:clamp(0.8rem, 1.3vw, 1.05rem);
-  line-height:2;
-  color:rgba(242,238,233,0.85);
-  max-width:48rem;
-  margin:0 auto;
-  text-shadow:0 0 30px rgba(255,255,255,0.15);
-}
-.manuscript-excerpt cite{
-  display:block;
-  margin-top:2rem;
-  font-size:0.7rem;
   letter-spacing:0.3em;
   text-transform:uppercase;
-  color:rgba(242,238,233,0.45);
-  font-style:normal;
+  color:rgba(242,238,233,0.35);
+  min-height:1.4rem;
+  transition:color 1s ease, text-shadow 1s ease;
+}
+.gaseous-cycler:hover + .aura-whisper{
+  color:rgba(242,238,233,0.85);
+  text-shadow:0 0 30px rgba(255,255,255,0.35);
 }
 
-/* CV: Pure Typewritten Monospace, Zero Containers */
+/* ACT THREE: CV Stream — Pure Monospace Output */
 .cv-manifest{
   max-width:54rem;
   margin:25vh auto 15vh;
@@ -285,8 +259,8 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
 @media(max-width:768px){
   .cv-line{grid-template-columns:4rem 1fr}
   .cv-line span:last-child{grid-column:2;text-align:left;color:rgba(242,238,233,0.45)}
-  .gaseous-cloud{height:52vh}
-  .nebula-entity{max-width:94%;max-height:94%}
+  .gaseous-cycler{height:56vh}
+  .plasma-node{max-width:94%;max-height:94%}
 }
 </style>
 </head>
@@ -294,7 +268,7 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
 <div class="nebula-gas" aria-hidden="true"></div>
 
-<!-- INTRO REEL: Immediately Plays Edge-to-Edge -->
+<!-- ACT ONE: Immediate Full-Screen Reel -->
 <section id="stage-reel" aria-label="Chauncey Alan Reel">
   <video id="hero-reel" autoplay loop playsinline preload="auto" poster="/chaunceycampanaro/img/poster.jpg">
     <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
@@ -307,88 +281,87 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
 <div class="nebula-space">
   <div class="content-stream">
 
-    <!-- CHAPTER 1: PHOTOGRAPHY (All portraits & stills cycling organically) -->
-    <section class="ether-chapter" aria-label="Photography">
-      <div class="ether-voice">
-        <h2>Photography</h2>
-        <p>Presence in the light</p>
-      </div>
-      <div class="gaseous-cloud" data-cloud="photos">
-        <div class="nebula-entity active" data-title="Portrait &middot; Rory Lewis">
-          <img src="/chaunceycampanaro/img/headshot.jpg" alt="Chauncey Alan portrait" loading="lazy">
-        </div>
-        <div class="nebula-entity drift-2" data-title="Acting &middot; Dramatic Still">
-          <img src="/chaunceycampanaro/img/acting.jpg" alt="Acting portrait" loading="lazy">
-        </div>
-        <div class="nebula-entity drift-1" data-title="Modeling &middot; Fashion Still">
-          <img src="/chaunceycampanaro/img/model.jpg" alt="Modeling still" loading="lazy">
-        </div>
-        <div class="nebula-entity dissolved" data-title="Cinema Frame &middot; L'Homme au Piano">
-          <img src="/chaunceycampanaro/img/cinema.jpg" alt="Cinema still" loading="lazy">
-        </div>
-        <div class="nebula-entity dissolved" data-title="Intimate Study &middot; Rory Lewis">
-          <img src="/chaunceycampanaro/img/headshot_sm.jpg" alt="Chauncey Alan headshot" loading="lazy">
-        </div>
-      </div>
-      <div class="aura-title" id="title-photos">Portrait &middot; Rory Lewis</div>
-    </section>
+    <!-- ACT TWO: The Unlabeled Organic Random Selector Experience -->
+    <section class="act-two" aria-label="Selected Works">
+      <div class="gaseous-cycler" id="nebula-cycler">
 
-    <!-- CHAPTER 2: FILM (Cinema Trailer & Kittens Silent Atmosphere) -->
-    <section class="ether-chapter" aria-label="Film">
-      <div class="ether-voice">
-        <h2>Film</h2>
-        <p>L'Homme au Piano &middot; Imaginary Kittens &middot; Emptiness</p>
-      </div>
-      <div class="gaseous-cloud" data-cloud="film">
-        <div class="nebula-entity active" data-title="L'Homme au Piano &middot; Cannes Pre-Selection">
-          <img src="/chaunceycampanaro/img/piano_poster.jpg" alt="L'Homme au Piano poster" loading="lazy">
+        <!-- 1. The Elephant (Florence Manuscript) -->
+        <div class="plasma-node center" data-title="The Elephant &middot; Manuscript">
+          <div class="prose-nebula">
+            &ldquo;When we are asleep in this world we are awake in another.<br><br>
+            Understand! What the devil has it to do with understanding? Since when has a picture been a mathematical proof? It is not there to explain &mdash; explain what, for God's sake &mdash; but to awaken feeling in the heart of the person looking at it.<br><br>
+            A work of Art must not be something that leaves one unmoved, something one passes by with a casual glance. It has to make us react, feel strongly, start creating too, if only in our imagination.&rdquo;
+          </div>
         </div>
-        <div class="nebula-entity drift-2" data-title="Imaginary Kittens &middot; Paris">
-          <img src="/chaunceycampanaro/img/cinema.jpg" alt="Imaginary Kittens Paris still" loading="lazy">
+
+        <!-- 2. Rory Lewis Portrait -->
+        <div class="plasma-node drift-right" data-title="Presence &middot; Portrait">
+          <img src="/chaunceycampanaro/img/headshot.jpg" alt="" loading="lazy">
         </div>
-        <div class="nebula-entity drift-1" data-title="Movement Archive &middot; 35mm Frame Sequence">
+
+        <!-- 3. L'Homme au Piano (Cannes Poster) -->
+        <div class="plasma-node drift-left" data-title="L'Homme au Piano &middot; Cinema">
+          <img src="/chaunceycampanaro/img/piano_poster.jpg" alt="" loading="lazy">
+        </div>
+
+        <!-- 4. The Red Marlin (Poetry) -->
+        <div class="plasma-node dissolved" data-title="The Red Marlin &middot; Poetry">
+          <div class="prose-nebula">
+            &ldquo;We have it backwards. Those who love, those who have &mdash; they are the ones that want. You can see this play out in temperature. There is no limit to heat, like love, while cold stops. It becomes frozen. Still.<br><br>
+            The universe is an ebb and flow of light and the first human thought was a bird's.&rdquo;
+          </div>
+        </div>
+
+        <!-- 5. Acting Dramatic Still -->
+        <div class="plasma-node dissolved" data-title="Emtiness &middot; Frame Still">
+          <img src="/chaunceycampanaro/img/acting.jpg" alt="" loading="lazy">
+        </div>
+
+        <!-- 6. Imaginary Kittens & Paris Movement -->
+        <div class="plasma-node dissolved" data-title="Imaginary Kittens &middot; Paris Archive">
+          <img src="/chaunceycampanaro/img/cinema.jpg" alt="" loading="lazy">
+        </div>
+
+        <!-- 7. Green Birds (Novella Excerpt) -->
+        <div class="plasma-node dissolved" data-title="Green Birds &middot; Prose">
+          <div class="prose-nebula">
+            &ldquo;In the city of the mind, we find ourselves in a bare-bones western frontier town with two spurred dirt roads intersecting.<br><br>
+            In the spring tread softly, the earth is pregnant. From black to white, from absence of meaning to love, from gas to liquid, from unconscious to conscious.&rdquo;
+          </div>
+        </div>
+
+        <!-- 8. Modeling Fashion Still -->
+        <div class="plasma-node dissolved" data-title="Study in Shadow &middot; Fashion">
+          <img src="/chaunceycampanaro/img/model.jpg" alt="" loading="lazy">
+        </div>
+
+        <!-- 9. Silent Movement Loop -->
+        <div class="plasma-node dissolved" data-title="Cinema &middot; 35mm Motion">
           <video autoplay muted loop playsinline preload="metadata">
             <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
           </video>
         </div>
+
+        <!-- 10. Script Draft Stills -->
+        <div class="plasma-node dissolved" data-title="Typewritten Draft &middot; Script">
+          <img src="/chaunceycampanaro/img/script.jpg" alt="" loading="lazy">
+        </div>
+
+        <!-- 11. Poetry Draft Stills -->
+        <div class="plasma-node dissolved" data-title="Poetry Folio &middot; Fragment">
+          <img src="/chaunceycampanaro/img/poetry.jpg" alt="" loading="lazy">
+        </div>
+
+        <!-- 12. Intimate Portrait Still -->
+        <div class="plasma-node dissolved" data-title="Portrait &middot; Studio Study">
+          <img src="/chaunceycampanaro/img/headshot_sm.jpg" alt="" loading="lazy">
+        </div>
+
       </div>
-      <div class="aura-title" id="title-film">L'Homme au Piano &middot; Cannes Pre-Selection</div>
+      <div class="aura-whisper" id="aura-whisper">The Elephant &middot; Manuscript</div>
     </section>
 
-    <!-- CHAPTER 3: WRITING (The Elephant &middot; The Red Marlin &middot; Green Birds) -->
-    <section class="ether-chapter" aria-label="Writing">
-      <div class="ether-voice">
-        <h2>Writing</h2>
-        <p>The Elephant &middot; The Red Marlin &middot; Green Birds</p>
-      </div>
-      <div class="gaseous-cloud" data-cloud="writing">
-        <div class="nebula-entity active" data-title="The Elephant &middot; Screenplay &middot; Florence Draft">
-          <div class="manuscript-excerpt">
-            &ldquo;When we are asleep in this world we are awake in another.<br><br>
-            Understand! What the devil has it to do with understanding? Since when has a picture been a mathematical proof? It is not there to explain &mdash; explain what, for God's sake &mdash; but to awaken feeling in the heart of the person looking at it.<br><br>
-            A work of Art must not be something that leaves one unmoved, something one passes by with a casual glance. It has to make us react, feel strongly, start creating too, if only in our imagination.&rdquo;
-            <cite>&mdash; The Elephant (Cosmology &amp; Script)</cite>
-          </div>
-        </div>
-        <div class="nebula-entity drift-2" data-title="The Red Marlin &middot; Poetry &middot; Lethus">
-          <div class="manuscript-excerpt">
-            &ldquo;We have it backwards. Those who love, those who have &mdash; they are the ones that want. You can see this play out in temperature. There is no limit to heat, like love, while cold stops. It becomes frozen. Still.<br><br>
-            The universe is an ebb and flow of light and the first human thought was a bird's.&rdquo;
-            <cite>&mdash; The Red Marlin (Final Manuscript)</cite>
-          </div>
-        </div>
-        <div class="nebula-entity drift-1" data-title="Green Birds &middot; Novella &middot; The New Yorker">
-          <div class="manuscript-excerpt">
-            &ldquo;In the city of the mind, we find ourselves in a bare-bones western frontier town with two spurred dirt roads intersecting.<br><br>
-            In the spring tread softly, the earth is pregnant. From black to white, from absence of meaning to love, from gas to liquid, from unconscious to conscious.&rdquo;
-            <cite>&mdash; Green Birds</cite>
-          </div>
-        </div>
-      </div>
-      <div class="aura-title" id="title-writing">The Elephant &middot; Screenplay &middot; Florence Draft</div>
-    </section>
-
-    <!-- CV: Pure Monospace Flow (Actors Access 2026) -->
+    <!-- ACT THREE: The 2026 Actors Access Résumé -->
     <section class="cv-manifest" aria-label="Curriculum Vitae">
       <h3>Chauncey Allen</h3>
       <div class="cv-block-text" style="color:rgba(242,238,233,0.55);margin-bottom:2rem">
@@ -459,7 +432,7 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
 <script>
 (function(){
-  // 1. Reel immediate playback & audio unlock
+  // Reel audio unlock on first interaction
   const heroReel = document.getElementById('hero-reel');
   heroReel.muted = true;
   heroReel.play().catch(()=>{});
@@ -475,7 +448,7 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     window.addEventListener(evt, unlockAudio, {once:true, passive:true});
   });
 
-  // Pause hero when scrolled away
+  // Pause reel when out of view
   const reelStage = document.getElementById('stage-reel');
   if('IntersectionObserver' in window){
     new IntersectionObserver(entries => {
@@ -489,82 +462,89 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     }, {threshold:0.1}).observe(reelStage);
   }
 
-  // 2. Automated & Hover-Activated Nebula Fan Experience (Zero clicks needed)
-  document.querySelectorAll('.gaseous-cloud').forEach(cloud => {
-    const entities = Array.from(cloud.querySelectorAll('.nebula-entity'));
-    const titleEl = document.getElementById('title-' + cloud.dataset.cloud);
-    let activeIdx = 0;
-    const count = entities.length;
-    let userInteracting = false;
-    let autoTimer = null;
+  // ACT TWO: The Organic Random Selector Engine
+  const cycler = document.getElementById('nebula-cycler');
+  const nodes = Array.from(cycler.querySelectorAll('.plasma-node'));
+  const whisperEl = document.getElementById('aura-whisper');
+  const total = nodes.length;
+  let activeIdx = 0;
+  let interacting = false;
 
-    function render(){
-      entities.forEach((ent, i) => {
-        const offset = (i - activeIdx + count) % count;
-        ent.className = 'nebula-entity';
-        if(offset === 0){
-          ent.classList.add('active');
-          if(titleEl) titleEl.innerHTML = ent.dataset.title || '';
-        } else if(offset === 1 || (count === 2 && offset === 1)){
-          ent.classList.add('drift-2');
-        } else if(offset === count - 1){
-          ent.classList.add('drift-1');
-        } else {
-          ent.classList.add('dissolved');
-        }
-      });
-    }
-
-    // Organic hover scrub (just moving mouse sweeps through cloud)
-    cloud.addEventListener('mousemove', e => {
-      userInteracting = true;
-      const rect = cloud.getBoundingClientRect();
-      const pct = Math.max(0, Math.min(0.999, (e.clientX - rect.left) / rect.width));
-      const targetIdx = Math.floor(pct * count);
-      if(targetIdx !== activeIdx){
-        activeIdx = targetIdx;
-        render();
+  function render(){
+    nodes.forEach((node, i) => {
+      const offset = (i - activeIdx + total) % total;
+      node.className = 'plasma-node';
+      if(offset === 0){
+        node.classList.add('center');
+        if(whisperEl) whisperEl.innerHTML = node.dataset.title || '';
+      } else if(offset === 1 || offset === 2){
+        node.classList.add('drift-right');
+      } else if(offset === total - 1 || offset === total - 2){
+        node.classList.add('drift-left');
+      } else {
+        node.classList.add('dissolved');
       }
     });
+  }
 
-    cloud.addEventListener('mouseleave', () => {
-      userInteracting = false;
-    });
-
-    // Touch sweep
-    let startX = null;
-    cloud.addEventListener('touchstart', e => {
-      userInteracting = true;
-      startX = e.touches[0].clientX;
-    }, {passive:true});
-
-    cloud.addEventListener('touchmove', e => {
-      if(startX === null) return;
-      const dx = e.touches[0].clientX - startX;
-      if(Math.abs(dx) > 35){
-        activeIdx = (activeIdx + (dx < 0 ? 1 : -1) + count) % count;
-        render();
-        startX = e.touches[0].clientX;
-      }
-    }, {passive:true});
-
-    cloud.addEventListener('touchend', () => {
-      setTimeout(() => { userInteracting = false; }, 3000);
-    });
-
-    // Automated walk-through if user does nothing
-    autoTimer = setInterval(() => {
-      if(!userInteracting && !document.hidden){
-        const rect = cloud.getBoundingClientRect();
-        if(rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2){
-          activeIdx = (activeIdx + 1) % count;
-          render();
-        }
-      }
-    }, 4500);
-
+  // Random jump selector
+  function randomShift(){
+    let nextIdx;
+    do {
+      nextIdx = Math.floor(Math.random() * total);
+    } while (nextIdx === activeIdx);
+    activeIdx = nextIdx;
     render();
+  }
+
+  // Hover scrub across the cloud
+  cycler.addEventListener('mousemove', e => {
+    interacting = true;
+    const rect = cycler.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(0.999, (e.clientX - rect.left) / rect.width));
+    const targetIdx = Math.floor(pct * total);
+    if(targetIdx !== activeIdx){
+      activeIdx = targetIdx;
+      render();
+    }
   });
+
+  cycler.addEventListener('mouseleave', () => {
+    interacting = false;
+  });
+
+  // Touch sweep
+  let startX = null;
+  cycler.addEventListener('touchstart', e => {
+    interacting = true;
+    startX = e.touches[0].clientX;
+  }, {passive:true});
+
+  cycler.addEventListener('touchmove', e => {
+    if(startX === null) return;
+    const dx = e.touches[0].clientX - startX;
+    if(Math.abs(dx) > 30){
+      activeIdx = (activeIdx + (dx < 0 ? 1 : -1) + total) % total;
+      render();
+      startX = e.touches[0].clientX;
+    }
+  }, {passive:true});
+
+  cycler.addEventListener('touchend', () => {
+    setTimeout(() => { interacting = false; }, 2500);
+  });
+
+  // Autonomous Walk-Through: shifts randomly through all works if visitor does nothing
+  setInterval(() => {
+    if(!interacting && !document.hidden){
+      const rect = cycler.getBoundingClientRect();
+      if(rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15){
+        randomShift();
+      }
+    }
+  }, 4200);
+
+  render();
 })();
 </script>
 </body>
