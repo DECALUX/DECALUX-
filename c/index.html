@@ -1,80 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Chauncey Allen — Actor · Director · Writer">
-<title>Chauncey Campanaro</title>
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html,body{height:100%;overflow:hidden;}
-body{background:#000;color:rgba(245,242,234,0.92);font-family:'Georgia',serif;-webkit-font-smoothing:antialiased;}
-::selection{background:rgba(245,242,234,0.18);color:#fff;}
-img{display:block;width:100%;height:100%;object-fit:cover;}
-
-#stage{height:100vh;height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(0.8rem,2.5vh,1.6rem) clamp(1rem,4vw,3rem);gap:clamp(0.5rem,1.6vh,1rem);}
-#name{font-size:clamp(1.3rem,3.8vw,2.4rem);font-weight:400;letter-spacing:0.22em;padding-left:0.22em;color:#fffdf7;text-shadow:0 0 60px rgba(245,242,234,0.25);}
-#under{display:flex;align-items:center;gap:clamp(0.7rem,2.4vw,1.5rem);}
-#under i{width:clamp(20px,4vw,34px);height:1px;background:rgba(245,242,234,0.4);}
-#under span{font-size:clamp(0.5rem,1.1vw,0.68rem);letter-spacing:0.5em;padding-left:0.5em;text-transform:uppercase;color:rgba(245,242,234,0.55);}
-
-/* the grid: two | one | two */
-#grid{width:min(640px,100%);display:grid;grid-template-columns:1fr 1fr;gap:clamp(0.6rem,1.6vw,1rem);flex:1;min-height:0;grid-template-rows:minmax(0,1fr) minmax(0,0.9fr) minmax(0,1fr);}
-.tile{position:relative;display:block;border:1px solid rgba(245,242,234,0.14);background:#070707;overflow:hidden;outline:none;transition:border-color .5s ease,box-shadow .5s ease;}
-.tile img{filter:grayscale(0.1);transition:filter .6s ease,transform .9s ease;}
-.tile:hover,.tile:focus-visible{border-color:rgba(255,253,247,0.7);box-shadow:0 0 46px rgba(245,242,234,0.12);}
-.tile:hover img,.tile:focus-visible img{filter:none;transform:scale(1.025);}
-.tile span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.62);font-size:clamp(0.6rem,1.3vw,0.8rem);letter-spacing:0.6em;padding-left:0.6em;text-transform:uppercase;color:#fffdf7;opacity:0;transition:opacity .4s ease;}
-.tile:hover span,.tile:focus-visible span{opacity:1;}
-#cinema{grid-column:1/-1;}
-#acting img{object-position:50% 20%;}
-#model img{object-position:50% 0;}
-#script img,#poetry img{object-position:50% 0;}
-
-#home{width:clamp(36px,4.5vw,50px);display:block;outline:none;transition:filter .45s ease;}
-#home svg{display:block;width:100%;height:auto;}
-#home:hover svg,#home:focus-visible svg{filter:brightness(1.5) drop-shadow(0 0 14px rgba(245,242,234,0.35));}
-
-#stage>*{opacity:0;transform:translateY(10px);transition:opacity 1.2s ease,transform 1.2s ease;}
-body.on #stage>*{opacity:1;transform:none;}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.01ms!important;}}
-@media (hover:none){.tile span{opacity:1;background:linear-gradient(to top,rgba(0,0,0,0.85),transparent 55%);align-items:flex-end;padding-bottom:0.8rem;font-size:0.55rem;}}
-</style>
-</head>
-<body>
-<div id="stage">
-  <h1 id="name">CHAUNCEY&nbsp;ALAN</h1>
-  <div id="under"><i></i><span>Actor &middot; Director &middot; Writer</span><i></i></div>
-
-  <nav id="grid" aria-label="Portfolio">
-    <a class="tile" id="acting" href="https://drive.google.com/drive/folders/1liC1gCi2nVtR3A1X4QPzK9a3Me_mALX1?usp=sharing" target="_blank" rel="noopener">
-      <img src="/c/img/acting.jpg" alt="Chauncey Allen — acting"><span>Acting</span></a>
-    <a class="tile" id="model" href="https://drive.google.com/drive/folders/1M82BPEg9HrnXQQa5g2RQ3PAiD0Odusnb?usp=sharing" target="_blank" rel="noopener">
-      <img src="/c/img/model.jpg" alt="Chauncey Allen — modeling"><span>Modeling</span></a>
-    <a class="tile" id="cinema" href="https://drive.google.com/drive/folders/1NHPWcnw6-D_edYMDd4WHzym61X0nrzFV?usp=sharing" target="_blank" rel="noopener">
-      <img src="/c/img/cinema.jpg" alt="L'Homme au Piano"><span>Cinema</span></a>
-    <a class="tile" id="script" href="https://drive.google.com/file/d/1zN8Ih4T7lHF3Rsi8Yd6mJwxUYDLaQlbC/view" target="_blank" rel="noopener">
-      <img src="/c/img/script.jpg" alt="The Elephant — script"><span>Script</span></a>
-    <a class="tile" id="poetry" href="https://drive.google.com/file/d/12Bk5jhPxKFhR6peJWZqJV_Nr59WdByF5/view" target="_blank" rel="noopener">
-      <img src="/c/img/poetry.jpg" alt="The Red Marlin — poetry"><span>Poetry</span></a>
-  </nav>
-
-  <a id="home" href="https://www.decalux.art" aria-label="Decalux">
-    <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(248,245,238,0.85)" stroke-width="4"/>
-      <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(248,245,238,0.85)" stroke-width="4"/>
-      <circle cx="326" cy="75" r="3.5" stroke="rgba(248,245,238,0.85)" stroke-width="3"/>
-      <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(248,245,238,0.85)" stroke-width="4" stroke-linecap="round"/>
-      <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(248,245,238,0.75)" stroke-width="3"/>
-      <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(248,245,238,0.6)" stroke-width="3" stroke-linecap="round"/>
-      <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(248,245,238,0.85)" stroke-width="3.5" stroke-linecap="round"/>
-      <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(248,245,238,0.85)" stroke-width="3.5" stroke-linecap="round"/>
-      <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(248,245,238,0.85)" stroke-width="3.5" stroke-linecap="round"/>
-      <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(248,245,238,0.85)" stroke-width="3.5" stroke-linecap="round"/>
-    </svg>
-  </a>
-</div>
-<script>requestAnimationFrame(()=>setTimeout(()=>document.body.classList.add('on'),120));</script>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Chauncey Alan</title><style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#080808;color:#f5f2ea;font-family:Georgia,serif}a{color:inherit}button{font:inherit;cursor:pointer}button,a{touch-action:manipulation}button:focus-visible,a:focus-visible{outline:3px solid white;outline-offset:5px}.hero{height:100vh;height:100svh;position:relative;background:#000}.hero iframe{width:100%;height:100%;border:0}.hero nav{position:absolute;bottom:0;left:0;right:0;padding:25px 5vw;background:linear-gradient(transparent,#000);display:flex;justify-content:space-between;align-items:end;gap:20px;pointer-events:none;font:11px/1.8 Arial,sans-serif;letter-spacing:.12em}.hero nav a{pointer-events:auto}.hero small{font-size:10px;letter-spacing:0}main{max-width:1250px;margin:auto;padding:90px 6vw}header{text-align:center;margin-bottom:80px}h1{font-size:clamp(26px,5vw,56px);font-weight:400;letter-spacing:.15em}header p,.hint{font:11px/1.8 Arial,sans-serif;color:#aaa;letter-spacing:.12em}h2{font-weight:400}#gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:38px}.group{min-width:0;padding-top:20px}.label{border:0;border-radius:2px;color:#fff;padding:9px 16px;font:12px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;background:var(--color);position:relative;z-index:5}.stack{position:relative;height:330px;margin:32px 12px 20px;perspective:1000px}.card{position:absolute;inset:0;margin:0;background:#171717;border:1px solid #444;box-shadow:0 15px 30px #0008;transition:transform .4s,opacity .4s;transform:translateY(calc(var(--offset)*-8px)) rotate(calc(var(--offset)*-3deg));z-index:var(--layer);overflow:hidden}.group:hover .card,.group:focus-within .card,.group.expanded .card{transform:translateX(calc(var(--offset)*25px)) translateY(calc(var(--offset)*-9px)) rotate(calc(var(--offset)*-9deg))}.card.active{transform:none!important;z-index:4}.card img{width:100%;height:100%;object-fit:cover}.card figcaption{position:absolute;left:0;right:0;bottom:0;padding:45px 15px 15px;background:linear-gradient(transparent,#000);font:12px Arial,sans-serif}.controls{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:6}.controls button{border:1px solid #555;color:#fff;background:#111;min-width:42px;min-height:42px}.count{font:11px Arial,sans-serif;color:#bbb}.open{display:block;text-align:center;margin-top:15px;font:12px Arial,sans-serif;line-height:1.7}.resume{margin-top:110px;border-top:1px solid #333;padding-top:25px}.resume-head{display:flex;justify-content:space-between;align-items:center;gap:20px}.resume-head a{font:12px Arial,sans-serif}.resume iframe{width:100%;height:85vh;min-height:500px;border:1px solid #333}footer{text-align:center;padding:35px;font:11px Arial,sans-serif;letter-spacing:.2em}dialog{width:min(1100px,94vw);height:90vh;padding:0;border:1px solid #555;background:#111;color:#fff}dialog::backdrop{background:#000c}dialog header{margin:0;padding:12px;display:flex;justify-content:space-between;align-items:center;gap:16px;font:12px Arial,sans-serif}dialog button{padding:10px;background:#222;color:#fff;border:1px solid #666}dialog iframe{width:100%;height:calc(100% - 65px);border:0;background:#eee}@media(max-width:850px){#gallery{grid-template-columns:1fr;gap:55px}.group{max-width:550px;width:100%;margin:auto}.stack{height:420px;margin-left:25px;margin-right:25px}main{padding:60px 7vw}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}}
+</style></head><body>
+<section class="hero" aria-label="Reel"><iframe id="hero-player" title="Chauncey Alan reel" src="https://drive.google.com/file/d/1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ/preview?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe><nav><span>CHAUNCEY ALAN<br><small>Press play for sound if playback has not started.</small></span><a href="#work">EXPLORE WORK ↓</a></nav></section>
+<main id="work"><header><h1>CHAUNCEY ALAN</h1><p>ACTOR · DIRECTOR · WRITER</p><p class="hint">Hover or tap a label to fan out. Use the arrows to browse.</p></header><div id="gallery"></div><section class="resume"><div class="resume-head"><h2>Résumé</h2><a href="https://drive.google.com/file/d/1wIimQHFFkDy9QX5Q6jC7eyq4QN1mfxnZ/view" target="_blank" rel="noopener">Open original ↗</a></div><iframe loading="lazy" title="Chauncey Alan résumé" src="https://drive.google.com/file/d/1wIimQHFFkDy9QX5Q6jC7eyq4QN1mfxnZ/preview"></iframe></section></main><footer><a href="https://www.decalux.art">DECALUX</a> · <a href="#">BACK TO REEL ↑</a></footer><dialog id="viewer"><header><span id="viewer-title"></span><a id="original" target="_blank" rel="noopener">Open in Drive ↗</a><button id="close" type="button">Close ×</button></header><iframe id="preview" title="Selected portfolio content" allow="autoplay; fullscreen" allowfullscreen></iframe></dialog>
+<script>
+const file=id=>({url:'https://drive.google.com/file/d/'+id+'/view',preview:'https://drive.google.com/file/d/'+id+'/preview'});const folder=id=>({url:'https://drive.google.com/drive/folders/'+id,preview:'https://drive.google.com/embeddedfolderview?id='+id+'#grid'});
+const groups=[{name:'Photos',color:'#2456bc',items:[{name:'Acting',image:'acting',...folder('1liC1gCi2nVtR3A1X4QPzK9a3Me_mALX1')},{name:'Modeling',image:'model',...folder('1M82BPEg9HrnXQQa5g2RQ3PAiD0Odusnb')}]},{name:'Film',color:'#b82c32',items:[{name:'Reel',image:'cinema',...file('1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ')},{name:'Cinema collection',image:'cinema',...folder('1NHPWcnw6-D_edYMDd4WHzym61X0nrzFV')}]},{name:'Writing',color:'#237546',items:[{name:'The Elephant — Script',image:'script',...file('1zN8Ih4T7lHF3Rsi8Yd6mJwxUYDLaQlbC')},{name:'The Red Marlin — Poetry',image:'poetry',...file('12Bk5jhPxKFhR6peJWZqJV_Nr59WdByF5')}]}];
+const viewer=document.querySelector('#viewer'),preview=document.querySelector('#preview'),hero=document.querySelector('#hero-player');const heroSrc=hero.src;function stopHero(){if(hero.src!==heroSrc.replace('?autoplay=1',''))hero.src=heroSrc.replace('?autoplay=1','')}function show(item){stopHero();document.querySelector('#viewer-title').textContent=item.name;document.querySelector('#original').href=item.url;preview.src=item.preview;viewer.showModal()}document.querySelector('#close').onclick=()=>viewer.close();viewer.addEventListener('close',()=>preview.src='about:blank');new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)stopHero()},{threshold:0}).observe(document.querySelector('.hero'));
+groups.forEach((group,g)=>{let current=0;const section=document.createElement('section');section.className='group';section.style.setProperty('--color',group.color);section.setAttribute('aria-label',group.name+' carousel');section.innerHTML='<button class="label" aria-expanded="false" aria-controls="stack-'+g+'">'+group.name+'</button><div class="stack" id="stack-'+g+'"></div><div class="controls"><button class="prev" aria-label="Previous '+group.name.toLowerCase()+' item">←</button><span class="count" aria-live="polite"></span><button class="next" aria-label="Next '+group.name.toLowerCase()+' item">→</button></div><a class="open" href="#">View selected item</a>';const stack=section.querySelector('.stack');group.items.forEach(item=>{const card=document.createElement('figure');card.className='card';const img=document.createElement('img');img.src='/c/img/'+item.image+'.jpg';img.alt=item.name;img.loading='lazy';const caption=document.createElement('figcaption');caption.textContent=item.name;card.append(img,caption);stack.append(card)});function render(){[...stack.children].forEach((card,i)=>{const offset=(i-current+group.items.length)%group.items.length;card.style.setProperty('--offset',offset);card.style.setProperty('--layer',group.items.length-offset);card.classList.toggle('active',i===current);card.setAttribute('aria-hidden',String(i!==current))});section.querySelector('.count').textContent=(current+1)+' / '+group.items.length;const link=section.querySelector('.open');link.textContent='View '+group.items[current].name+' ↗';link.href=group.items[current].url}function move(step){current=(current+step+group.items.length)%group.items.length;render()}section.querySelector('.prev').onclick=()=>move(-1);section.querySelector('.next').onclick=()=>move(1);section.querySelector('.label').onclick=e=>{const expanded=section.classList.toggle('expanded');e.currentTarget.setAttribute('aria-expanded',String(expanded))};section.querySelector('.open').onclick=e=>{if(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;e.preventDefault();show(group.items[current])};section.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();move(1)}if(e.key==='ArrowLeft'){e.preventDefault();move(-1)}});let start=null;stack.addEventListener('touchstart',e=>start=e.changedTouches[0].clientX,{passive:true});stack.addEventListener('touchend',e=>{if(start===null)return;const delta=e.changedTouches[0].clientX-start;if(Math.abs(delta)>45)move(delta<0?1:-1);start=null},{passive:true});render();document.querySelector('#gallery').append(section)});
+</script></body></html>
