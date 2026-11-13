@@ -17,8 +17,8 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* Screen 1: Full-Screen Native Reel (Immediate, Edge-to-Edge) */
-#stage-reel{
+/* Screen 1: Full-Screen Exact Uploaded Reel — Edge-to-Edge Pure Video */
+#screen-reel{
   position:relative;
   width:100vw;
   height:100vh;
@@ -26,7 +26,7 @@ body{
   background:#000;
   overflow:hidden;
 }
-#stage-reel video{
+#screen-reel video{
   position:absolute;
   inset:0;
   width:100%;
@@ -34,14 +34,14 @@ body{
   object-fit:cover;
   display:block;
 }
-#stage-reel .nebula-dissolve{
+#screen-reel .dissolve{
   position:absolute;
   inset:auto 0 0 0;
   height:35vh;
   background:linear-gradient(to bottom, transparent, rgba(0,0,0,0.85) 60%, #000 100%);
   pointer-events:none;
 }
-#stage-reel .monogram{
+#screen-reel .monogram{
   position:absolute;
   top:max(2.5rem, env(safe-area-inset-top));
   left:5vw;
@@ -54,12 +54,12 @@ body{
   text-shadow:0 0 30px rgba(0,0,0,0.9);
 }
 
-/* Atmospheric Gaseous Nebula Field */
+/* Living Nebula Space */
 .nebula-space{
   position:relative;
-  min-height:160vh;
+  min-height:170vh;
   background:#000;
-  padding:10vh 6vw 15vh;
+  padding:12vh 6vw 15vh;
   overflow:hidden;
 }
 
@@ -81,17 +81,17 @@ body{
   100%{transform:scale(1.06) translate(4vw, -2vh);opacity:0.7}
 }
 
-/* OVERLAY CONTAINER: Act Three (CV) floats directly over Act Two (Nebula Works) */
-.palimpsest-theatre{
+/* OVERLAY ARCHITECTURE: Résumé directly on top, 1-second cycling media directly on bottom */
+.overlay-theatre{
   position:relative;
   width:100%;
   max-width:1300px;
   margin:0 auto;
-  min-height:140vh;
+  min-height:150vh;
 }
 
-/* ACT TWO: The Under-Layer (Random Gaseous Media Stream) */
-.gaseous-underlayer{
+/* BOTTOM LAYER: Rapid 1-second cycling media stream */
+.cycler-bottom-layer{
   position:sticky;
   top:6vh;
   width:100%;
@@ -103,7 +103,7 @@ body{
   pointer-events:none;
 }
 
-.gaseous-cycler{
+.media-stream{
   position:relative;
   width:100%;
   height:100%;
@@ -112,19 +112,19 @@ body{
   justify-content:center;
 }
 
-.plasma-node{
+.stream-node{
   position:absolute;
   max-width:88%;
   max-height:92%;
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:all 2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:all 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change:transform, opacity, filter;
   pointer-events:none;
 }
 
-.plasma-node img, .plasma-node video{
+.stream-node img, .stream-node video{
   max-width:100%;
   max-height:100%;
   object-fit:contain;
@@ -135,62 +135,59 @@ body{
   filter:drop-shadow(0 0 80px rgba(0,0,0,0.95));
 }
 
-.plasma-node.center{
-  opacity:0.75;
+.stream-node.center{
+  opacity:0.8;
   transform:translate3d(0, 0, 0) scale(1) rotate(0deg);
-  filter:none;
+  filter:drop-shadow(0 0 100px rgba(255,253,248,0.28)) drop-shadow(0 20px 40px rgba(0,0,0,0.95));
   z-index:3;
 }
-.plasma-node.center img, .plasma-node.center video{
-  filter:drop-shadow(0 0 100px rgba(255,253,248,0.25)) drop-shadow(0 20px 40px rgba(0,0,0,0.9));
-}
-.plasma-node.drift-left{
+.stream-node.drift-left{
   opacity:0.18;
-  transform:translate3d(-26%, 5%, 0) scale(0.82) rotate(-6deg);
+  transform:translate3d(-26%, 4%, 0) scale(0.82) rotate(-5deg);
   filter:blur(5px) brightness(0.5);
   z-index:2;
 }
-.plasma-node.drift-right{
+.stream-node.drift-right{
   opacity:0.18;
-  transform:translate3d(26%, 5%, 0) scale(0.82) rotate(6deg);
+  transform:translate3d(26%, 4%, 0) scale(0.82) rotate(5deg);
   filter:blur(5px) brightness(0.5);
   z-index:2;
 }
-.plasma-node.dissolved{
+.stream-node.dissolved{
   opacity:0;
-  transform:translate3d(0, 12%, 0) scale(0.65);
+  transform:translate3d(0, 10%, 0) scale(0.68);
   filter:blur(18px) brightness(0.2);
   z-index:1;
 }
 
-.prose-nebula{
+.prose-stream{
   padding:3vh 4vw;
   font-family:"Courier New",Courier,monospace;
-  font-size:clamp(0.9rem, 1.5vw, 1.2rem);
+  font-size:clamp(0.9rem, 1.5vw, 1.25rem);
   line-height:2.2;
-  color:rgba(242,238,233,0.85);
+  color:rgba(242,238,233,0.88);
   max-width:48rem;
   margin:0 auto;
-  text-shadow:0 0 35px rgba(255,255,255,0.25);
+  text-shadow:0 0 35px rgba(255,255,255,0.3);
   text-align:left;
 }
 
-/* ACT THREE: The Over-Layer (CV Typewritten Text Floating Over the Media) */
-.cv-overlay{
+/* TOP LAYER: The Résumé overlaid directly over the bottom stream */
+.resume-top-layer{
   position:relative;
   z-index:4;
   max-width:54rem;
   margin:0 auto;
   padding:8vh 3vw 12vh;
   font-family:"Courier New",Courier,monospace;
-  color:rgba(242,238,233,0.92);
+  color:rgba(242,238,233,0.95);
   font-size:0.92rem;
   line-height:1.8;
-  text-shadow:0 2px 20px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.9);
+  text-shadow:0 2px 20px rgba(0,0,0,0.98), 0 0 12px rgba(0,0,0,0.95);
   pointer-events:auto;
 }
 
-.cv-overlay h3{
+.resume-top-layer h3{
   font-size:1.25rem;
   font-weight:400;
   letter-spacing:0.3em;
@@ -200,7 +197,7 @@ body{
   padding-bottom:1.2rem;
   margin-bottom:2.5rem;
 }
-.cv-overlay h4{
+.resume-top-layer h4{
   font-size:0.75rem;
   font-weight:400;
   letter-spacing:0.35em;
@@ -208,20 +205,20 @@ body{
   color:rgba(242,238,233,0.55);
   margin:2.8rem 0 0.8rem;
 }
-.cv-line{
+.resume-line{
   display:grid;
   grid-template-columns:5rem 1fr 1fr;
   padding:0.25rem 0;
   gap:1rem;
 }
-.cv-line span:first-child{color:rgba(242,238,233,0.5)}
-.cv-line span:last-child{text-align:right;color:rgba(242,238,233,0.75)}
-.cv-block-text{
+.resume-line span:first-child{color:rgba(242,238,233,0.5)}
+.resume-line span:last-child{text-align:right;color:rgba(242,238,233,0.75)}
+.resume-block{
   color:rgba(242,238,233,0.85);
   margin-top:0.4rem;
   line-height:1.85;
 }
-.cv-end{
+.resume-end{
   margin-top:4.5rem;
   padding-top:1.5rem;
   border-top:1px solid rgba(242,238,233,0.25);
@@ -232,12 +229,12 @@ body{
   font-size:0.75rem;
   letter-spacing:0.2em;
 }
-.cv-end a{
+.resume-end a{
   color:rgba(242,238,233,0.8);
   text-decoration:none;
   transition:color 0.4s;
 }
-.cv-end a:hover{
+.resume-end a:hover{
   color:#fff;
   text-shadow:0 0 15px rgba(255,255,255,0.7);
 }
@@ -257,9 +254,9 @@ footer a:hover{opacity:0.9}
 footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
 @media(max-width:768px){
-  .cv-line{grid-template-columns:4rem 1fr}
-  .cv-line span:last-child{grid-column:2;text-align:left;color:rgba(242,238,233,0.5)}
-  .plasma-node{max-width:96%;max-height:96%}
+  .resume-line{grid-template-columns:4rem 1fr}
+  .resume-line span:last-child{grid-column:2;text-align:left;color:rgba(242,238,233,0.5)}
+  .stream-node{max-width:96%;max-height:96%}
 }
 </style>
 </head>
@@ -267,127 +264,129 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
 <div class="nebula-gas" aria-hidden="true"></div>
 
-<!-- ACT ONE: Immediate Full-Screen Reel -->
-<section id="stage-reel" aria-label="Chauncey Alan Reel">
+<!-- SCREEN 1: Full-Screen Exact Reel (1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ / local fallback) -->
+<section id="screen-reel" aria-label="Chauncey Alan Reel">
   <video id="hero-reel" autoplay loop playsinline preload="auto" poster="/chaunceycampanaro/img/poster.jpg">
+    <source src="https://drive.google.com/uc?export=download&id=1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ" type="video/mp4">
     <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
   </video>
-  <div class="nebula-dissolve"></div>
+  <div class="dissolve"></div>
   <div class="monogram">Chauncey Alan</div>
 </section>
 
-<!-- THE NEBULA STREAM: ACT THREE DIRECTLY OVERLAYING ACT TWO -->
+<!-- THE NEBULA OVERLAY: Résumé ON TOP, 1-Second Media Stream ON BOTTOM -->
 <div class="nebula-space">
-  <div class="palimpsest-theatre">
+  <div class="overlay-theatre">
 
-    <!-- UNDER-LAYER (ACT TWO): Gaseous Random Selector Media Stream -->
-    <div class="gaseous-underlayer">
-      <div class="gaseous-cycler" id="nebula-cycler">
+    <!-- BOTTOM LAYER: Rapid 1-Second Cycling Media Stream -->
+    <div class="cycler-bottom-layer">
+      <div class="media-stream" id="media-stream">
 
-        <!-- 1. The Elephant -->
-        <div class="plasma-node center" data-title="The Elephant">
-          <div class="prose-nebula">
+        <!-- 1. The Elephant Florence Draft -->
+        <div class="stream-node center">
+          <div class="prose-stream">
             &ldquo;When we are asleep in this world we are awake in another.<br><br>
             Understand! What the devil has it to do with understanding? Since when has a picture been a mathematical proof? It is not there to explain &mdash; explain what, for God's sake &mdash; but to awaken feeling in the heart of the person looking at it.<br><br>
             A work of Art must not be something that leaves one unmoved, something one passes by with a casual glance. It has to make us react, feel strongly, start creating too, if only in our imagination.&rdquo;
           </div>
         </div>
 
-        <!-- 2. Rory Lewis Portrait -->
-        <div class="plasma-node drift-right" data-title="Presence">
+        <!-- 2. Rory Lewis Studio Portrait -->
+        <div class="stream-node drift-right">
           <img src="/chaunceycampanaro/img/headshot.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 3. L'Homme au Piano Poster -->
-        <div class="plasma-node drift-left" data-title="L'Homme au Piano">
+        <!-- 3. L'Homme au Piano Cannes Poster -->
+        <div class="stream-node drift-left">
           <img src="/chaunceycampanaro/img/piano_poster.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 4. The Red Marlin -->
-        <div class="plasma-node dissolved" data-title="The Red Marlin">
-          <div class="prose-nebula">
+        <!-- 4. The Red Marlin Poetry Final -->
+        <div class="stream-node dissolved">
+          <div class="prose-stream">
             &ldquo;We have it backwards. Those who love, those who have &mdash; they are the ones that want. You can see this play out in temperature. There is no limit to heat, like love, while cold stops. It becomes frozen. Still.<br><br>
             The universe is an ebb and flow of light and the first human thought was a bird's.&rdquo;
           </div>
         </div>
 
-        <!-- 5. Acting Frame -->
-        <div class="plasma-node dissolved" data-title="Emtiness">
+        <!-- 5. Emtiness Acting Dramatic Still -->
+        <div class="stream-node dissolved">
           <img src="/chaunceycampanaro/img/acting.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 6. Imaginary Kittens Archive -->
-        <div class="plasma-node dissolved" data-title="Imaginary Kittens">
+        <!-- 6. Imaginary Kittens Paris Archive -->
+        <div class="stream-node dissolved">
           <img src="/chaunceycampanaro/img/cinema.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 7. Green Birds -->
-        <div class="plasma-node dissolved" data-title="Green Birds">
-          <div class="prose-nebula">
+        <!-- 7. Green Birds Novella Excerpt -->
+        <div class="stream-node dissolved">
+          <div class="prose-stream">
             &ldquo;In the city of the mind, we find ourselves in a bare-bones western frontier town with two spurred dirt roads intersecting.<br><br>
             In the spring tread softly, the earth is pregnant. From black to white, from absence of meaning to love, from gas to liquid, from unconscious to conscious.&rdquo;
           </div>
         </div>
 
-        <!-- 8. Modeling Study -->
-        <div class="plasma-node dissolved" data-title="Shadow">
+        <!-- 8. Modeling Fashion Study -->
+        <div class="stream-node dissolved">
           <img src="/chaunceycampanaro/img/model.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 9. Silent 35mm Motion -->
-        <div class="plasma-node dissolved" data-title="Movement">
+        <!-- 9. Silent 35mm Motion Sequence -->
+        <div class="stream-node dissolved">
           <video autoplay muted loop playsinline preload="metadata">
+            <source src="https://drive.google.com/uc?export=download&id=1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ" type="video/mp4">
             <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
           </video>
         </div>
 
-        <!-- 10. Script Folio -->
-        <div class="plasma-node dissolved" data-title="Script">
+        <!-- 10. Script Draft Fragment -->
+        <div class="stream-node dissolved">
           <img src="/chaunceycampanaro/img/script.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 11. Poetry Folio -->
-        <div class="plasma-node dissolved" data-title="Poetry">
+        <!-- 11. Poetry Folio Fragment -->
+        <div class="stream-node dissolved">
           <img src="/chaunceycampanaro/img/poetry.jpg" alt="" loading="lazy">
         </div>
 
-        <!-- 12. Studio Portrait -->
-        <div class="plasma-node dissolved" data-title="Study">
+        <!-- 12. Studio Portrait Detail -->
+        <div class="stream-node dissolved">
           <img src="/chaunceycampanaro/img/headshot_sm.jpg" alt="" loading="lazy">
         </div>
 
       </div>
     </div>
 
-    <!-- OVER-LAYER (ACT THREE): The Résumé Floated Directly Across Act Two -->
-    <section class="cv-overlay" aria-label="Curriculum Vitae">
+    <!-- TOP LAYER: Résumé (Chauncey - CV ACTING 2026.pdf) Floated Directly On Top -->
+    <section class="resume-top-layer" aria-label="Curriculum Vitae">
       <h3>Chauncey Allen</h3>
-      <div class="cv-block-text" style="color:rgba(242,238,233,0.6);margin-bottom:2rem">
+      <div class="resume-block" style="color:rgba(242,238,233,0.6);margin-bottom:2rem">
         6'5" &middot; 190 lbs &middot; Representation: Jager Campbell Talent (312) 545-5861
       </div>
 
       <h4>Film</h4>
-      <div class="cv-line"><span>2026</span><span>Emtiness (Short)</span><span>dir. Calvin Treats</span></div>
-      <div class="cv-line"><span>2023</span><span>Giorni Felici</span><span>dir. Simone Petralia</span></div>
-      <div class="cv-line"><span>2020</span><span>Sipario (Short)</span><span>dir. Davide Scarciello</span></div>
-      <div class="cv-line"><span>2019</span><span>Rome in Love (TV Movie)</span><span>dir. Eric Bross</span></div>
-      <div class="cv-line"><span>2018</span><span>Un Grande Amore</span><span>dir. Cristian DeMateis</span></div>
+      <div class="resume-line"><span>2026</span><span>Emtiness (Short)</span><span>dir. Calvin Treats</span></div>
+      <div class="resume-line"><span>2023</span><span>Giorni Felici</span><span>dir. Simone Petralia</span></div>
+      <div class="resume-line"><span>2020</span><span>Sipario (Short)</span><span>dir. Davide Scarciello</span></div>
+      <div class="resume-line"><span>2019</span><span>Rome in Love (TV Movie)</span><span>dir. Eric Bross</span></div>
+      <div class="resume-line"><span>2018</span><span>Un Grande Amore</span><span>dir. Cristian DeMateis</span></div>
 
       <h4>Theatre</h4>
-      <div class="cv-line"><span>2017</span><span>Free for All</span><span>dir. Rebecca Martin</span></div>
-      <div class="cv-line"><span>2016</span><span>The World is on Fire</span><span>Royal Shakespeare Company / S.I.</span></div>
-      <div class="cv-line"><span>2016</span><span>Julius Caesar</span><span>dir. Rebecca Martin</span></div>
-      <div class="cv-line"><span>2015</span><span>Casey 30 Years Later</span><span>dir. Beverly Bonner (Broadway CC)</span></div>
-      <div class="cv-line"><span>2014</span><span>Saturday Night Sleeping</span><span>dir. Jorge Franco IV</span></div>
-      <div class="cv-line"><span>1997</span><span>Tolstoy: Redemption</span><span>dir. Anna Strasberg</span></div>
+      <div class="resume-line"><span>2017</span><span>Free for All</span><span>dir. Rebecca Martin</span></div>
+      <div class="resume-line"><span>2016</span><span>The World is on Fire</span><span>Royal Shakespeare Company / S.I.</span></div>
+      <div class="resume-line"><span>2016</span><span>Julius Caesar</span><span>dir. Rebecca Martin</span></div>
+      <div class="resume-line"><span>2015</span><span>Casey 30 Years Later</span><span>dir. Beverly Bonner (Broadway CC)</span></div>
+      <div class="resume-line"><span>2014</span><span>Saturday Night Sleeping</span><span>dir. Jorge Franco IV</span></div>
+      <div class="resume-line"><span>1997</span><span>Tolstoy: Redemption</span><span>dir. Anna Strasberg</span></div>
 
       <h4>Directing</h4>
-      <div class="cv-line"><span>2019</span><span>L'Homme au Piano (Feature)</span><span>Cannes Pre-Selection</span></div>
-      <div class="cv-line"><span>&mdash;</span><span>Imaginary Kittens (Short)</span><span>Paris</span></div>
-      <div class="cv-line"><span>&mdash;</span><span>Like a Lady</span><span>Best Director, Riant Theatre NYC</span></div>
+      <div class="resume-line"><span>2019</span><span>L'Homme au Piano (Feature)</span><span>Cannes Pre-Selection</span></div>
+      <div class="resume-line"><span>&mdash;</span><span>Imaginary Kittens (Short)</span><span>Paris</span></div>
+      <div class="resume-line"><span>&mdash;</span><span>Like a Lady</span><span>Best Director, Riant Theatre NYC</span></div>
 
       <h4>Mentors &amp; Training</h4>
-      <div class="cv-block-text">
+      <div class="resume-block">
         Mentors: Anna Strasberg &middot; Fioretta Mari &middot; Jeanie Linders<br>
         Lee Strasberg Theatre &amp; Film Institute (Johnny Depp Acting Scholarship)<br>
         Royal Shakespeare Company / Shakespeare Institute &middot; Ewan Fernie<br>
@@ -396,12 +395,12 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
       </div>
 
       <h4>Management &amp; Contact</h4>
-      <div class="cv-block-text">
+      <div class="resume-block">
         Manager: Robin Taub &middot; (747) 225-1843 &middot; thesptalent@gmail.com<br>
         Agency: Jager Campbell Talent Agency &middot; (312) 545-5861
       </div>
 
-      <div class="cv-end">
+      <div class="resume-end">
         <a href="https://www.imdb.me/chauncey" target="_blank" rel="noopener">imdb.me/chauncey</a>
         <a href="https://instagram.com/ChaunceyyIG" target="_blank" rel="noopener">@ChaunceyyIG</a>
         <a href="mailto:thesptalent@gmail.com">thesptalent@gmail.com</a>
@@ -430,7 +429,7 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
 <script>
 (function(){
-  // Reel audio unlock on first interaction
+  // Immediate Reel Playback & Audio Unlock
   const heroReel = document.getElementById('hero-reel');
   heroReel.muted = true;
   heroReel.play().catch(()=>{});
@@ -446,8 +445,7 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     window.addEventListener(evt, unlockAudio, {once:true, passive:true});
   });
 
-  // Pause reel when out of view
-  const reelStage = document.getElementById('stage-reel');
+  const reelStage = document.getElementById('screen-reel');
   if('IntersectionObserver' in window){
     new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -460,17 +458,16 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     }, {threshold:0.1}).observe(reelStage);
   }
 
-  // ACT TWO: Gaseous Random Selector Engine underneath
-  const cycler = document.getElementById('nebula-cycler');
-  const nodes = Array.from(cycler.querySelectorAll('.plasma-node'));
+  // 1-SECOND RAPID RANDOM SELECTOR (ON BOTTOM LAYER)
+  const stream = document.getElementById('media-stream');
+  const nodes = Array.from(stream.querySelectorAll('.stream-node'));
   const total = nodes.length;
   let activeIdx = 0;
-  let interacting = false;
 
   function render(){
     nodes.forEach((node, i) => {
       const offset = (i - activeIdx + total) % total;
-      node.className = 'plasma-node';
+      node.className = 'stream-node';
       if(offset === 0){
         node.classList.add('center');
       } else if(offset === 1 || offset === 2){
@@ -483,47 +480,17 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     });
   }
 
-  function randomShift(){
-    let nextIdx;
-    do {
-      nextIdx = Math.floor(Math.random() * total);
-    } while (nextIdx === activeIdx);
-    activeIdx = nextIdx;
+  function cycleNext(){
+    activeIdx = (activeIdx + 1) % total;
     render();
   }
 
-  // Hover scrub across the window
-  window.addEventListener('mousemove', e => {
-    const pct = Math.max(0, Math.min(0.999, e.clientX / window.innerWidth));
-    const targetIdx = Math.floor(pct * total);
-    if(targetIdx !== activeIdx){
-      activeIdx = targetIdx;
-      render();
-    }
-  });
-
-  // Touch sweep
-  let startX = null;
-  window.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-  }, {passive:true});
-
-  window.addEventListener('touchmove', e => {
-    if(startX === null) return;
-    const dx = e.touches[0].clientX - startX;
-    if(Math.abs(dx) > 30){
-      activeIdx = (activeIdx + (dx < 0 ? 1 : -1) + total) % total;
-      render();
-      startX = e.touches[0].clientX;
-    }
-  }, {passive:true});
-
-  // Continuous autonomous random drift of the media underneath
+  // Exact 1-second continuous cycle
   setInterval(() => {
     if(!document.hidden){
-      randomShift();
+      cycleNext();
     }
-  }, 4400);
+  }, 1000);
 
   render();
 })();
