@@ -19,7 +19,7 @@ body{
 
 /* Screen 1: Full-Screen Exact Uploaded Reel — Edge-to-Edge Pure Video */
 #screen-reel{
-  position:relative;
+  position:sticky;top:0;z-index:0;
   width:100vw;
   height:100vh;
   height:100dvh;
@@ -56,9 +56,9 @@ body{
 
 /* Living Nebula Space */
 .nebula-space{
-  position:relative;
+  position:relative;z-index:1;
   min-height:170vh;
-  background:#000;
+  background:rgba(0,0,0,0.62);
   padding:12vh 6vw 15vh;
   overflow:hidden;
 }
@@ -254,7 +254,8 @@ footer a:hover{opacity:0.9}
 footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
 @media(max-width:768px){
-  #screen-reel{height:56.25vw}
+  #screen-reel{height:56.25vw;z-index:5}
+  .nebula-space{background:#000}
   #screen-reel .dissolve{height:12vw}
   .resume-line{grid-template-columns:4rem 1fr}
   .resume-line span:last-child{grid-column:2;text-align:left;color:rgba(242,238,233,0.5)}
@@ -268,7 +269,7 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
 
 <!-- SCREEN 1: Full-Screen Exact Reel (1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ / local fallback) -->
 <section id="screen-reel" aria-label="Chauncey Alan Reel">
-  <video id="hero-reel" autoplay loop playsinline preload="auto" poster="/c/img/poster.jpg">
+  <video id="hero-reel" autoplay muted loop playsinline preload="auto" poster="/c/img/poster.jpg">
     <source src="/c/reel.mp4" type="video/mp4">
   </video>
   <div class="dissolve"></div>
@@ -362,7 +363,8 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
     <section class="resume-top-layer" aria-label="Curriculum Vitae">
       <h3>Chauncey Alan</h3>
       <div class="resume-block" style="color:rgba(242,238,233,0.6);margin-bottom:2rem">
-        6'5" &middot; 190 lbs &middot; Representation: Jager Campbell Talent (312) 545-5861
+        6'5" &middot; 190 lbs<br>
+        Manager: Robin Taub &middot; <a href="tel:+17472251843">(747) 225-1843</a> &middot; <a href="mailto:thesptalent@gmail.com">thesptalent@gmail.com</a>
       </div>
 
       <h4>Film</h4>
@@ -392,12 +394,6 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
         Royal Shakespeare Company / Shakespeare Institute &middot; Ewan Fernie<br>
         Meisner Technique &middot; John Ruskin, Los Angeles<br>
         The American University of Paris &middot; Literature, Summa Cum Laude
-      </div>
-
-      <h4>Management &amp; Contact</h4>
-      <div class="resume-block">
-        Manager: Robin Taub &middot; (747) 225-1843 &middot; thesptalent@gmail.com<br>
-        Agency: Jager Campbell Talent Agency &middot; (312) 545-5861
       </div>
 
       <div class="resume-end">
@@ -435,28 +431,13 @@ footer svg{width:42px;height:auto;display:block;margin:0 auto}
   heroReel.play().catch(()=>{});
 
   function unlockAudio(){
-    heroReel.muted = false;
-    heroReel.volume = 1.0;
-    ['click','scroll','touchstart','mousemove','keydown'].forEach(evt => {
-      window.removeEventListener(evt, unlockAudio);
-    });
+    heroReel.muted = false; heroReel.volume = 1.0;
+    heroReel.play().catch(()=>{ heroReel.muted = true; heroReel.play().catch(()=>{}); });
   }
-  ['click','scroll','touchstart','mousemove','keydown'].forEach(evt => {
-    window.addEventListener(evt, unlockAudio, {once:true, passive:true});
-  });
-
-  const reelStage = document.getElementById('screen-reel');
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if(e.isIntersecting){
-          heroReel.play().catch(()=>{});
-        } else {
-          heroReel.pause();
-        }
-      });
-    }, {threshold:0.1}).observe(reelStage);
-  }
+  ['click','touchend','keydown'].forEach(evt => window.addEventListener(evt, unlockAudio, {passive:true}));
+  // keep it running no matter what
+  heroReel.addEventListener('pause', () => { if(!document.hidden) heroReel.play().catch(()=>{}); });
+  document.addEventListener('visibilitychange', () => { if(!document.hidden) heroReel.play().catch(()=>{}); });
 
   // 1-SECOND RAPID RANDOM SELECTOR (ON BOTTOM LAYER)
   const stream = document.getElementById('media-stream');
