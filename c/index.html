@@ -1,12 +1,571 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Chauncey Alan</title><style>
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#080808;color:#f5f2ea;font-family:Georgia,serif}a{color:inherit}button{font:inherit;cursor:pointer}button,a{touch-action:manipulation}button:focus-visible,a:focus-visible{outline:3px solid white;outline-offset:5px}.hero{height:100vh;height:100svh;position:relative;background:#000}.hero iframe{width:100%;height:100%;border:0}.hero nav{position:absolute;bottom:0;left:0;right:0;padding:25px 5vw;background:linear-gradient(transparent,#000);display:flex;justify-content:space-between;align-items:end;gap:20px;pointer-events:none;font:11px/1.8 Arial,sans-serif;letter-spacing:.12em}.hero nav a{pointer-events:auto}.hero small{font-size:10px;letter-spacing:0}main{max-width:1250px;margin:auto;padding:90px 6vw}header{text-align:center;margin-bottom:80px}h1{font-size:clamp(26px,5vw,56px);font-weight:400;letter-spacing:.15em}header p,.hint{font:11px/1.8 Arial,sans-serif;color:#aaa;letter-spacing:.12em}h2{font-weight:400}#gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:38px}.group{min-width:0;padding-top:20px}.label{border:0;border-radius:2px;color:#fff;padding:9px 16px;font:12px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;background:var(--color);position:relative;z-index:5}.stack{position:relative;height:330px;margin:32px 12px 20px;perspective:1000px}.card{position:absolute;inset:0;margin:0;background:#171717;border:1px solid #444;box-shadow:0 15px 30px #0008;transition:transform .4s,opacity .4s;transform:translateY(calc(var(--offset)*-8px)) rotate(calc(var(--offset)*-3deg));z-index:var(--layer);overflow:hidden}.group:hover .card,.group:focus-within .card,.group.expanded .card{transform:translateX(calc(var(--offset)*25px)) translateY(calc(var(--offset)*-9px)) rotate(calc(var(--offset)*-9deg))}.card.active{transform:none!important;z-index:4}.card img{width:100%;height:100%;object-fit:cover}.card figcaption{position:absolute;left:0;right:0;bottom:0;padding:45px 15px 15px;background:linear-gradient(transparent,#000);font:12px Arial,sans-serif}.controls{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:6}.controls button{border:1px solid #555;color:#fff;background:#111;min-width:42px;min-height:42px}.count{font:11px Arial,sans-serif;color:#bbb}.open{display:block;text-align:center;margin-top:15px;font:12px Arial,sans-serif;line-height:1.7}.resume{margin-top:110px;border-top:1px solid #333;padding-top:25px}.resume-head{display:flex;justify-content:space-between;align-items:center;gap:20px}.resume-head a{font:12px Arial,sans-serif}.resume iframe{width:100%;height:85vh;min-height:500px;border:1px solid #333}footer{text-align:center;padding:35px;font:11px Arial,sans-serif;letter-spacing:.2em}dialog{width:min(1100px,94vw);height:90vh;padding:0;border:1px solid #555;background:#111;color:#fff}dialog::backdrop{background:#000c}dialog header{margin:0;padding:12px;display:flex;justify-content:space-between;align-items:center;gap:16px;font:12px Arial,sans-serif}dialog button{padding:10px;background:#222;color:#fff;border:1px solid #666}dialog iframe{width:100%;height:calc(100% - 65px);border:0;background:#eee}@media(max-width:850px){#gallery{grid-template-columns:1fr;gap:55px}.group{max-width:550px;width:100%;margin:auto}.stack{height:420px;margin-left:25px;margin-right:25px}main{padding:60px 7vw}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card{transition:none}}
-</style></head><body>
-<section class="hero" aria-label="Reel"><iframe id="hero-player" title="Chauncey Alan reel" src="https://drive.google.com/file/d/1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ/preview?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe><nav><span>CHAUNCEY ALAN<br><small>Press play for sound if playback has not started.</small></span><a href="#work">EXPLORE WORK ↓</a></nav></section>
-<main id="work"><header><h1>CHAUNCEY ALAN</h1><p>ACTOR · DIRECTOR · WRITER</p><p class="hint">Hover or tap a label to fan out. Use the arrows to browse.</p></header><div id="gallery"></div><section class="resume"><div class="resume-head"><h2>Résumé</h2><a href="https://drive.google.com/file/d/1wIimQHFFkDy9QX5Q6jC7eyq4QN1mfxnZ/view" target="_blank" rel="noopener">Open original ↗</a></div><iframe loading="lazy" title="Chauncey Alan résumé" src="https://drive.google.com/file/d/1wIimQHFFkDy9QX5Q6jC7eyq4QN1mfxnZ/preview"></iframe></section></main><footer><a href="https://www.decalux.art">DECALUX</a> · <a href="#">BACK TO REEL ↑</a></footer><dialog id="viewer"><header><span id="viewer-title"></span><a id="original" target="_blank" rel="noopener">Open in Drive ↗</a><button id="close" type="button">Close ×</button></header><iframe id="preview" title="Selected portfolio content" allow="autoplay; fullscreen" allowfullscreen></iframe></dialog>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#000000">
+<title>Chauncey Alan</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{background:#000;scroll-behavior:smooth}
+body{
+  background:#000;
+  color:#f2eee9;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Screen 1: Immediate Full-Screen Reel — Edge to Edge Native Video */
+#stage-reel{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  height:100dvh;
+  background:#000;
+  overflow:hidden;
+}
+#stage-reel video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+#stage-reel .nebula-dissolve{
+  position:absolute;
+  inset:auto 0 0 0;
+  height:35vh;
+  background:linear-gradient(to bottom, transparent, rgba(0,0,0,0.85) 60%, #000 100%);
+  pointer-events:none;
+}
+#stage-reel .monogram{
+  position:absolute;
+  top:max(2.5rem, env(safe-area-inset-top));
+  left:5vw;
+  font-size:0.75rem;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:rgba(242,238,233,0.85);
+  font-weight:300;
+  pointer-events:none;
+  text-shadow:0 0 30px rgba(0,0,0,0.9);
+}
+
+/* Organic Nebula Space — No Outlines, No Cards, No Boxes */
+.nebula-space{
+  position:relative;
+  min-height:100vh;
+  background:#000;
+  padding:15vh 6vw 12vh;
+  overflow:hidden;
+}
+
+/* Glowing Gaseous Background Field */
+.nebula-gas{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(35, 45, 65, 0.18) 0%, transparent 60%),
+    radial-gradient(circle at 75% 70%, rgba(45, 30, 40, 0.15) 0%, transparent 55%),
+    radial-gradient(circle at 50% 90%, rgba(20, 35, 25, 0.12) 0%, transparent 65%);
+  filter:blur(80px);
+  animation:gasBreathe 22s ease-in-out infinite alternate;
+}
+@keyframes gasBreathe{
+  0%{transform:scale(1) translate(0, 0);opacity:0.6}
+  50%{transform:scale(1.15) translate(-2vw, 3vh);opacity:0.9}
+  100%{transform:scale(1.05) translate(3vw, -2vh);opacity:0.7}
+}
+
+.content-stream{
+  position:relative;
+  z-index:1;
+  max-width:1300px;
+  margin:0 auto;
+}
+
+/* Floating Ether Chapters */
+.ether-chapter{
+  position:relative;
+  min-height:85vh;
+  margin-bottom:22vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.ether-voice{
+  margin-bottom:4vh;
+  padding:0 2vw;
+}
+.ether-voice h2{
+  font-family:"Georgia",serif;
+  font-weight:300;
+  font-size:clamp(1.8rem, 4.2vw, 3.4rem);
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:#fff;
+  text-shadow:0 0 50px rgba(255,255,255,0.25);
+  margin-bottom:0.8rem;
+}
+.ether-voice p{
+  font-size:0.7rem;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  color:rgba(242,238,233,0.4);
+}
+
+/* Floating Gaseous Nebula Cloud Canvas (Automated & Hover Responsive) */
+.gaseous-cloud{
+  position:relative;
+  width:100%;
+  height:clamp(400px, 62vh, 720px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  touch-action:pan-y;
+  cursor:none;
+}
+.nebula-entity{
+  position:absolute;
+  max-width:82%;
+  max-height:88%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change:transform, opacity, filter;
+  pointer-events:none;
+}
+.nebula-entity img, .nebula-entity video{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  display:block;
+  border:none;
+  outline:none;
+  box-shadow:none;
+  filter:drop-shadow(0 0 60px rgba(0,0,0,0.95));
+  transition:filter 1.2s ease;
+}
+
+/* Gaseous states — no outlines, pure aura */
+.nebula-entity.active{
+  opacity:1;
+  transform:translate3d(0, 0, 0) scale(1) rotate(0deg);
+  filter:none;
+  z-index:5;
+}
+.nebula-entity.active img, .nebula-entity.active video{
+  filter:drop-shadow(0 0 70px rgba(255,253,248,0.18)) drop-shadow(0 20px 40px rgba(0,0,0,0.9));
+}
+.nebula-entity.drift-1{
+  opacity:0.25;
+  transform:translate3d(-26%, 4%, 0) scale(0.85) rotate(-5deg);
+  filter:blur(3px) brightness(0.7);
+  z-index:3;
+}
+.nebula-entity.drift-2{
+  opacity:0.25;
+  transform:translate3d(26%, 4%, 0) scale(0.85) rotate(5deg);
+  filter:blur(3px) brightness(0.7);
+  z-index:3;
+}
+.nebula-entity.dissolved{
+  opacity:0;
+  transform:translate3d(0, 10%, 0) scale(0.7);
+  filter:blur(14px) brightness(0.3);
+  z-index:1;
+}
+
+/* Ambient title aura */
+.aura-title{
+  margin-top:3vh;
+  text-align:center;
+  font-family:"Georgia",serif;
+  font-size:0.85rem;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:rgba(242,238,233,0.5);
+  transition:color 0.8s ease, text-shadow 0.8s ease;
+}
+.gaseous-cloud:hover + .aura-title{
+  color:rgba(242,238,233,0.9);
+  text-shadow:0 0 25px rgba(255,255,255,0.3);
+}
+
+/* Typewritten Manuscript Prose Extracts (The Elephant, The Red Marlin, Green Birds) */
+.manuscript-excerpt{
+  padding:3vh 4vw;
+  font-family:"Courier New",Courier,monospace;
+  font-size:clamp(0.8rem, 1.3vw, 1.05rem);
+  line-height:2;
+  color:rgba(242,238,233,0.85);
+  max-width:48rem;
+  margin:0 auto;
+  text-shadow:0 0 30px rgba(255,255,255,0.15);
+}
+.manuscript-excerpt cite{
+  display:block;
+  margin-top:2rem;
+  font-size:0.7rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:rgba(242,238,233,0.45);
+  font-style:normal;
+}
+
+/* CV: Pure Typewritten Monospace, Zero Containers */
+.cv-manifest{
+  max-width:54rem;
+  margin:25vh auto 15vh;
+  padding:0 3vw;
+  font-family:"Courier New",Courier,monospace;
+  color:rgba(242,238,233,0.85);
+  font-size:0.88rem;
+  line-height:1.75;
+}
+.cv-manifest h3{
+  font-size:1.15rem;
+  font-weight:400;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:#fff;
+  border-bottom:1px solid rgba(242,238,233,0.2);
+  padding-bottom:1.2rem;
+  margin-bottom:2.5rem;
+}
+.cv-manifest h4{
+  font-size:0.75rem;
+  font-weight:400;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:rgba(242,238,233,0.45);
+  margin:2.5rem 0 0.8rem;
+}
+.cv-line{
+  display:grid;
+  grid-template-columns:5rem 1fr 1fr;
+  padding:0.25rem 0;
+  gap:1rem;
+}
+.cv-line span:first-child{color:rgba(242,238,233,0.45)}
+.cv-line span:last-child{text-align:right;color:rgba(242,238,233,0.6)}
+.cv-block-text{color:rgba(242,238,233,0.75);margin-top:0.4rem;line-height:1.8}
+.cv-end{
+  margin-top:4rem;
+  padding-top:1.5rem;
+  border-top:1px solid rgba(242,238,233,0.2);
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:1.5rem;
+  font-size:0.75rem;
+  letter-spacing:0.2em;
+}
+.cv-end a{color:rgba(242,238,233,0.7);text-decoration:none;transition:color 0.4s}
+.cv-end a:hover{color:#fff;text-shadow:0 0 15px rgba(255,255,255,0.6)}
+
+footer{
+  text-align:center;
+  padding:12vh 0 10vh;
+}
+footer a{
+  display:inline-block;
+  opacity:0.3;
+  transition:opacity 0.6s ease;
+}
+footer a:hover{opacity:0.9}
+footer svg{width:42px;height:auto;display:block;margin:0 auto}
+
+@media(max-width:768px){
+  .cv-line{grid-template-columns:4rem 1fr}
+  .cv-line span:last-child{grid-column:2;text-align:left;color:rgba(242,238,233,0.45)}
+  .gaseous-cloud{height:52vh}
+  .nebula-entity{max-width:94%;max-height:94%}
+}
+</style>
+</head>
+<body>
+
+<div class="nebula-gas" aria-hidden="true"></div>
+
+<!-- INTRO REEL: Immediately Plays Edge-to-Edge -->
+<section id="stage-reel" aria-label="Chauncey Alan Reel">
+  <video id="hero-reel" autoplay loop playsinline preload="auto" poster="/chaunceycampanaro/img/poster.jpg">
+    <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
+  </video>
+  <div class="nebula-dissolve"></div>
+  <div class="monogram">Chauncey Alan</div>
+</section>
+
+<!-- MAIN NEBULA EXPERIENCE -->
+<div class="nebula-space">
+  <div class="content-stream">
+
+    <!-- CHAPTER 1: PHOTOGRAPHY (All portraits & stills cycling organically) -->
+    <section class="ether-chapter" aria-label="Photography">
+      <div class="ether-voice">
+        <h2>Photography</h2>
+        <p>Presence in the light</p>
+      </div>
+      <div class="gaseous-cloud" data-cloud="photos">
+        <div class="nebula-entity active" data-title="Portrait &middot; Rory Lewis">
+          <img src="/chaunceycampanaro/img/headshot.jpg" alt="Chauncey Alan portrait" loading="lazy">
+        </div>
+        <div class="nebula-entity drift-2" data-title="Acting &middot; Dramatic Still">
+          <img src="/chaunceycampanaro/img/acting.jpg" alt="Acting portrait" loading="lazy">
+        </div>
+        <div class="nebula-entity drift-1" data-title="Modeling &middot; Fashion Still">
+          <img src="/chaunceycampanaro/img/model.jpg" alt="Modeling still" loading="lazy">
+        </div>
+        <div class="nebula-entity dissolved" data-title="Cinema Frame &middot; L'Homme au Piano">
+          <img src="/chaunceycampanaro/img/cinema.jpg" alt="Cinema still" loading="lazy">
+        </div>
+        <div class="nebula-entity dissolved" data-title="Intimate Study &middot; Rory Lewis">
+          <img src="/chaunceycampanaro/img/headshot_sm.jpg" alt="Chauncey Alan headshot" loading="lazy">
+        </div>
+      </div>
+      <div class="aura-title" id="title-photos">Portrait &middot; Rory Lewis</div>
+    </section>
+
+    <!-- CHAPTER 2: FILM (Cinema Trailer & Kittens Silent Atmosphere) -->
+    <section class="ether-chapter" aria-label="Film">
+      <div class="ether-voice">
+        <h2>Film</h2>
+        <p>L'Homme au Piano &middot; Imaginary Kittens &middot; Emptiness</p>
+      </div>
+      <div class="gaseous-cloud" data-cloud="film">
+        <div class="nebula-entity active" data-title="L'Homme au Piano &middot; Cannes Pre-Selection">
+          <img src="/chaunceycampanaro/img/piano_poster.jpg" alt="L'Homme au Piano poster" loading="lazy">
+        </div>
+        <div class="nebula-entity drift-2" data-title="Imaginary Kittens &middot; Paris">
+          <img src="/chaunceycampanaro/img/cinema.jpg" alt="Imaginary Kittens Paris still" loading="lazy">
+        </div>
+        <div class="nebula-entity drift-1" data-title="Movement Archive &middot; 35mm Frame Sequence">
+          <video autoplay muted loop playsinline preload="metadata">
+            <source src="/chaunceycampanaro/reel.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="aura-title" id="title-film">L'Homme au Piano &middot; Cannes Pre-Selection</div>
+    </section>
+
+    <!-- CHAPTER 3: WRITING (The Elephant &middot; The Red Marlin &middot; Green Birds) -->
+    <section class="ether-chapter" aria-label="Writing">
+      <div class="ether-voice">
+        <h2>Writing</h2>
+        <p>The Elephant &middot; The Red Marlin &middot; Green Birds</p>
+      </div>
+      <div class="gaseous-cloud" data-cloud="writing">
+        <div class="nebula-entity active" data-title="The Elephant &middot; Screenplay &middot; Florence Draft">
+          <div class="manuscript-excerpt">
+            &ldquo;When we are asleep in this world we are awake in another.<br><br>
+            Understand! What the devil has it to do with understanding? Since when has a picture been a mathematical proof? It is not there to explain &mdash; explain what, for God's sake &mdash; but to awaken feeling in the heart of the person looking at it.<br><br>
+            A work of Art must not be something that leaves one unmoved, something one passes by with a casual glance. It has to make us react, feel strongly, start creating too, if only in our imagination.&rdquo;
+            <cite>&mdash; The Elephant (Cosmology &amp; Script)</cite>
+          </div>
+        </div>
+        <div class="nebula-entity drift-2" data-title="The Red Marlin &middot; Poetry &middot; Lethus">
+          <div class="manuscript-excerpt">
+            &ldquo;We have it backwards. Those who love, those who have &mdash; they are the ones that want. You can see this play out in temperature. There is no limit to heat, like love, while cold stops. It becomes frozen. Still.<br><br>
+            The universe is an ebb and flow of light and the first human thought was a bird's.&rdquo;
+            <cite>&mdash; The Red Marlin (Final Manuscript)</cite>
+          </div>
+        </div>
+        <div class="nebula-entity drift-1" data-title="Green Birds &middot; Novella &middot; The New Yorker">
+          <div class="manuscript-excerpt">
+            &ldquo;In the city of the mind, we find ourselves in a bare-bones western frontier town with two spurred dirt roads intersecting.<br><br>
+            In the spring tread softly, the earth is pregnant. From black to white, from absence of meaning to love, from gas to liquid, from unconscious to conscious.&rdquo;
+            <cite>&mdash; Green Birds</cite>
+          </div>
+        </div>
+      </div>
+      <div class="aura-title" id="title-writing">The Elephant &middot; Screenplay &middot; Florence Draft</div>
+    </section>
+
+    <!-- CV: Pure Monospace Flow (Actors Access 2026) -->
+    <section class="cv-manifest" aria-label="Curriculum Vitae">
+      <h3>Chauncey Allen</h3>
+      <div class="cv-block-text" style="color:rgba(242,238,233,0.55);margin-bottom:2rem">
+        6'5" &middot; 190 lbs &middot; Representation: Jager Campbell Talent (312) 545-5861
+      </div>
+
+      <h4>Film</h4>
+      <div class="cv-line"><span>2026</span><span>Emtiness (Short)</span><span>dir. Calvin Treats</span></div>
+      <div class="cv-line"><span>2023</span><span>Giorni Felici</span><span>dir. Simone Petralia</span></div>
+      <div class="cv-line"><span>2020</span><span>Sipario (Short)</span><span>dir. Davide Scarciello</span></div>
+      <div class="cv-line"><span>2019</span><span>Rome in Love (TV Movie)</span><span>dir. Eric Bross</span></div>
+      <div class="cv-line"><span>2018</span><span>Un Grande Amore</span><span>dir. Cristian DeMateis</span></div>
+
+      <h4>Theatre</h4>
+      <div class="cv-line"><span>2017</span><span>Free for All</span><span>dir. Rebecca Martin</span></div>
+      <div class="cv-line"><span>2016</span><span>The World is on Fire</span><span>Royal Shakespeare Company / S.I.</span></div>
+      <div class="cv-line"><span>2016</span><span>Julius Caesar</span><span>dir. Rebecca Martin</span></div>
+      <div class="cv-line"><span>2015</span><span>Casey 30 Years Later</span><span>dir. Beverly Bonner (Broadway CC)</span></div>
+      <div class="cv-line"><span>2014</span><span>Saturday Night Sleeping</span><span>dir. Jorge Franco IV</span></div>
+      <div class="cv-line"><span>1997</span><span>Tolstoy: Redemption</span><span>dir. Anna Strasberg</span></div>
+
+      <h4>Directing</h4>
+      <div class="cv-line"><span>2019</span><span>L'Homme au Piano (Feature)</span><span>Cannes Pre-Selection</span></div>
+      <div class="cv-line"><span>&mdash;</span><span>Imaginary Kittens (Short)</span><span>Paris</span></div>
+      <div class="cv-line"><span>&mdash;</span><span>Like a Lady</span><span>Best Director, Riant Theatre NYC</span></div>
+
+      <h4>Mentors &amp; Training</h4>
+      <div class="cv-block-text">
+        Mentors: Anna Strasberg &middot; Fioretta Mari &middot; Jeanie Linders<br>
+        Lee Strasberg Theatre &amp; Film Institute (Johnny Depp Acting Scholarship)<br>
+        Royal Shakespeare Company / Shakespeare Institute &middot; Ewan Fernie<br>
+        Meisner Technique &middot; John Ruskin, Los Angeles<br>
+        The American University of Paris &middot; Literature, Summa Cum Laude
+      </div>
+
+      <h4>Management &amp; Contact</h4>
+      <div class="cv-block-text">
+        Manager: Robin Taub &middot; (747) 225-1843 &middot; thesptalent@gmail.com<br>
+        Agency: Jager Campbell Talent Agency &middot; (312) 545-5861
+      </div>
+
+      <div class="cv-end">
+        <a href="https://www.imdb.me/chauncey" target="_blank" rel="noopener">imdb.me/chauncey</a>
+        <a href="https://instagram.com/ChaunceyyIG" target="_blank" rel="noopener">@ChaunceyyIG</a>
+        <a href="mailto:thesptalent@gmail.com">thesptalent@gmail.com</a>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://www.decalux.art" aria-label="Decalux">
+        <svg viewBox="0 0 500 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="250" cy="110" rx="72" ry="48" stroke="rgba(248,245,238,0.7)" stroke-width="3.5"/>
+          <ellipse cx="316" cy="82" rx="36" ry="28" stroke="rgba(248,245,238,0.7)" stroke-width="3.5"/>
+          <circle cx="326" cy="75" r="3" stroke="rgba(248,245,238,0.7)" stroke-width="3"/>
+          <path d="M338 96 C360 108 375 130 368 162 C362 188 345 200 350 218" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M296 68 C278 52 268 72 282 88 C288 95 296 90 296 68Z" stroke="rgba(248,245,238,0.6)" stroke-width="3"/>
+          <path d="M178 118 C160 124 148 136 152 148" stroke="rgba(248,245,238,0.5)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M220 152 C216 190 210 240 204 290 C202 310 200 330 198 358" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M244 155 C242 195 240 248 238 295 C236 318 235 338 234 362" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M268 155 C270 193 272 246 274 294 C275 318 276 340 278 365" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M292 152 C298 190 304 243 310 290 C313 314 315 336 318 362" stroke="rgba(248,245,238,0.7)" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </footer>
+
+  </div>
+</div>
+
 <script>
-const file=id=>({url:'https://drive.google.com/file/d/'+id+'/view',preview:'https://drive.google.com/file/d/'+id+'/preview'});const folder=id=>({url:'https://drive.google.com/drive/folders/'+id,preview:'https://drive.google.com/embeddedfolderview?id='+id+'#grid'});
-const groups=[{name:'Photos',color:'#2456bc',items:[{name:'Acting',image:'acting',...folder('1liC1gCi2nVtR3A1X4QPzK9a3Me_mALX1')},{name:'Modeling',image:'model',...folder('1M82BPEg9HrnXQQa5g2RQ3PAiD0Odusnb')}]},{name:'Film',color:'#b82c32',items:[{name:'Reel',image:'cinema',...file('1LDbNag3WtIqim8A94uAnjgiLhOm2W2sJ')},{name:'Cinema collection',image:'cinema',...folder('1NHPWcnw6-D_edYMDd4WHzym61X0nrzFV')}]},{name:'Writing',color:'#237546',items:[{name:'The Elephant — Script',image:'script',...file('1zN8Ih4T7lHF3Rsi8Yd6mJwxUYDLaQlbC')},{name:'The Red Marlin — Poetry',image:'poetry',...file('12Bk5jhPxKFhR6peJWZqJV_Nr59WdByF5')}]}];
-const viewer=document.querySelector('#viewer'),preview=document.querySelector('#preview'),hero=document.querySelector('#hero-player');const heroSrc=hero.src;function stopHero(){if(hero.src!==heroSrc.replace('?autoplay=1',''))hero.src=heroSrc.replace('?autoplay=1','')}function show(item){stopHero();document.querySelector('#viewer-title').textContent=item.name;document.querySelector('#original').href=item.url;preview.src=item.preview;viewer.showModal()}document.querySelector('#close').onclick=()=>viewer.close();viewer.addEventListener('close',()=>preview.src='about:blank');new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)stopHero()},{threshold:0}).observe(document.querySelector('.hero'));
-groups.forEach((group,g)=>{let current=0;const section=document.createElement('section');section.className='group';section.style.setProperty('--color',group.color);section.setAttribute('aria-label',group.name+' carousel');section.innerHTML='<button class="label" aria-expanded="false" aria-controls="stack-'+g+'">'+group.name+'</button><div class="stack" id="stack-'+g+'"></div><div class="controls"><button class="prev" aria-label="Previous '+group.name.toLowerCase()+' item">←</button><span class="count" aria-live="polite"></span><button class="next" aria-label="Next '+group.name.toLowerCase()+' item">→</button></div><a class="open" href="#">View selected item</a>';const stack=section.querySelector('.stack');group.items.forEach(item=>{const card=document.createElement('figure');card.className='card';const img=document.createElement('img');img.src='/c/img/'+item.image+'.jpg';img.alt=item.name;img.loading='lazy';const caption=document.createElement('figcaption');caption.textContent=item.name;card.append(img,caption);stack.append(card)});function render(){[...stack.children].forEach((card,i)=>{const offset=(i-current+group.items.length)%group.items.length;card.style.setProperty('--offset',offset);card.style.setProperty('--layer',group.items.length-offset);card.classList.toggle('active',i===current);card.setAttribute('aria-hidden',String(i!==current))});section.querySelector('.count').textContent=(current+1)+' / '+group.items.length;const link=section.querySelector('.open');link.textContent='View '+group.items[current].name+' ↗';link.href=group.items[current].url}function move(step){current=(current+step+group.items.length)%group.items.length;render()}section.querySelector('.prev').onclick=()=>move(-1);section.querySelector('.next').onclick=()=>move(1);section.querySelector('.label').onclick=e=>{const expanded=section.classList.toggle('expanded');e.currentTarget.setAttribute('aria-expanded',String(expanded))};section.querySelector('.open').onclick=e=>{if(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;e.preventDefault();show(group.items[current])};section.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();move(1)}if(e.key==='ArrowLeft'){e.preventDefault();move(-1)}});let start=null;stack.addEventListener('touchstart',e=>start=e.changedTouches[0].clientX,{passive:true});stack.addEventListener('touchend',e=>{if(start===null)return;const delta=e.changedTouches[0].clientX-start;if(Math.abs(delta)>45)move(delta<0?1:-1);start=null},{passive:true});render();document.querySelector('#gallery').append(section)});
-</script></body></html>
+(function(){
+  // 1. Reel immediate playback & audio unlock
+  const heroReel = document.getElementById('hero-reel');
+  heroReel.muted = true;
+  heroReel.play().catch(()=>{});
+
+  function unlockAudio(){
+    heroReel.muted = false;
+    heroReel.volume = 1.0;
+    ['click','scroll','touchstart','mousemove','keydown'].forEach(evt => {
+      window.removeEventListener(evt, unlockAudio);
+    });
+  }
+  ['click','scroll','touchstart','mousemove','keydown'].forEach(evt => {
+    window.addEventListener(evt, unlockAudio, {once:true, passive:true});
+  });
+
+  // Pause hero when scrolled away
+  const reelStage = document.getElementById('stage-reel');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          heroReel.play().catch(()=>{});
+        } else {
+          heroReel.pause();
+        }
+      });
+    }, {threshold:0.1}).observe(reelStage);
+  }
+
+  // 2. Automated & Hover-Activated Nebula Fan Experience (Zero clicks needed)
+  document.querySelectorAll('.gaseous-cloud').forEach(cloud => {
+    const entities = Array.from(cloud.querySelectorAll('.nebula-entity'));
+    const titleEl = document.getElementById('title-' + cloud.dataset.cloud);
+    let activeIdx = 0;
+    const count = entities.length;
+    let userInteracting = false;
+    let autoTimer = null;
+
+    function render(){
+      entities.forEach((ent, i) => {
+        const offset = (i - activeIdx + count) % count;
+        ent.className = 'nebula-entity';
+        if(offset === 0){
+          ent.classList.add('active');
+          if(titleEl) titleEl.innerHTML = ent.dataset.title || '';
+        } else if(offset === 1 || (count === 2 && offset === 1)){
+          ent.classList.add('drift-2');
+        } else if(offset === count - 1){
+          ent.classList.add('drift-1');
+        } else {
+          ent.classList.add('dissolved');
+        }
+      });
+    }
+
+    // Organic hover scrub (just moving mouse sweeps through cloud)
+    cloud.addEventListener('mousemove', e => {
+      userInteracting = true;
+      const rect = cloud.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(0.999, (e.clientX - rect.left) / rect.width));
+      const targetIdx = Math.floor(pct * count);
+      if(targetIdx !== activeIdx){
+        activeIdx = targetIdx;
+        render();
+      }
+    });
+
+    cloud.addEventListener('mouseleave', () => {
+      userInteracting = false;
+    });
+
+    // Touch sweep
+    let startX = null;
+    cloud.addEventListener('touchstart', e => {
+      userInteracting = true;
+      startX = e.touches[0].clientX;
+    }, {passive:true});
+
+    cloud.addEventListener('touchmove', e => {
+      if(startX === null) return;
+      const dx = e.touches[0].clientX - startX;
+      if(Math.abs(dx) > 35){
+        activeIdx = (activeIdx + (dx < 0 ? 1 : -1) + count) % count;
+        render();
+        startX = e.touches[0].clientX;
+      }
+    }, {passive:true});
+
+    cloud.addEventListener('touchend', () => {
+      setTimeout(() => { userInteracting = false; }, 3000);
+    });
+
+    // Automated walk-through if user does nothing
+    autoTimer = setInterval(() => {
+      if(!userInteracting && !document.hidden){
+        const rect = cloud.getBoundingClientRect();
+        if(rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2){
+          activeIdx = (activeIdx + 1) % count;
+          render();
+        }
+      }
+    }, 4500);
+
+    render();
+  });
+})();
+</script>
+</body>
+</html>
